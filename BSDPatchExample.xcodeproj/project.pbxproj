@@ -22,6 +22,25 @@
 		F2436946197499DF00512371 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2436925197499DF00512371 /* UIKit.framework */; };
 		F243694E197499DF00512371 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F243694C197499DF00512371 /* InfoPlist.strings */; };
 		F2436950197499DF00512371 /* BSDPatchExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F243694F197499DF00512371 /* BSDPatchExampleTests.m */; };
+		F243698219749A1B00512371 /* BSDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695A19749A1B00512371 /* BSDObject.m */; };
+		F243698319749A1B00512371 /* BSDEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695B19749A1B00512371 /* BSDEqual.m */; };
+		F243698419749A1B00512371 /* BSDEqualGreater.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695C19749A1B00512371 /* BSDEqualGreater.m */; };
+		F243698519749A1B00512371 /* BSDEqualLess.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695D19749A1B00512371 /* BSDEqualLess.m */; };
+		F243698619749A1B00512371 /* BSDGreater.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695E19749A1B00512371 /* BSDGreater.m */; };
+		F243698719749A1B00512371 /* BSDLess.m in Sources */ = {isa = PBXBuildFile; fileRef = F243695F19749A1B00512371 /* BSDLess.m */; };
+		F243698819749A1B00512371 /* BSDPower.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696019749A1B00512371 /* BSDPower.m */; };
+		F243698919749A1B00512371 /* BSDSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696119749A1B00512371 /* BSDSwap.m */; };
+		F243698A19749A1B00512371 /* BSDValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696219749A1B00512371 /* BSDValue.m */; };
+		F243698B19749A1B00512371 /* BSDDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696419749A1B00512371 /* BSDDistance.m */; };
+		F243698C19749A1B00512371 /* BSDRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696619749A1B00512371 /* BSDRoute.m */; };
+		F243698D19749A1B00512371 /* BSDOutlet.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696719749A1B00512371 /* BSDOutlet.m */; };
+		F243698F19749A1B00512371 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696A19749A1B00512371 /* BSDAdd.m */; };
+		F243699019749A1B00512371 /* BSDCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696C19749A1B00512371 /* BSDCreate.m */; };
+		F243699119749A1B00512371 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696D19749A1B00512371 /* BSDDivide.m */; };
+		F243699219749A1B00512371 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F243696E19749A1B00512371 /* BSDMultiply.m */; };
+		F243699319749A1B00512371 /* BSDSubtract.m in Sources */ = {isa = PBXBuildFile; fileRef = F243697019749A1B00512371 /* BSDSubtract.m */; };
+		F243699419749A1B00512371 /* BSDInlet.m in Sources */ = {isa = PBXBuildFile; fileRef = F243697819749A1B00512371 /* BSDInlet.m */; };
+		F243699519749A1B00512371 /* BSDPort.m in Sources */ = {isa = PBXBuildFile; fileRef = F243697D19749A1B00512371 /* BSDPort.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +74,46 @@
 		F243694B197499DF00512371 /* BSDPatchExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSDPatchExampleTests-Info.plist"; sourceTree = "<group>"; };
 		F243694D197499DF00512371 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F243694F197499DF00512371 /* BSDPatchExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDPatchExampleTests.m; sourceTree = "<group>"; };
+		F243695919749A1B00512371 /* BSDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDObject.h; sourceTree = "<group>"; };
+		F243695A19749A1B00512371 /* BSDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDObject.m; sourceTree = "<group>"; };
+		F243695B19749A1B00512371 /* BSDEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEqual.m; sourceTree = "<group>"; };
+		F243695C19749A1B00512371 /* BSDEqualGreater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEqualGreater.m; sourceTree = "<group>"; };
+		F243695D19749A1B00512371 /* BSDEqualLess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEqualLess.m; sourceTree = "<group>"; };
+		F243695E19749A1B00512371 /* BSDGreater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDGreater.m; sourceTree = "<group>"; };
+		F243695F19749A1B00512371 /* BSDLess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDLess.m; sourceTree = "<group>"; };
+		F243696019749A1B00512371 /* BSDPower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPower.m; sourceTree = "<group>"; };
+		F243696119749A1B00512371 /* BSDSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSwap.m; sourceTree = "<group>"; };
+		F243696219749A1B00512371 /* BSDValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDValue.m; sourceTree = "<group>"; };
+		F243696319749A1B00512371 /* BSDDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDistance.h; sourceTree = "<group>"; };
+		F243696419749A1B00512371 /* BSDDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDDistance.m; sourceTree = "<group>"; };
+		F243696519749A1B00512371 /* BSDRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDRoute.h; sourceTree = "<group>"; };
+		F243696619749A1B00512371 /* BSDRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDRoute.m; sourceTree = "<group>"; };
+		F243696719749A1B00512371 /* BSDOutlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDOutlet.m; sourceTree = "<group>"; };
+		F243696A19749A1B00512371 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
+		F243696B19749A1B00512371 /* BSDCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDCreate.h; sourceTree = "<group>"; };
+		F243696C19749A1B00512371 /* BSDCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDCreate.m; sourceTree = "<group>"; };
+		F243696D19749A1B00512371 /* BSDDivide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDDivide.m; sourceTree = "<group>"; };
+		F243696E19749A1B00512371 /* BSDMultiply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDMultiply.m; sourceTree = "<group>"; };
+		F243696F19749A1B00512371 /* BSDPrimitiveObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPrimitiveObjects.h; sourceTree = "<group>"; };
+		F243697019749A1B00512371 /* BSDSubtract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSubtract.m; sourceTree = "<group>"; };
+		F243697119749A1B00512371 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
+		F243697219749A1B00512371 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
+		F243697319749A1B00512371 /* BSDEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEqual.h; sourceTree = "<group>"; };
+		F243697419749A1B00512371 /* BSDEqualGreater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEqualGreater.h; sourceTree = "<group>"; };
+		F243697519749A1B00512371 /* BSDEqualLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEqualLess.h; sourceTree = "<group>"; };
+		F243697619749A1B00512371 /* BSDGreater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDGreater.h; sourceTree = "<group>"; };
+		F243697719749A1B00512371 /* BSDInlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDInlet.h; sourceTree = "<group>"; };
+		F243697819749A1B00512371 /* BSDInlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDInlet.m; sourceTree = "<group>"; };
+		F243697919749A1B00512371 /* BSDLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDLess.h; sourceTree = "<group>"; };
+		F243697A19749A1B00512371 /* BSDMultiply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDMultiply.h; sourceTree = "<group>"; };
+		F243697B19749A1B00512371 /* BSDOutlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDOutlet.h; sourceTree = "<group>"; };
+		F243697C19749A1B00512371 /* BSDPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPort.h; sourceTree = "<group>"; };
+		F243697D19749A1B00512371 /* BSDPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPort.m; sourceTree = "<group>"; };
+		F243697E19749A1B00512371 /* BSDPower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPower.h; sourceTree = "<group>"; };
+		F243697F19749A1B00512371 /* BSDSubtract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSubtract.h; sourceTree = "<group>"; };
+		F243698019749A1B00512371 /* BSDSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSwap.h; sourceTree = "<group>"; };
+		F243698119749A1B00512371 /* BSDValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDValue.h; sourceTree = "<group>"; };
+		F243699D19749BFD00512371 /* BSDPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +179,7 @@
 				F2436936197499DF00512371 /* Main_iPad.storyboard */,
 				F2436939197499DF00512371 /* BSDViewController.h */,
 				F243693A197499DF00512371 /* BSDViewController.m */,
+				F243699619749A2500512371 /* BSDPatch */,
 				F243693C197499DF00512371 /* Images.xcassets */,
 				F2436928197499DF00512371 /* Supporting Files */,
 			);
@@ -153,6 +213,101 @@
 				F243694C197499DF00512371 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F243699619749A2500512371 /* BSDPatch */ = {
+			isa = PBXGroup;
+			children = (
+				F243699D19749BFD00512371 /* BSDPatch.h */,
+				F243699919749AD300512371 /* Main */,
+				F243699A19749B0200512371 /* Logical */,
+				F243699719749A3900512371 /* Basic Math */,
+				F243699C19749B9700512371 /* Geometry */,
+				F243699819749AAE00512371 /* Flow Control */,
+			);
+			name = BSDPatch;
+			sourceTree = "<group>";
+		};
+		F243699719749A3900512371 /* Basic Math */ = {
+			isa = PBXGroup;
+			children = (
+				F243697119749A1B00512371 /* BSDAdd.h */,
+				F243696A19749A1B00512371 /* BSDAdd.m */,
+				F243697F19749A1B00512371 /* BSDSubtract.h */,
+				F243697019749A1B00512371 /* BSDSubtract.m */,
+				F243697A19749A1B00512371 /* BSDMultiply.h */,
+				F243696E19749A1B00512371 /* BSDMultiply.m */,
+				F243697219749A1B00512371 /* BSDDivide.h */,
+				F243696D19749A1B00512371 /* BSDDivide.m */,
+				F243697E19749A1B00512371 /* BSDPower.h */,
+				F243696019749A1B00512371 /* BSDPower.m */,
+			);
+			name = "Basic Math";
+			sourceTree = "<group>";
+		};
+		F243699819749AAE00512371 /* Flow Control */ = {
+			isa = PBXGroup;
+			children = (
+				F243698019749A1B00512371 /* BSDSwap.h */,
+				F243696119749A1B00512371 /* BSDSwap.m */,
+				F243696519749A1B00512371 /* BSDRoute.h */,
+				F243696619749A1B00512371 /* BSDRoute.m */,
+				F243698119749A1B00512371 /* BSDValue.h */,
+				F243696219749A1B00512371 /* BSDValue.m */,
+			);
+			name = "Flow Control";
+			sourceTree = "<group>";
+		};
+		F243699919749AD300512371 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F243695919749A1B00512371 /* BSDObject.h */,
+				F243695A19749A1B00512371 /* BSDObject.m */,
+				F243696B19749A1B00512371 /* BSDCreate.h */,
+				F243696C19749A1B00512371 /* BSDCreate.m */,
+				F243696F19749A1B00512371 /* BSDPrimitiveObjects.h */,
+				F243699B19749B7300512371 /* Ports */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		F243699A19749B0200512371 /* Logical */ = {
+			isa = PBXGroup;
+			children = (
+				F243697319749A1B00512371 /* BSDEqual.h */,
+				F243695B19749A1B00512371 /* BSDEqual.m */,
+				F243697619749A1B00512371 /* BSDGreater.h */,
+				F243695E19749A1B00512371 /* BSDGreater.m */,
+				F243697919749A1B00512371 /* BSDLess.h */,
+				F243695F19749A1B00512371 /* BSDLess.m */,
+				F243697419749A1B00512371 /* BSDEqualGreater.h */,
+				F243695C19749A1B00512371 /* BSDEqualGreater.m */,
+				F243697519749A1B00512371 /* BSDEqualLess.h */,
+				F243695D19749A1B00512371 /* BSDEqualLess.m */,
+			);
+			name = Logical;
+			sourceTree = "<group>";
+		};
+		F243699B19749B7300512371 /* Ports */ = {
+			isa = PBXGroup;
+			children = (
+				F243697C19749A1B00512371 /* BSDPort.h */,
+				F243697D19749A1B00512371 /* BSDPort.m */,
+				F243697719749A1B00512371 /* BSDInlet.h */,
+				F243697819749A1B00512371 /* BSDInlet.m */,
+				F243697B19749A1B00512371 /* BSDOutlet.h */,
+				F243696719749A1B00512371 /* BSDOutlet.m */,
+			);
+			name = Ports;
+			sourceTree = "<group>";
+		};
+		F243699C19749B9700512371 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				F243696319749A1B00512371 /* BSDDistance.h */,
+				F243696419749A1B00512371 /* BSDDistance.m */,
+			);
+			name = Geometry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +409,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F243699519749A1B00512371 /* BSDPort.m in Sources */,
+				F243699119749A1B00512371 /* BSDDivide.m in Sources */,
+				F243698519749A1B00512371 /* BSDEqualLess.m in Sources */,
 				F243693B197499DF00512371 /* BSDViewController.m in Sources */,
+				F243699319749A1B00512371 /* BSDSubtract.m in Sources */,
+				F243698619749A1B00512371 /* BSDGreater.m in Sources */,
+				F243698A19749A1B00512371 /* BSDValue.m in Sources */,
+				F243698419749A1B00512371 /* BSDEqualGreater.m in Sources */,
 				F2436932197499DF00512371 /* BSDAppDelegate.m in Sources */,
+				F243699419749A1B00512371 /* BSDInlet.m in Sources */,
+				F243698919749A1B00512371 /* BSDSwap.m in Sources */,
+				F243698219749A1B00512371 /* BSDObject.m in Sources */,
+				F243699219749A1B00512371 /* BSDMultiply.m in Sources */,
 				F243692E197499DF00512371 /* main.m in Sources */,
+				F243698B19749A1B00512371 /* BSDDistance.m in Sources */,
+				F243698719749A1B00512371 /* BSDLess.m in Sources */,
+				F243698C19749A1B00512371 /* BSDRoute.m in Sources */,
+				F243698D19749A1B00512371 /* BSDOutlet.m in Sources */,
+				F243698319749A1B00512371 /* BSDEqual.m in Sources */,
+				F243698F19749A1B00512371 /* BSDAdd.m in Sources */,
+				F243698819749A1B00512371 /* BSDPower.m in Sources */,
+				F243699019749A1B00512371 /* BSDCreate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
