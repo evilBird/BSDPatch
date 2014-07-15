@@ -23,5 +23,9 @@
 + (BSDLess *)less;
 + (BSDEqualGreater *)equalOrGreater;
 + (BSDEqualLess *)equalOrLess;
++ (BSDAccum *)accumulate;
++ (BSDCounter *)counter;
++ (BSDAverage *)average;
++ (BSDDistance *)distance;
 
 @end

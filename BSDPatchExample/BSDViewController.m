@@ -12,6 +12,7 @@
 @interface BSDViewController () <BSDObjectOutputUser>
 
 @property(nonatomic,strong)BSDDistance *distance;
+@property(nonatomic,strong)BSDAverage *average;
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 
@@ -26,11 +27,16 @@
     
     
     //Configure the BSDDistance object
-    self.distance = [[BSDDistance alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
+    //self.distance = [[BSDDistance alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
+    self.distance = [BSDCreate distance];
     self.distance.name = @"distance";
+    self.average = [BSDCreate average];
+    self.average.name = @"average";
     
+    [self.distance connectToHot:self.average];
+    self.average.outputUser = self;
     //Register as an output user
-    self.distance.outputUser = self;
+    //self.distance.outputUser = self;
     
     //Set the reference point, from which distance will be measured
     [self.distance hot:@[@"x0",@(self.view.center.x)]];
@@ -61,6 +67,9 @@
 {
     if ([object isEqual:self.distance]) {
         self.distanceLabel.text = [NSString stringWithFormat:@"touch distance from center (points): \n%@",value];
+    }else if ([object isEqual:self.average])
+    {
+        self.distanceLabel.text = [NSString stringWithFormat:@"average distance from center (points): \n%@",value];
     }
 }
 

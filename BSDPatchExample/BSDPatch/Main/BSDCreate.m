@@ -66,4 +66,23 @@
     return [[BSDEqualLess alloc]init];
 }
 
++ (BSDAccum *)accumulate
+{
+    return [[BSDAccum alloc]init];
+}
+
++ (BSDDistance *)distance
+{
+    return [[BSDDistance alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
+}
++ (BSDCounter *)counter
+{
+    return [[BSDCounter alloc]init];
+}
+
++ (BSDAverage *)average
+{
+    return [[BSDAverage alloc]init];
+}
+
 @end

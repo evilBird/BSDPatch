@@ -22,7 +22,10 @@
 #import "BSDEqualLess.h"
 #import "BSDLess.h"
 #import "BSDEqual.h"
+#import "BSDAccum.h"
+#import "BSDCounter.h"
 #import "BSDRoute.h"
 #import "BSDDistance.h"
+#import "BSDAverage.h"
 
 #endif

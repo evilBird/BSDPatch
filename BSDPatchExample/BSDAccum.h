@@ -1,5 +1,5 @@
 //
-//  BSDAverage.h
+//  BSDAccum.h
 //  BSDPatchExample
 //
 //  Created by Travis Henspeter on 7/14/14.
@@ -8,7 +8,7 @@
 
 #import "BSDObject.h"
 
-@interface BSDAverage : BSDObject
+@interface BSDAccum : BSDObject
 
 - (void)reset;
 

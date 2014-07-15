@@ -23,6 +23,9 @@
 		F243694E197499DF00512371 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F243694C197499DF00512371 /* InfoPlist.strings */; };
 		F2436950197499DF00512371 /* BSDPatchExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F243694F197499DF00512371 /* BSDPatchExampleTests.m */; };
 		F26BFED71974C547007DCA4A /* BSDAverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFED61974C547007DCA4A /* BSDAverage.m */; };
+		F26BFEDA1974C621007DCA4A /* BSDCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFED91974C621007DCA4A /* BSDCounter.m */; };
+		F26BFEDD1974C634007DCA4A /* BSDAccum.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDC1974C634007DCA4A /* BSDAccum.m */; };
+		F26BFEE01974CC5B007DCA4A /* BSDVariance.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */; };
 		F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB41974BF18004BB504 /* BSDAdd.m */; };
 		F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB61974BF18004BB504 /* BSDDivide.m */; };
 		F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB81974BF18004BB504 /* BSDMultiply.m */; };
@@ -75,8 +78,14 @@
 		F243694B197499DF00512371 /* BSDPatchExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSDPatchExampleTests-Info.plist"; sourceTree = "<group>"; };
 		F243694D197499DF00512371 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F243694F197499DF00512371 /* BSDPatchExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDPatchExampleTests.m; sourceTree = "<group>"; };
-		F26BFED51974C547007DCA4A /* BSDAverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAverage.h; sourceTree = "<group>"; };
-		F26BFED61974C547007DCA4A /* BSDAverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAverage.m; sourceTree = "<group>"; };
+		F26BFED51974C547007DCA4A /* BSDAverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDAverage.h; path = ../BSDAverage.h; sourceTree = "<group>"; };
+		F26BFED61974C547007DCA4A /* BSDAverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDAverage.m; path = ../BSDAverage.m; sourceTree = "<group>"; };
+		F26BFED81974C621007DCA4A /* BSDCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDCounter.h; path = ../../BSDCounter.h; sourceTree = "<group>"; };
+		F26BFED91974C621007DCA4A /* BSDCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDCounter.m; path = ../../BSDCounter.m; sourceTree = "<group>"; };
+		F26BFEDB1974C634007DCA4A /* BSDAccum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDAccum.h; path = ../../BSDAccum.h; sourceTree = "<group>"; };
+		F26BFEDC1974C634007DCA4A /* BSDAccum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDAccum.m; path = ../../BSDAccum.m; sourceTree = "<group>"; };
+		F26BFEDE1974CC5B007DCA4A /* BSDVariance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDVariance.h; path = ../BSDVariance.h; sourceTree = "<group>"; };
+		F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDVariance.m; path = ../BSDVariance.m; sourceTree = "<group>"; };
 		F2E7EBB31974BF18004BB504 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
 		F2E7EBB41974BF18004BB504 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
 		F2E7EBB51974BF18004BB504 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
@@ -182,8 +191,6 @@
 				F2436936197499DF00512371 /* Main_iPad.storyboard */,
 				F2436939197499DF00512371 /* BSDViewController.h */,
 				F243693A197499DF00512371 /* BSDViewController.m */,
-				F26BFED51974C547007DCA4A /* BSDAverage.h */,
-				F26BFED61974C547007DCA4A /* BSDAverage.m */,
 				F2E7EBB11974BF18004BB504 /* BSDPatch */,
 				F243693C197499DF00512371 /* Images.xcassets */,
 				F2436928197499DF00512371 /* Supporting Files */,
@@ -220,9 +227,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F26BFEE11974D1C8007DCA4A /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				F26BFED51974C547007DCA4A /* BSDAverage.h */,
+				F26BFED61974C547007DCA4A /* BSDAverage.m */,
+				F26BFEDE1974CC5B007DCA4A /* BSDVariance.h */,
+				F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */,
+			);
+			name = Stats;
+			sourceTree = "<group>";
+		};
 		F2E7EBB11974BF18004BB504 /* BSDPatch */ = {
 			isa = PBXGroup;
 			children = (
+				F26BFEE11974D1C8007DCA4A /* Stats */,
 				F2E7EBB21974BF18004BB504 /* Basic-Math */,
 				F2E7EBBD1974BF18004BB504 /* Flow-Control */,
 				F2E7EBC41974BF18004BB504 /* Geometry */,
@@ -253,10 +272,14 @@
 		F2E7EBBD1974BF18004BB504 /* Flow-Control */ = {
 			isa = PBXGroup;
 			children = (
+				F26BFED81974C621007DCA4A /* BSDCounter.h */,
+				F26BFED91974C621007DCA4A /* BSDCounter.m */,
 				F2E7EBBE1974BF18004BB504 /* BSDRoute.h */,
 				F2E7EBBF1974BF18004BB504 /* BSDRoute.m */,
 				F2E7EBC01974BF18004BB504 /* BSDSwap.h */,
 				F2E7EBC11974BF18004BB504 /* BSDSwap.m */,
+				F26BFEDB1974C634007DCA4A /* BSDAccum.h */,
+				F26BFEDC1974C634007DCA4A /* BSDAccum.m */,
 				F2E7EBC21974BF18004BB504 /* BSDValue.h */,
 				F2E7EBC31974BF18004BB504 /* BSDValue.m */,
 			);
@@ -414,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F26BFEDA1974C621007DCA4A /* BSDCounter.m in Sources */,
 				F2E7EBF01974BF18004BB504 /* BSDInlet.m in Sources */,
 				F2E7EBE31974BF18004BB504 /* BSDPower.m in Sources */,
 				F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */,
@@ -425,6 +449,7 @@
 				F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */,
 				F2E7EBE61974BF18004BB504 /* BSDSwap.m in Sources */,
 				F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */,
+				F26BFEE01974CC5B007DCA4A /* BSDVariance.m in Sources */,
 				F2436932197499DF00512371 /* BSDAppDelegate.m in Sources */,
 				F2E7EBED1974BF18004BB504 /* BSDLess.m in Sources */,
 				F2E7EBE41974BF18004BB504 /* BSDSubtract.m in Sources */,
@@ -432,6 +457,7 @@
 				F243692E197499DF00512371 /* main.m in Sources */,
 				F2E7EBEA1974BF18004BB504 /* BSDEqualGreater.m in Sources */,
 				F2E7EBE91974BF18004BB504 /* BSDEqual.m in Sources */,
+				F26BFEDD1974C634007DCA4A /* BSDAccum.m in Sources */,
 				F2E7EBEE1974BF18004BB504 /* BSDCreate.m in Sources */,
 				F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */,
 				F2E7EBEF1974BF18004BB504 /* BSDObject.m in Sources */,
