@@ -1,5 +1,5 @@
 //
-//  BSDLog.h
+//  BSDAccum.h
 //  BSDPatchExample
 //
 //  Created by Travis Henspeter on 7/14/14.
@@ -8,8 +8,10 @@
 
 #import "BSDObject.h"
 
-@interface BSDLog : BSDObject
+@interface BSDAccum : BSDObject
 
-//Input & Output type NSNumber. Takes the natural log of the hot inlet value
+//Input and Output are NSNumber
+
+- (void)reset;
 
 @end

@@ -29,7 +29,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    
     //Configure the BSDObjects
     self.distance = [BSDCreate distance];
     self.average = [BSDCreate average];
@@ -71,7 +70,7 @@
 {
     CGPoint location = [sender locationInView:self.view];
     
-    //Feed the BSDDistance object, which takes an array in the hot inlet. The array consists of a selector(String) and a value.
+    //Feed the BSDDistance object, which takes an array in the hot inlet. The array consists of a selector(String) and a value. In this case, the strings "xf" and yf" refer to the x and y values, respectively, of the touch location. These strings are used internally by BSDDistance to appropriately route the values.
     [self.distance hot:@[@"xf",@(location.x)]];
     [self.distance hot:@[@"yf",@(location.y)]];
 }

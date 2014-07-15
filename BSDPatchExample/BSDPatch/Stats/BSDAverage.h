@@ -12,6 +12,12 @@
 
 //Input and output are NSNumbers
 
+//Optionally BSDAverage uses an input buffer to calculate a running average. By default the buffer is not used. To configure the buffer, use the - initWithBufferSize: initializer and specify the number of values that should be used to compute the running average.
+
+@property (nonatomic,strong)NSMutableArray *inputBuffer;
+
+- (id)initWithBufferSize:(NSUInteger)bufferSize;
+
 - (void)reset;
 
 @end
