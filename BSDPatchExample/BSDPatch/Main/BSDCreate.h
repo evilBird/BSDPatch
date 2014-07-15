@@ -28,5 +28,6 @@
 + (BSDAverage *)average;
 + (BSDDistance *)distance;
 + (BSDStdDev *)standardDeviation;
++ (BSDLog *)naturalLog;
 
 @end

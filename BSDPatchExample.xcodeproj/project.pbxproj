@@ -26,6 +26,7 @@
 		F26BFEDA1974C621007DCA4A /* BSDCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFED91974C621007DCA4A /* BSDCounter.m */; };
 		F26BFEDD1974C634007DCA4A /* BSDAccum.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDC1974C634007DCA4A /* BSDAccum.m */; };
 		F26BFEE01974CC5B007DCA4A /* BSDStdDev.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDF1974CC5B007DCA4A /* BSDStdDev.m */; };
+		F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEE31974D83E007DCA4A /* BSDLog.m */; };
 		F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB41974BF18004BB504 /* BSDAdd.m */; };
 		F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB61974BF18004BB504 /* BSDDivide.m */; };
 		F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB81974BF18004BB504 /* BSDMultiply.m */; };
@@ -86,6 +87,8 @@
 		F26BFEDC1974C634007DCA4A /* BSDAccum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDAccum.m; path = ../../BSDAccum.m; sourceTree = "<group>"; };
 		F26BFEDE1974CC5B007DCA4A /* BSDStdDev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDStdDev.h; path = ../BSDStdDev.h; sourceTree = "<group>"; };
 		F26BFEDF1974CC5B007DCA4A /* BSDStdDev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDStdDev.m; path = ../BSDStdDev.m; sourceTree = "<group>"; };
+		F26BFEE21974D83E007DCA4A /* BSDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDLog.h; sourceTree = "<group>"; };
+		F26BFEE31974D83E007DCA4A /* BSDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDLog.m; sourceTree = "<group>"; };
 		F2E7EBB31974BF18004BB504 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
 		F2E7EBB41974BF18004BB504 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
 		F2E7EBB51974BF18004BB504 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				F2E7EBBA1974BF18004BB504 /* BSDPower.m */,
 				F2E7EBBB1974BF18004BB504 /* BSDSubtract.h */,
 				F2E7EBBC1974BF18004BB504 /* BSDSubtract.m */,
+				F26BFEE21974D83E007DCA4A /* BSDLog.h */,
+				F26BFEE31974D83E007DCA4A /* BSDLog.m */,
 			);
 			path = "Basic-Math";
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				F2E7EBE91974BF18004BB504 /* BSDEqual.m in Sources */,
 				F26BFEDD1974C634007DCA4A /* BSDAccum.m in Sources */,
 				F2E7EBEE1974BF18004BB504 /* BSDCreate.m in Sources */,
+				F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */,
 				F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */,
 				F2E7EBEF1974BF18004BB504 /* BSDObject.m in Sources */,
 				F2E7EBE51974BF18004BB504 /* BSDRoute.m in Sources */,

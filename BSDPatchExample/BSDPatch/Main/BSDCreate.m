@@ -90,4 +90,9 @@
     return [[BSDStdDev alloc]init];
 }
 
++ (BSDLog *)naturalLog
+{
+    return [[BSDLog alloc]init];
+}
+
 @end

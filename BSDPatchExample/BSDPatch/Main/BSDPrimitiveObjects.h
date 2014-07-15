@@ -28,5 +28,6 @@
 #import "BSDDistance.h"
 #import "BSDAverage.h"
 #import "BSDStdDev.h"
+#import "BSDLog.h"
 
 #endif

@@ -13,6 +13,7 @@
 
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDStdDev *stddev;
+
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 
@@ -33,8 +34,8 @@
     
     self.stddev = [BSDCreate standardDeviation];
     self.stddev.outputUser = self;
-    
     [self.distance connectToHot:self.stddev];
+
     
     //Set the reference point, from which distance will be measured
     [self.distance hot:@[@"x0",@(self.view.center.x)]];

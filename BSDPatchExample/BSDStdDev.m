@@ -38,8 +38,6 @@
     self.rootDeviance = [BSDCreate power];
     /*
      Standard Deviation
-     
-     [self hot]-> [avg hot]
      [avg out]-> [deviance cold]
      [self hot]-> [counter hot]
      [counter out]-> [dof hot]
