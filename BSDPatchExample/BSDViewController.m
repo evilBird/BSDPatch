@@ -12,7 +12,7 @@
 @interface BSDViewController () <BSDObjectOutputUser>
 
 @property(nonatomic,strong)BSDDistance *distance;
-@property(nonatomic,strong)BSDAverage *average;
+@property(nonatomic,strong)BSDStdDev *stddev;
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 
@@ -27,23 +27,20 @@
     
     
     //Configure the BSDDistance object
-    //self.distance = [[BSDDistance alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
     self.distance = [BSDCreate distance];
-    self.distance.name = @"distance";
-    self.average = [BSDCreate average];
-    self.average.name = @"average";
-    
-    [self.distance connectToHot:self.average];
-    self.average.outputUser = self;
     //Register as an output user
     //self.distance.outputUser = self;
+    
+    self.stddev = [BSDCreate standardDeviation];
+    self.stddev.outputUser = self;
+    
+    [self.distance connectToHot:self.stddev];
     
     //Set the reference point, from which distance will be measured
     [self.distance hot:@[@"x0",@(self.view.center.x)]];
     [self.distance hot:@[@"y0",@(self.view.center.y)]];
     
     //Set up distanceLabel, which will display the gesture recognizer's touch distance from the reference point
-    
     self.distanceLabel = [[UILabel alloc]initWithFrame:self.view.bounds];
     self.distanceLabel.textAlignment = NSTextAlignmentCenter;
     self.distanceLabel.numberOfLines = 2;
@@ -65,12 +62,7 @@
 
 - (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
 {
-    if ([object isEqual:self.distance]) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"touch distance from center (points): \n%@",value];
-    }else if ([object isEqual:self.average])
-    {
-        self.distanceLabel.text = [NSString stringWithFormat:@"average distance from center (points): \n%@",value];
-    }
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@: \n%@",object.name,value];
 }
 
 - (void)didReceiveMemoryWarning

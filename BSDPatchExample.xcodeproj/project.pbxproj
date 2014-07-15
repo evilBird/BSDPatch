@@ -25,7 +25,7 @@
 		F26BFED71974C547007DCA4A /* BSDAverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFED61974C547007DCA4A /* BSDAverage.m */; };
 		F26BFEDA1974C621007DCA4A /* BSDCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFED91974C621007DCA4A /* BSDCounter.m */; };
 		F26BFEDD1974C634007DCA4A /* BSDAccum.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDC1974C634007DCA4A /* BSDAccum.m */; };
-		F26BFEE01974CC5B007DCA4A /* BSDVariance.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */; };
+		F26BFEE01974CC5B007DCA4A /* BSDStdDev.m in Sources */ = {isa = PBXBuildFile; fileRef = F26BFEDF1974CC5B007DCA4A /* BSDStdDev.m */; };
 		F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB41974BF18004BB504 /* BSDAdd.m */; };
 		F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB61974BF18004BB504 /* BSDDivide.m */; };
 		F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB81974BF18004BB504 /* BSDMultiply.m */; };
@@ -84,8 +84,8 @@
 		F26BFED91974C621007DCA4A /* BSDCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDCounter.m; path = ../../BSDCounter.m; sourceTree = "<group>"; };
 		F26BFEDB1974C634007DCA4A /* BSDAccum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDAccum.h; path = ../../BSDAccum.h; sourceTree = "<group>"; };
 		F26BFEDC1974C634007DCA4A /* BSDAccum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDAccum.m; path = ../../BSDAccum.m; sourceTree = "<group>"; };
-		F26BFEDE1974CC5B007DCA4A /* BSDVariance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDVariance.h; path = ../BSDVariance.h; sourceTree = "<group>"; };
-		F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDVariance.m; path = ../BSDVariance.m; sourceTree = "<group>"; };
+		F26BFEDE1974CC5B007DCA4A /* BSDStdDev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDStdDev.h; path = ../BSDStdDev.h; sourceTree = "<group>"; };
+		F26BFEDF1974CC5B007DCA4A /* BSDStdDev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDStdDev.m; path = ../BSDStdDev.m; sourceTree = "<group>"; };
 		F2E7EBB31974BF18004BB504 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
 		F2E7EBB41974BF18004BB504 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
 		F2E7EBB51974BF18004BB504 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 			children = (
 				F26BFED51974C547007DCA4A /* BSDAverage.h */,
 				F26BFED61974C547007DCA4A /* BSDAverage.m */,
-				F26BFEDE1974CC5B007DCA4A /* BSDVariance.h */,
-				F26BFEDF1974CC5B007DCA4A /* BSDVariance.m */,
+				F26BFEDE1974CC5B007DCA4A /* BSDStdDev.h */,
+				F26BFEDF1974CC5B007DCA4A /* BSDStdDev.m */,
 			);
 			name = Stats;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */,
 				F2E7EBE61974BF18004BB504 /* BSDSwap.m in Sources */,
 				F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */,
-				F26BFEE01974CC5B007DCA4A /* BSDVariance.m in Sources */,
+				F26BFEE01974CC5B007DCA4A /* BSDStdDev.m in Sources */,
 				F2436932197499DF00512371 /* BSDAppDelegate.m in Sources */,
 				F2E7EBED1974BF18004BB504 /* BSDLess.m in Sources */,
 				F2E7EBE41974BF18004BB504 /* BSDSubtract.m in Sources */,

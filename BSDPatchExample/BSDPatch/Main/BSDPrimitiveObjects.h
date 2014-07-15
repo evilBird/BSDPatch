@@ -27,5 +27,6 @@
 #import "BSDRoute.h"
 #import "BSDDistance.h"
 #import "BSDAverage.h"
+#import "BSDStdDev.h"
 
 #endif

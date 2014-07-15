@@ -85,4 +85,9 @@
     return [[BSDAverage alloc]init];
 }
 
++ (BSDStdDev *)standardDeviation
+{
+    return [[BSDStdDev alloc]init];
+}
+
 @end

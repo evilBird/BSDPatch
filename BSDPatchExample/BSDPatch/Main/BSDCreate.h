@@ -27,5 +27,6 @@
 + (BSDCounter *)counter;
 + (BSDAverage *)average;
 + (BSDDistance *)distance;
++ (BSDStdDev *)standardDeviation;
 
 @end

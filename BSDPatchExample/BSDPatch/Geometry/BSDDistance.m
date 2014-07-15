@@ -13,6 +13,7 @@
 
 - (void)setupWithArguments:(id)arguments
 {
+    self.name = @"distance";
     self.processingChain = [NSMutableArray array];
     NSArray *args = (NSArray *)arguments;
     if (args.count < 4) {

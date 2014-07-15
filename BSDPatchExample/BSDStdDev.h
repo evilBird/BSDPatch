@@ -8,7 +8,7 @@
 
 #import "BSDObject.h"
 
-@interface BSDVariance : BSDObject
+@interface BSDStdDev : BSDObject
 
 - (void)reset;
 
