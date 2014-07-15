@@ -20,14 +20,17 @@
         _name = @"BSDObject";
         _hotInlet = [[BSDInlet alloc]init];
         _hotInlet.name = @"hot";
+        _hotInlet.objectId = [self objectId];
         _inlets = [NSMutableDictionary dictionary];
         [_hotInlet addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
         [self addInlet:_hotInlet named:_hotInlet.name];
         _coldInlet = [[BSDInlet alloc]init];
         _coldInlet.name = @"cold";
+        _coldInlet.objectId = [self objectId];
         [self addInlet:_coldInlet named:_coldInlet.name];
         _mainOutlet = [[BSDOutlet alloc]init];
         _mainOutlet.name = @"main";
+        _mainOutlet.objectId = [self objectId];
         _outlets = [NSMutableDictionary dictionary];
         _activeOutletName = _mainOutlet.name;
         [self addOutlet:_mainOutlet named:_mainOutlet.name];
@@ -73,7 +76,7 @@
     return inlet.value;
 }
 
-- (id)getValueForInletNamed:(NSString *)inletName
+- (id)valueForInletNamed:(NSString *)inletName
 {
     if ([self.inlets.allKeys containsObject:inletName]) {
         BSDInlet *inlet = self.inlets[inletName];
@@ -157,6 +160,13 @@
     return nil;
 }
 
+#pragma mark - BSDObjectOutputUser
+
+- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
+{
+    //Optionally take messages from another object
+}
+
 - (void)sendOutputValue:(id)value
 {
     [self sendOutputValue:value toOutletNamed:@"main"];
@@ -175,12 +185,6 @@
 
 #pragma mark - Connect to other objects/inlets
 
-//Connects to hot inlet by default
-- (void)connect:(BSDObject *)object
-{
-    [self.mainOutlet connectInlet:object.hotInlet];
-}
-
 - (void)connectToHot:(BSDObject *)object
 {
     [self.mainOutlet connectInlet:object.hotInlet];
@@ -192,12 +196,13 @@
 }
 
 //Manage connections with specific inlets
-- (void)connectToInlet:(BSDInlet *)inlet
+
+- (void)connect:(BSDInlet *)inlet
 {
     [self.mainOutlet connectInlet:inlet];
 }
 
-- (void)disconnectFromInlet:(BSDInlet *)inlet
+- (void)disconnect:(BSDInlet *)inlet
 {
     [self.mainOutlet disconnectInlet:inlet];
 }
@@ -254,12 +259,6 @@
     return nil;
 }
 
-#pragma mark - BSDObjectOutputUser
-
-- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
-{
-    //Optionally take messages from another object
-}
 
 - (BOOL)isEqual:(id)object
 {
@@ -271,7 +270,6 @@
     
     return NO;
 }
-
 
 #pragma mark - Private
 #pragma mark - KVO

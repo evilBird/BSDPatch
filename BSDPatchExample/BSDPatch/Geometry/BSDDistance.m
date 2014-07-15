@@ -11,8 +11,15 @@
 
 @implementation BSDDistance
 
+
 - (void)setupWithArguments:(id)arguments
 {
+    
+    //setup arguments are an array of strings used to route values sent to the hot inlet: @[@"x0",@"y0",@"xf",@"yf"]
+    //The first two arguments route x and y values, respectively, for a reference coordinate (x0,y0)
+    //The last two arguments route x and y values, respectively, for a second coordinate (xf,yf)
+    //The output is distance between these coordinates. Both coordinates may be dynamic.
+    
     self.name = @"distance";
     self.processingChain = [NSMutableArray array];
     NSArray *args = (NSArray *)arguments;
@@ -48,11 +55,11 @@
         BSDPower *squareX = [BSDCreate power];
         [self.processingChain addObject:squareX];
         [squareX setColdInletValue:@(2)];
-        [diffX connect:squareX];
+        [diffX connect:squareX.hotInlet];
         BSDPower *squareY = [BSDCreate power];
         [self.processingChain addObject:squareY];
         [squareY setColdInletValue:@(2)];
-        [diffY connect:squareY];
+        [diffY connect:squareY.hotInlet];
         BSDAdd *addSquares = [BSDCreate add];
         [self.processingChain addObject:addSquares];
         [squareY connectToCold:addSquares];
@@ -68,7 +75,7 @@
 
 - (id)calculateOutputValue
 {
-    [(BSDObject *)self.processingChain.firstObject setHotInletValue:[self hotInletValue]];
+    [(BSDObject *)self.processingChain.firstObject setHotInletValue:self.hotInlet.value];
     return [(BSDObject *)self.processingChain.lastObject mainOutlet].value;
 }
 

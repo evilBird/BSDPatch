@@ -55,7 +55,7 @@
 - (id)cold;
 
 - (id)inletValue:(BSDInlet *)inlet;
-- (id)getValueForInletNamed:(NSString *)inletName;
+- (id)valueForInletNamed:(NSString *)inletName;
 
 // Set inlet values
 - (void)setHotInletValue:(id)value;
@@ -78,18 +78,18 @@
 - (void)sendOutputValue:(id)value toOutletNamed:(NSString *)outletName;
 
 // Connect to other Objects/Inlets
-- (void)connect:(BSDObject *)object;
 - (void)connectToHot:(BSDObject *)object;
 - (void)connectToCold:(BSDObject *)object;
 
-- (void)connectToInlet:(BSDInlet *)inlet;
-- (void)disconnectFromInlet:(BSDInlet *)inlet;
+- (void)connect:(BSDInlet *)inlet;
+- (void)disconnect:(BSDInlet *)inlet;
 
 - (void)connectToObject:(BSDObject *)object inletName:(NSString *)inletName;
 - (void)connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName;
 
 - (void)addInlet:(BSDInlet *)inlet named:(NSString *)inletName;
 - (void)addOutlet:(BSDOutlet *)outlet named:(NSString *)outletName;
+
 - (BSDInlet *)getInletNamed:(NSString *)inletName;
 - (BSDOutlet *)getOutletNamed:(NSString *)outletName;
 
