@@ -29,5 +29,6 @@
 + (BSDDistance *)distance;
 + (BSDStdDev *)standardDeviation;
 + (BSDLog *)naturalLog;
++ (BSDAbs *)absoluteValue;
 
 @end

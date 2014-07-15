@@ -95,4 +95,9 @@
     return [[BSDLog alloc]init];
 }
 
++ (BSDAbs *)absoluteValue
+{
+    return [[BSDAbs alloc]init];
+}
+
 @end

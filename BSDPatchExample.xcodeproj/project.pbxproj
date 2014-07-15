@@ -46,6 +46,8 @@
 		F2E7EBF21974BF18004BB504 /* BSDPort.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBDF1974BF18004BB504 /* BSDPort.m */; };
 		F2F57E141975BED00083D1C9 /* BSDCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E131975BED00083D1C9 /* BSDCounter.m */; };
 		F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E161975BEEC0083D1C9 /* BSDAccum.m */; };
+		F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E191975D55F0083D1C9 /* BSDPTest.m */; };
+		F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1C1975F0770083D1C9 /* BSDAbs.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,10 @@
 		F2F57E131975BED00083D1C9 /* BSDCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDCounter.m; sourceTree = "<group>"; };
 		F2F57E151975BEEC0083D1C9 /* BSDAccum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDAccum.h; path = "../Flow-Control/BSDAccum.h"; sourceTree = "<group>"; };
 		F2F57E161975BEEC0083D1C9 /* BSDAccum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDAccum.m; path = "../Flow-Control/BSDAccum.m"; sourceTree = "<group>"; };
+		F2F57E181975D55F0083D1C9 /* BSDPTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPTest.h; sourceTree = "<group>"; };
+		F2F57E191975D55F0083D1C9 /* BSDPTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPTest.m; sourceTree = "<group>"; };
+		F2F57E1B1975F0770083D1C9 /* BSDAbs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAbs.h; sourceTree = "<group>"; };
+		F2F57E1C1975F0770083D1C9 /* BSDAbs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAbs.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,8 @@
 				F226C36C1975B9EB00327AB5 /* BSDAverage.m */,
 				F226C36D1975B9EB00327AB5 /* BSDStdDev.h */,
 				F226C36E1975B9EB00327AB5 /* BSDStdDev.m */,
+				F2F57E181975D55F0083D1C9 /* BSDPTest.h */,
+				F2F57E191975D55F0083D1C9 /* BSDPTest.m */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -272,6 +280,8 @@
 				F26BFEE31974D83E007DCA4A /* BSDLog.m */,
 				F2F57E151975BEEC0083D1C9 /* BSDAccum.h */,
 				F2F57E161975BEEC0083D1C9 /* BSDAccum.m */,
+				F2F57E1B1975F0770083D1C9 /* BSDAbs.h */,
+				F2F57E1C1975F0770083D1C9 /* BSDAbs.m */,
 			);
 			path = "Basic-Math";
 			sourceTree = "<group>";
@@ -448,6 +458,7 @@
 				F243693B197499DF00512371 /* BSDViewController.m in Sources */,
 				F2E7EBF21974BF18004BB504 /* BSDPort.m in Sources */,
 				F2E7EBEC1974BF18004BB504 /* BSDGreater.m in Sources */,
+				F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */,
 				F226C36F1975B9EB00327AB5 /* BSDAverage.m in Sources */,
 				F2E7EBE71974BF18004BB504 /* BSDValue.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,
@@ -464,6 +475,7 @@
 				F2E7EBE91974BF18004BB504 /* BSDEqual.m in Sources */,
 				F2E7EBEE1974BF18004BB504 /* BSDCreate.m in Sources */,
 				F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */,
+				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */,
 				F2F57E141975BED00083D1C9 /* BSDCounter.m in Sources */,
 				F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */,

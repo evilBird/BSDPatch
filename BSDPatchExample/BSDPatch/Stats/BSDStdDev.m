@@ -13,7 +13,6 @@
 
 @property (nonatomic,strong)BSDAverage *average;
 @property (nonatomic,strong)BSDAccum *accum;
-@property (nonatomic,strong)BSDCounter *counter;
 @property (nonatomic,strong)BSDSubtract *deviance;
 @property (nonatomic,strong)BSDPower *squaredDeviance;
 @property (nonatomic,strong)BSDPower *rootDeviance;

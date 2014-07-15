@@ -14,6 +14,7 @@
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDAverage *average;
 @property(nonatomic,strong)BSDStdDev *stddev;
+@property(nonatomic,strong)BSDPTest *pTest;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -32,18 +33,22 @@
     //Configure the BSDObjects
     self.distance = [BSDCreate distance];
     //self.average = [BSDCreate average];
-    self.average = [[BSDAverage alloc]initWithBufferSize:10];
+    self.average = [[BSDAverage alloc]initWithBufferSize:30];
     //self.stddev = [BSDCreate standardDeviation];
-    self.stddev = [[BSDStdDev alloc]initWithBufferSize:10];
+    self.stddev = [[BSDStdDev alloc]initWithBufferSize:30];
+    
+    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.95 bufferSize:100];
     
     //connect the distance output to average and std dev objects
     [self.distance connectToHot:self.average];
     [self.distance connectToHot:self.stddev];
+    [self.distance connectToHot:self.pTest];
     
     //Register as an output user for each
     self.distance.outputUser = self;
     self.average.outputUser = self;
     self.stddev.outputUser = self;
+    self.pTest.outputUser = self;
 
     //Set a reference point for BSDDistance object, from which distance will be measured
     //Arbitrarily we'll use the center of the screen
@@ -89,6 +94,24 @@
         self.avgDistanceLabel.text = textToDisplay;
     }else if ([object isEqual:self.stddev]){
         self.stddevDistanceLabel.text = textToDisplay;
+    }else if ([object isEqual:self.pTest]){
+        NSInteger significant = [value integerValue];
+        [self colors:significant];
+    }
+}
+
+- (void)colors:(NSInteger)colors
+{
+    if (!colors) {
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.distanceLabel.textColor = [UIColor blackColor];
+        self.avgDistanceLabel.textColor = [UIColor blackColor];
+        self.stddevDistanceLabel.textColor =  [UIColor blackColor];
+    }else{
+        self.view.backgroundColor = [UIColor blackColor];
+        self.distanceLabel.textColor = [UIColor whiteColor];
+        self.avgDistanceLabel.textColor = [UIColor whiteColor];
+        self.stddevDistanceLabel.textColor =  [UIColor whiteColor];
     }
 }
 

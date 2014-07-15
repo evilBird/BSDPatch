@@ -27,4 +27,6 @@
 #import "BSDAverage.h"
 #import "BSDStdDev.h"
 #import "BSDLog.h"
+#import "BSDPTest.h"
+#import "BSDAbs.h"
 
