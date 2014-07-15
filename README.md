@@ -2,8 +2,7 @@ BSDPatch
 ========
 An experimental patch-based approach to programming for iOS. Inspired by the signal processing language Pure Data.
 
-The basic unit of BSDPatch is the BSDObject class, which is subclassed to perform a specific calculation. BSDObject
-subclasses can be used singly or 'chained' by connecting the 'outlet' of an object to the 'inlet' or one or many other objects. It is helpful to think of this configuration as a signal processing chain -- data flows into an object, the object does something with that data, then sends it downstream. 
+The basic unit of BSDPatch is the BSDObject class, which is subclassed to perform a specific calculation. Instances of BSDObject subclasses can be used individually, or can be 'chained' by connecting the 'outlet' of an object to the 'inlet' or one or many other objects. It is helpful to think of this configuration as a signal processing chain -- data flows into an object, the object does something with that data, then sends it downstream to any objects to which it is connected. 
 
 To subclass, you must override the -calculateOutputValue method. Optionally you may override the -setupWithArguments: method to configure your subclass.
 
