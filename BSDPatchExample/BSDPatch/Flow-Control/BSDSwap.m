@@ -10,9 +10,18 @@
 
 @implementation BSDSwap
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"swap";
+    BSDOutlet *rightOutlet = [[BSDOutlet alloc]init];
+    rightOutlet.name = @"right";
+    [self addOutlet:rightOutlet named:rightOutlet.name];
+}
+
 - (id)calculateOutputValue
 {
-    return [self coldInletValue];
+    [self sendOutputValue:self.hotInlet.value toOutletNamed:@"right"];
+    return self.coldInlet.value;
 }
 
 @end

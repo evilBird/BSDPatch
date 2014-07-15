@@ -22,6 +22,7 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"average";
+    
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
@@ -38,8 +39,8 @@
 
 - (id)calculateOutputValue
 {
-    [self.counter hot:[self hot]];
-    [self.accum hot:[self hot]];
+    [self.counter hot:self.hotInlet.value];
+    [self.accum hot:self.hotInlet.value];
     
     return [self.divide mainOutlet].value;
 }

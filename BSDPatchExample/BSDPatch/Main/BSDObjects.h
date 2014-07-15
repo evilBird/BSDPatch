@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#ifndef BSDLang_BSDPrimitiveObjects_h
-#define BSDLang_BSDPrimitiveObjects_h
 
 #import "BSDMultiply.h"
 #import "BSDAdd.h"
@@ -30,4 +28,3 @@
 #import "BSDStdDev.h"
 #import "BSDLog.h"
 
-#endif

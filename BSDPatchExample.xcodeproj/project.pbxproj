@@ -122,7 +122,7 @@
 		F2E7EBD51974BF18004BB504 /* BSDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDObject.h; sourceTree = "<group>"; };
 		F2E7EBD61974BF18004BB504 /* BSDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDObject.m; sourceTree = "<group>"; };
 		F2E7EBD71974BF18004BB504 /* BSDPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPatch.h; sourceTree = "<group>"; };
-		F2E7EBD81974BF18004BB504 /* BSDPrimitiveObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPrimitiveObjects.h; sourceTree = "<group>"; };
+		F2E7EBD81974BF18004BB504 /* BSDObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDObjects.h; sourceTree = "<group>"; };
 		F2E7EBDA1974BF18004BB504 /* BSDInlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDInlet.h; sourceTree = "<group>"; };
 		F2E7EBDB1974BF18004BB504 /* BSDInlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDInlet.m; sourceTree = "<group>"; };
 		F2E7EBDC1974BF18004BB504 /* BSDOutlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDOutlet.h; sourceTree = "<group>"; };
@@ -320,12 +320,12 @@
 		F2E7EBD21974BF18004BB504 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F2E7EBD71974BF18004BB504 /* BSDPatch.h */,
+				F2E7EBD81974BF18004BB504 /* BSDObjects.h */,
 				F2E7EBD31974BF18004BB504 /* BSDCreate.h */,
 				F2E7EBD41974BF18004BB504 /* BSDCreate.m */,
 				F2E7EBD51974BF18004BB504 /* BSDObject.h */,
 				F2E7EBD61974BF18004BB504 /* BSDObject.m */,
-				F2E7EBD71974BF18004BB504 /* BSDPatch.h */,
-				F2E7EBD81974BF18004BB504 /* BSDPrimitiveObjects.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";

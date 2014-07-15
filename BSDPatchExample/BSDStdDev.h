@@ -10,6 +10,8 @@
 
 @interface BSDStdDev : BSDObject
 
+//Input and output are NSNumbers
+
 - (void)reset;
 
 @end

@@ -12,11 +12,10 @@
 
 @property (nonatomic)id value;
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSNumber *patchId;
+//Ports get assigned the object id of the BSDObject instance to which they belong
+@property (nonatomic,assign) NSString *objectId;
 
-- (id)initWithValue:(id)value;
-- (id)initWithValue:(id)value name:(NSString *)name;
-- (id)initWithValue:(id)value name:(NSString *)name patchId:(NSNumber *)patchId;
+
 
 
 @end

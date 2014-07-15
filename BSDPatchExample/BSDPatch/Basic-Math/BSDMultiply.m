@@ -10,10 +10,15 @@
 
 @implementation BSDMultiply
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"multiply";
+}
+
 - (id)calculateOutputValue
 {
     double result = [self.hotInlet.value doubleValue] * [self.coldInlet.value doubleValue];
-    return [NSNumber numberWithDouble:result];
+    return @(result);
 }
 
 @end

@@ -159,12 +159,6 @@
 
 - (void)sendOutputValue:(id)value
 {
-    
-    if ([value isKindOfClass:[NSArray class]]) {
-        NSArray *valueArray = (NSArray *)value;
-        
-    }
-    
     [self sendOutputValue:value toOutletNamed:@"main"];
 }
 

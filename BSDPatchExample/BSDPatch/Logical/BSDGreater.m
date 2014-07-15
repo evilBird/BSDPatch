@@ -10,10 +10,15 @@
 
 @implementation BSDGreater
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"greater than";
+}
+
 -(id)calculateOutputValue
 {
-    double hot = [[self hotInletValue]doubleValue];
-    double cold = [[self coldInletValue]doubleValue];
+    double hot = [self.hotInlet.value doubleValue];
+    double cold = [self.coldInlet.value doubleValue];
     NSInteger result = hot > cold;
     return @(result);
 }

@@ -10,6 +10,11 @@
 
 @implementation BSDValue
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"value";
+}
+
 - (id)calculateOutputValue
 {
     return [self coldInletValue];

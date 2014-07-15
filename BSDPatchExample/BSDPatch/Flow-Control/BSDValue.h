@@ -10,6 +10,6 @@
 
 @interface BSDValue : BSDObject
 
-
+//Stores any NSObject in the cold inlet, sends the value to the main outlet when any input is received in the hot inlet
 
 @end

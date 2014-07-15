@@ -11,11 +11,15 @@
 #import "BSDOutlet.h"
 
 @class BSDObject;
+
 @protocol BSDObjectOutputUser <NSObject>
 
 - (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value;
 
 @end
+
+
+//The abstract super class for all BSDObjects. Encapsulates input/output behavior
 
 @interface BSDObject : NSObject <BSDObjectOutputUser>
 
@@ -42,6 +46,7 @@
 
 // Constructors
 - (id)initWithArguments:(id)arguments;
+- (void)setupWithArguments:(id)arguments;
 
 // Get inlet values
 - (id)hotInletValue;

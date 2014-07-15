@@ -10,4 +10,6 @@
 
 @interface BSDGreater : BSDObject
 
+//Input and output are NSNumbers. Tests whether hot inlet value is greater than cold inlet value.
+
 @end

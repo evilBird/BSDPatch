@@ -10,6 +10,11 @@
 
 @implementation BSDEqualLess
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"equal or less than";
+}
+
 -(id)calculateOutputValue
 {
     double hot = [[self hotInletValue]doubleValue];

@@ -10,6 +10,8 @@
 
 @interface BSDAccum : BSDObject
 
+//Input and Output are NSNumber
+
 - (void)reset;
 
 @end

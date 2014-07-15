@@ -10,4 +10,6 @@
 
 @interface BSDLess : BSDObject
 
+//Input and Output are NSNumbers. Tests whether hot inlet value is less than cold inlet value.
+
 @end

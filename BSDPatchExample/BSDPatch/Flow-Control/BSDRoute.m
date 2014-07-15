@@ -12,6 +12,8 @@
 
 - (void)setupWithArguments:(id)arguments
 {
+    self.name = @"route";
+    
     if ([arguments isKindOfClass:[NSArray class]]) {
         NSArray *selectors = (NSArray *)arguments;
         for (NSString *aSelector in selectors) {
@@ -21,17 +23,6 @@
             [self addOutlet:outlet named:aSelector];
         }
     }
-}
-
-- (void)connectToHot:(BSDObject *)object selector:(NSString *)selector
-{
-    BSDOutlet *outlet = self.outlets[selector];
-    [outlet connectInlet:object.hotInlet];
-}
-- (void)connectToCold:(BSDObject *)object selector:(NSString *)selector
-{
-    BSDOutlet *outlet = self.outlets[selector];
-    [outlet connectInlet:object.coldInlet];
 }
 
 - (id)calculateOutputValue

@@ -10,10 +10,15 @@
 
 @implementation BSDAdd
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"add";
+}
+
 - (id)calculateOutputValue
 {
     double result = [self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue];
-    return [NSNumber numberWithDouble:result];
+    return @(result);
 }
 
 @end

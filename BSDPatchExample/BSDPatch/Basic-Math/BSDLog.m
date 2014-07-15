@@ -10,9 +10,14 @@
 
 @implementation BSDLog
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"natural log";
+}
+
 -(id)calculateOutputValue
 {
-    double hot = [[self hotInletValue]doubleValue];
+    double hot = [self.hotInlet.value doubleValue];
     double result = log(hot);
     return @(result);
 }

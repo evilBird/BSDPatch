@@ -10,6 +10,8 @@
 
 @interface BSDCounter : BSDObject
 
+// Takes any NSObject as input/Output
+
 - (void)reset;
 
 @end

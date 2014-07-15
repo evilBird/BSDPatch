@@ -10,4 +10,6 @@
 
 @interface BSDLog : BSDObject
 
+//Input & Output type NSNumber
+
 @end

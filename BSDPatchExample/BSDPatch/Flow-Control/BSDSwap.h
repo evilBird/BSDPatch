@@ -10,4 +10,6 @@
 
 @interface BSDSwap : BSDObject
 
+//Input/Output can be any NSObject. When a new value is received by the hot inlet, this value is sent out the right outlet, while the cold inlet value is sent out the main outlet. 
+
 @end

@@ -10,10 +10,15 @@
 
 @implementation BSDPower
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"multiply";
+}
+
 -(id)calculateOutputValue
 {
-    double hot = [[self hotInletValue]doubleValue];
-    double cold = [[self coldInletValue]doubleValue];
+    double hot = [self.hotInlet.value doubleValue];
+    double cold = [self.coldInlet.value doubleValue];
     double result = pow(hot, cold);
     return @(result);
 }

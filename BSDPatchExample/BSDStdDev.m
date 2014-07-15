@@ -25,10 +25,25 @@
 
 @implementation BSDStdDev
 
+/*
+ Standard Deviation block diagram
+ [self hot]->[average hot]
+ [avg out]-> [deviance cold]
+ [self hot]-> [counter hot]
+ [counter out]-> [dof hot]
+ [dof out]-> [divide cold]
+ [self hot]-> [deviance hot]
+ [deviance out]->[squaredDev hot]
+ [squaredDev out]->[accum hot]
+ [accum out]-> [divide hot]
+ [divide out]->[rootDev hot]
+ [rootDev out]-> [self out];
+ */
+
 - (void)setupWithArguments:(id)arguments
 {
     
-    self.name = @"std dev";
+    self.name = @"standard deviation";
     
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
@@ -38,21 +53,6 @@
     self.squaredDeviance = [BSDCreate power];
     self.rootDeviance = [BSDCreate power];
     self.accum = [BSDCreate accumulate];
-    
-    /*
-     Standard Deviation
-     [self hot]->[average hot]
-     [avg out]-> [deviance cold]
-     [self hot]-> [counter hot]
-     [counter out]-> [dof hot]
-     [dof out]-> [divide cold]
-     [self hot]-> [deviance hot]
-     [deviance out]->[squaredDev hot]
-     [squaredDev out]->[accum hot]
-     [accum out]-> [divide hot]
-     [divide out]->[rootDev hot]
-     [rootDev out]-> [self out];
-     */
     
     [self.dof cold:@(1)];
     [self.squaredDeviance cold:@(2)];

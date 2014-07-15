@@ -12,12 +12,13 @@
 
 - (void)setupWithArguments:(NSArray *)arguments
 {
+    self.name = @"counter";
     [self setColdInletValue:@(0)];
 }
 
 - (id)calculateOutputValue
 {
-    double cold = [[self coldInletValue]doubleValue];
+    double cold = [self.coldInlet.value doubleValue];
     double result = cold+1;
     [self setColdInletValue:@(result)];
     return @(result);

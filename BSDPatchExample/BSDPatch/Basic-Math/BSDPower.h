@@ -10,5 +10,6 @@
 
 @interface BSDPower : BSDObject
 
+//Input & Output type NSNumber
 
 @end

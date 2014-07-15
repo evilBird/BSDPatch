@@ -10,5 +10,6 @@
 
 @interface BSDMultiply : BSDObject
 
+//Input & Output type NSNumber
 
 @end

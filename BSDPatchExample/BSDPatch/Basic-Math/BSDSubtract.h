@@ -10,4 +10,6 @@
 
 @interface BSDSubtract : BSDObject
 
+//Input & Output type NSNumber
+
 @end

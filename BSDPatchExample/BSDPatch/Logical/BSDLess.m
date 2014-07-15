@@ -10,11 +10,16 @@
 
 @implementation BSDLess
 
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"less than";
+}
+
 -(id)calculateOutputValue
 {
-    double hot = [[self hotInletValue]doubleValue];
-    double cold = [[self coldInletValue]doubleValue];
-    NSInteger result = hot < cold;
+    double hot = [self.hotInlet.value doubleValue];
+    double cold = [self.coldInlet.value doubleValue];
+    double result = hot < cold;
     return @(result);
 }
 

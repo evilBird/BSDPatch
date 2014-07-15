@@ -10,4 +10,6 @@
 
 @interface BSDAdd : BSDObject
 
+//Input & Output type NSNumber
+
 @end
