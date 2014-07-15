@@ -12,6 +12,7 @@
 @interface BSDStdDev ()
 
 @property (nonatomic,strong)BSDAverage *average;
+@property (nonatomic,strong)BSDAccum *accum;
 @property (nonatomic,strong)BSDCounter *counter;
 @property (nonatomic,strong)BSDSubtract *deviance;
 @property (nonatomic,strong)BSDPower *squaredDeviance;
@@ -36,34 +37,41 @@
     self.dof = [BSDCreate subtract];
     self.squaredDeviance = [BSDCreate power];
     self.rootDeviance = [BSDCreate power];
+    self.accum = [BSDCreate accumulate];
+    
     /*
      Standard Deviation
+     [self hot]->[average hot]
      [avg out]-> [deviance cold]
      [self hot]-> [counter hot]
      [counter out]-> [dof hot]
      [dof out]-> [divide cold]
      [self hot]-> [deviance hot]
      [deviance out]->[squaredDev hot]
-     [squaredDev out]->[rootDev hot]
-     [rootDev out]-> [divide hot]
-     [divide out]-> [self out];
+     [squaredDev out]->[accum hot]
+     [accum out]-> [divide hot]
+     [divide out]->[rootDev hot]
+     [rootDev out]-> [self out];
      */
+    
     [self.dof cold:@(1)];
     [self.squaredDeviance cold:@(2)];
     [self.rootDeviance cold:@(0.5)];
-    
     [self.average connectToCold:self.deviance];
     [self.counter connectToHot:self.dof];
     [self.dof connectToCold:self.divide];
     [self.deviance connectToHot:self.squaredDeviance];
-    [self.squaredDeviance connectToHot:self.rootDeviance];
-    [self.rootDeviance connectToHot:self.divide];
+    [self.squaredDeviance connectToHot:self.accum];
+    [self.accum connectToHot:self.divide];
+    [self.divide connectToHot:self.rootDeviance];
+    
 }
 
 - (void)reset
 {
     [self.average reset];
     [self.counter reset];
+    [self.accum reset];
 }
 
 - (id)calculateOutputValue
@@ -72,7 +80,7 @@
     [self.counter hot:[self hot]];
     [self.deviance hot:[self hot]];
     
-    return [self.divide mainOutlet].value;
+    return [self.rootDeviance mainOutlet].value;
 }
 
 @end

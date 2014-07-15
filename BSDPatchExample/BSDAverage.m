@@ -21,6 +21,7 @@
 
 - (void)setupWithArguments:(id)arguments
 {
+    self.name = @"average";
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
