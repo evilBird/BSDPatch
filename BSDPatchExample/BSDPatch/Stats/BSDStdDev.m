@@ -19,11 +19,17 @@
 @property (nonatomic,strong)BSDPower *rootDeviance;
 @property (nonatomic,strong)BSDSubtract *dof;
 @property (nonatomic,strong)BSDDivide *divide;
-
+@property (nonatomic,strong)NSMutableArray *inputBuffer;
+@property (nonatomic)NSUInteger bufferSize;
 
 @end
 
 @implementation BSDStdDev
+
+- (id)initWithBufferSize:(NSUInteger)bufferSize
+{
+    return [super initWithArguments:@(bufferSize)];
+}
 
 /*
  Standard Deviation block diagram
@@ -43,11 +49,20 @@
 - (void)setupWithArguments:(id)arguments
 {
     
-    self.name = @"standard deviation";
+    NSNumber *bufferSize = (NSNumber *)arguments;
+    
+    if (bufferSize) {
+        self.bufferSize = bufferSize.integerValue;
+        self.inputBuffer = [NSMutableArray array];
+        self.name = [NSString stringWithFormat:@"running standard deviation (n=%@)",bufferSize];
+        self.average = [[BSDAverage alloc]initWithBufferSize:self.bufferSize];
+    }else{
+        self.name = @"standard deviation";
+        self.average = [BSDCreate average];
+    }
     
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
-    self.average = [BSDCreate average];
     self.deviance = [BSDCreate subtract];
     self.dof = [BSDCreate subtract];
     self.squaredDeviance = [BSDCreate power];
@@ -67,18 +82,64 @@
     
 }
 
+- (id)addBufferValue:(id)value
+{
+    if (value != NULL && self.inputBuffer) {
+        
+        if (self.inputBuffer.count == 0) {
+            [self.inputBuffer addObject:value];
+        }else if (self.inputBuffer.count < self.bufferSize){
+            [self.inputBuffer insertObject:value atIndex:0];
+        }else{
+            [self.inputBuffer insertObject:value atIndex:0];
+            id oldestValue = self.inputBuffer.lastObject;
+            [self.inputBuffer removeObjectAtIndex:(self.inputBuffer.count - 1)];
+            return oldestValue;
+        }
+        
+    }
+    
+    return NULL;
+}
+
 - (void)reset
 {
     [self.average reset];
     [self.counter reset];
     [self.accum reset];
+    [self.inputBuffer removeAllObjects];
 }
 
 - (id)calculateOutputValue
 {
-    [self.average hot:[self hot]];
-    [self.counter hot:[self hot]];
-    [self.deviance hot:[self hot]];
+    if (self.bufferSize > 0) {
+        
+        id oldestValue = [self addBufferValue:self.accum.hotInlet.value];
+        
+        if (oldestValue == NULL) {
+            
+            [self.average hot:self.hotInlet.value];
+            [self.counter hot:self.hotInlet.value];
+            [self.deviance hot:self.hotInlet.value];
+            
+        }else{
+            
+            double toSubtract = -[oldestValue doubleValue];
+            double coldValue = [self.accum.coldInlet.value doubleValue];
+            double newValue = toSubtract+coldValue;
+            [self.accum cold:@(newValue)];
+            [self.average hot:self.hotInlet.value];
+            [self.counter cold:@(self.inputBuffer.count - 1)];
+            [self.counter hot:self.hotInlet.value];
+            [self.deviance hot:self.hotInlet.value];
+        }
+        
+    }else{
+    
+        [self.average hot:self.hotInlet.value];
+        [self.counter hot:self.hotInlet.value];
+        [self.deviance hot:self.hotInlet.value];
+    }
     
     return [self.rootDeviance mainOutlet].value;
 }

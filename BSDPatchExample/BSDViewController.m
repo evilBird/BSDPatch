@@ -31,8 +31,10 @@
     
     //Configure the BSDObjects
     self.distance = [BSDCreate distance];
-    self.average = [BSDCreate average];
-    self.stddev = [BSDCreate standardDeviation];
+    //self.average = [BSDCreate average];
+    self.average = [[BSDAverage alloc]initWithBufferSize:10];
+    //self.stddev = [BSDCreate standardDeviation];
+    self.stddev = [[BSDStdDev alloc]initWithBufferSize:10];
     
     //connect the distance output to average and std dev objects
     [self.distance connectToHot:self.average];
