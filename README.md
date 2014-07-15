@@ -14,5 +14,5 @@ changes. Additional inlets and outlets (ports) can be added by overriding the -s
 ports are added to the appropriate collections (instances of NSMutableDictionary), so you must specify a name for
 the port when you add it. 
 
-Check out the example project, which uses the BSDDistance class to calculate the distance in points between 
+Check out the example project, which uses the BSDDistance class to calculate the point distance between two
 arbitrary coordinates in a view. Take a peek at BSDDistance.m to get an idea of how to build a subclass by chaining instances of other BSDObjects to perform calculations within the -calculateOutputValue method.
