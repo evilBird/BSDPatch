@@ -8,11 +8,13 @@
 
 #import "BSDViewController.h"
 #import "BSDPatch.h"
+#import "BSDVariable.h"
 
 @interface BSDViewController () <BSDObjectOutputUser>
 
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDPTest *pTest;
+@property(nonatomic,strong)BSDClassify *classify;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -65,7 +67,32 @@
 
 - (void)test
 {
+    NSArray *testArray = [self testArrayWithLength:50];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"var1 > 50"];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"var2 > 50"];
+    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"var3 > 50"];
     
+    self.classify = [BSDCreate classify:@{@"to_classify": [NSNull null],
+                                          @"predicates":@[predicate1,predicate2,predicate3]}];
+    self.classify.outputUser = self;
+    [self.classify hot:testArray];
+}
+
+
+- (NSArray *)testArrayWithLength:(NSUInteger)length
+{
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:length];
+    for (NSInteger i = 0; i<length; i++) {
+        NSNumber *random1 = @(arc4random_uniform(100));
+        NSNumber *random2 = @(arc4random_uniform(100));
+        NSNumber *random3 = @(arc4random_uniform(100));
+        BSDVariable *variable = [[BSDVariable alloc]initVar1:random1
+                                                        var2:random2
+                                                        var3:random3];
+        [result addObject:variable];
+    }
+    
+    return result;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender
@@ -94,6 +121,8 @@
         }
     }else if ([object isEqual:self.distance]){
         self.distanceLabel.text = [NSString stringWithFormat:@"%@ from center is\n %@",object.name,value];
+    }else if ([object isEqual:self.classify]){
+        NSLog(@"classified groups: %@",outlet.value);
     }
 }
 #pragma mark - Convenience methods

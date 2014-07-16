@@ -35,5 +35,6 @@
 #import "BSDArrayFilter.h"
 #import "BSDArrayNormalize.h"
 #import "BSDSequence.h"
+#import "BSDClassify.h"
 
 

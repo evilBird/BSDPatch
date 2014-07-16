@@ -135,4 +135,9 @@
     return [[BSDArrayNormalize alloc]initWithArguments:nil];
 }
 
++ (BSDClassify *)classify:(id)arguments
+{
+    return [[BSDClassify alloc]initWithArguments:arguments];
+}
+
 @end

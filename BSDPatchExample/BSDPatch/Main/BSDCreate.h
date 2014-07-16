@@ -37,5 +37,6 @@
 + (BSDArraySort *)arraySort:(id)arguments;
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
 + (BSDArrayNormalize *)normalize;
++ (BSDClassify *)classify:(id)arguments;
 
 @end
