@@ -32,22 +32,13 @@
     
     //Configure the BSDObjects
     self.distance = [BSDCreate distance];
-    //self.average = [BSDCreate average];
-    self.average = [[BSDAverage alloc]initWithBufferSize:30];
-    //self.stddev = [BSDCreate standardDeviation];
-    self.stddev = [[BSDStdDev alloc]initWithBufferSize:30];
+    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.90 bufferSize:100];
     
-    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.95 bufferSize:100];
-    
-    //connect the distance output to average and std dev objects
-    [self.distance connectToHot:self.average];
-    [self.distance connectToHot:self.stddev];
+    //connect the distance output to p-test object
     [self.distance connectToHot:self.pTest];
     
     //Register as an output user for each
     self.distance.outputUser = self;
-    self.average.outputUser = self;
-    self.stddev.outputUser = self;
     self.pTest.outputUser = self;
 
     //Set a reference point for BSDDistance object, from which distance will be measured
@@ -84,6 +75,26 @@
 
 #pragma mark - BSDObjectOutputUser method implementation
 
+-(void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
+{
+    //Get output values from our objects & outlets and display them
+
+    NSString *text = [NSString stringWithFormat:@"%@:\n%@",outlet.name,value];
+    
+    if ([object isEqual:self.pTest]) {
+        if ([outlet.name isEqualToString:@"main"]) {
+            NSLog(@"%@",text);
+            [self indicateSignificance:[value boolValue]];
+        }else if ([outlet.name rangeOfString:@"average"].length > 0) {
+            self.avgDistanceLabel.text = text;
+        }else if ([outlet.name rangeOfString:@"standard deviation"].length > 0){
+            self.stddevDistanceLabel.text = text;
+        }
+    }else if ([object isEqual:self.distance]){
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@ from center is\n %@",object.name,value];
+    }
+}
+/*
 - (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
 {
     //Get output values from our objects and display them
@@ -99,19 +110,14 @@
         [self colors:significant];
     }
 }
+ */
 
-- (void)colors:(NSInteger)colors
+- (void)indicateSignificance:(BOOL)significant
 {
-    if (!colors) {
-        self.view.backgroundColor = [UIColor whiteColor];
-        self.distanceLabel.textColor = [UIColor blackColor];
-        self.avgDistanceLabel.textColor = [UIColor blackColor];
-        self.stddevDistanceLabel.textColor =  [UIColor blackColor];
+    if (significant) {
+        self.view.backgroundColor = [UIColor blueColor];
     }else{
-        self.view.backgroundColor = [UIColor blackColor];
-        self.distanceLabel.textColor = [UIColor whiteColor];
-        self.avgDistanceLabel.textColor = [UIColor whiteColor];
-        self.stddevDistanceLabel.textColor =  [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
 }
 

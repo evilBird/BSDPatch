@@ -12,63 +12,63 @@
 
 + (BSDMultiply *)multiply
 {
-    return [[BSDMultiply alloc]init];
+    return [[BSDMultiply alloc]initWithArguments:nil];
 }
 
 + (BSDAdd *)add
 {
-    return [[BSDAdd alloc]init];
+    return [[BSDAdd alloc]initWithArguments:nil];
 }
 
 + (BSDSubtract *)subtract
 {
-    return [[BSDSubtract alloc]init];
+    return [[BSDSubtract alloc]initWithArguments:nil];
 }
 
 + (BSDDivide *)divide
 {
-    return [[BSDDivide alloc]init];
+    return [[BSDDivide alloc]initWithArguments:nil];
 }
 
 + (BSDSwap *)swap
 {
-    return [[BSDSwap alloc]init];
+    return [[BSDSwap alloc]initWithArguments:nil];
 }
 
 + (BSDValue *)value
 {
-    return [[BSDValue alloc]init];
+    return [[BSDValue alloc]initWithArguments:nil];
 }
 
 + (BSDPower *)power
 {
-    return [[BSDPower alloc]init];
+    return [[BSDPower alloc]initWithArguments:nil];
 }
 
 + (BSDEqual *)equals
 {
-    return [[BSDEqual alloc]init];
+    return [[BSDEqual alloc]initWithArguments:nil];
 }
 + (BSDGreater *)greater
 {
-    return [[BSDGreater alloc]init];
+    return [[BSDGreater alloc]initWithArguments:nil];
 }
 + (BSDLess *)less
 {
-    return [[BSDLess alloc]init];
+    return [[BSDLess alloc]initWithArguments:nil];
 }
 + (BSDEqualGreater *)equalOrGreater
 {
-    return [[BSDEqualGreater alloc]init];
+    return [[BSDEqualGreater alloc]initWithArguments:nil];
 }
 + (BSDEqualLess *)equalOrLess
 {
-    return [[BSDEqualLess alloc]init];
+    return [[BSDEqualLess alloc]initWithArguments:nil];
 }
 
 + (BSDAccum *)accumulate
 {
-    return [[BSDAccum alloc]init];
+    return [[BSDAccum alloc]initWithArguments:nil];
 }
 
 + (BSDDistance *)distance
@@ -77,27 +77,32 @@
 }
 + (BSDCounter *)counter
 {
-    return [[BSDCounter alloc]init];
+    return [[BSDCounter alloc]initWithArguments:nil];
 }
 
 + (BSDAverage *)average
 {
-    return [[BSDAverage alloc]init];
+    return [[BSDAverage alloc]initWithArguments:nil];
 }
 
 + (BSDStdDev *)standardDeviation
 {
-    return [[BSDStdDev alloc]init];
+    return [[BSDStdDev alloc]initWithArguments:nil];
 }
 
 + (BSDLog *)naturalLog
 {
-    return [[BSDLog alloc]init];
+    return [[BSDLog alloc]initWithArguments:nil];
 }
 
 + (BSDAbs *)absoluteValue
 {
-    return [[BSDAbs alloc]init];
+    return [[BSDAbs alloc]initWithArguments:nil];
+}
+
++ (BSDChange *)change;
+{
+    return [[BSDChange alloc]initWithArguments:nil];
 }
 
 @end

@@ -48,6 +48,7 @@
 		F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E161975BEEC0083D1C9 /* BSDAccum.m */; };
 		F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E191975D55F0083D1C9 /* BSDPTest.m */; };
 		F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1C1975F0770083D1C9 /* BSDAbs.m */; };
+		F2F57E20197606680083D1C9 /* BSDChange.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1F197606680083D1C9 /* BSDChange.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		F2F57E191975D55F0083D1C9 /* BSDPTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPTest.m; sourceTree = "<group>"; };
 		F2F57E1B1975F0770083D1C9 /* BSDAbs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAbs.h; sourceTree = "<group>"; };
 		F2F57E1C1975F0770083D1C9 /* BSDAbs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAbs.m; sourceTree = "<group>"; };
+		F2F57E1E197606680083D1C9 /* BSDChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDChange.h; sourceTree = "<group>"; };
+		F2F57E1F197606680083D1C9 /* BSDChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDChange.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +300,8 @@
 				F2E7EBC11974BF18004BB504 /* BSDSwap.m */,
 				F2E7EBC21974BF18004BB504 /* BSDValue.h */,
 				F2E7EBC31974BF18004BB504 /* BSDValue.m */,
+				F2F57E1E197606680083D1C9 /* BSDChange.h */,
+				F2F57E1F197606680083D1C9 /* BSDChange.m */,
 			);
 			path = "Flow-Control";
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 				F2E7EBE71974BF18004BB504 /* BSDValue.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,
 				F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */,
+				F2F57E20197606680083D1C9 /* BSDChange.m in Sources */,
 				F2E7EBE61974BF18004BB504 /* BSDSwap.m in Sources */,
 				F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */,
 				F2436932197499DF00512371 /* BSDAppDelegate.m in Sources */,

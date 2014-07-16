@@ -30,5 +30,6 @@
 + (BSDStdDev *)standardDeviation;
 + (BSDLog *)naturalLog;
 + (BSDAbs *)absoluteValue;
++ (BSDChange *)change;
 
 @end

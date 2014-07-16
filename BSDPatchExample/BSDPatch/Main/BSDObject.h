@@ -14,7 +14,8 @@
 
 @protocol BSDObjectOutputUser <NSObject>
 
-- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value;
+//- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value;
+- (void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value;
 
 @end
 

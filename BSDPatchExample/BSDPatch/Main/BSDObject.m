@@ -167,6 +167,11 @@
     //Optionally take messages from another object
 }
 
+- (void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
+{
+    //As above, but specifying an outlet other than the main
+}
+
 - (void)sendOutputValue:(id)value
 {
     [self sendOutputValue:value toOutletNamed:@"main"];
@@ -178,7 +183,8 @@
         BSDOutlet *outlet = self.outlets[outletName];
         [outlet sendValue:value];
         if (self.outputUser) {
-            [self.outputUser BSDObject:self sentOutputValue:value];
+            //[self.outputUser BSDObject:self sentOutputValue:value];
+            [self.outputUser BSDObject:self outlet:outlet sentOutputValue:value];
         }
     }
 }

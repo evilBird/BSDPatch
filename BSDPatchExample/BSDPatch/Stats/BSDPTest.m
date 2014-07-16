@@ -21,7 +21,6 @@
 @property (nonatomic,strong)BSDEqualGreater *compareToSigLevel;
 @property (nonatomic,strong)BSDAbs *absoluteValue;
 
-
 @end
 
 @implementation BSDPTest
@@ -41,8 +40,22 @@
     return [super initWithArguments:args];
 }
 
+- (NSNumber *)criticalValueForSignificance:(double)significance
+{
+    if (significance >= 0.99) {
+        return @(2.58);
+    }else if (significance >= 0.95){
+        return @(1.96);
+    }else if (significance >= 0.9){
+        return @(1.645);
+    }else{
+        return @(1.96);
+    }
+}
+
 - (void)setupWithArguments:(id)arguments
 {
+    self.name = @"p-test";
     NSDictionary *args = (NSDictionary *)arguments;
     
     if (!args) {
@@ -64,9 +77,17 @@
         }
     }
     
+    BSDOutlet *avgOutlet = [[BSDOutlet alloc]init];
+    avgOutlet.name = self.average.name;
+    [self addOutlet:avgOutlet named:avgOutlet.name];
+    
+    BSDOutlet *stdDevOutlet = [[BSDOutlet alloc]init];
+    stdDevOutlet.name = self.stdDev.name;
+    [self addOutlet:stdDevOutlet named:stdDevOutlet.name];
+    
     self.compareToSigLevel = [BSDCreate equalOrGreater];
     self.absoluteValue = [BSDCreate absoluteValue];
-    [self.compareToSigLevel cold:@(2.5)];
+    [self.compareToSigLevel cold:[self criticalValueForSignificance:self.significanceLevel]];
 
     self.subtractInputFromAvg = [BSDCreate subtract];
     self.divideDiffByStdDev = [BSDCreate divide];
@@ -75,6 +96,7 @@
     [self.subtractInputFromAvg connect:self.divideDiffByStdDev.hotInlet];
     [self.divideDiffByStdDev connect:self.absoluteValue.hotInlet];
     [self.absoluteValue connect:self.compareToSigLevel.hotInlet];
+    
 }
 
 - (void)reset
@@ -88,6 +110,8 @@
     [self.stdDev hot:self.hotInlet.value];
     [self.average hot:self.hotInlet.value];
     [self.subtractInputFromAvg hot:self.hotInlet.value];
+    [self sendOutputValue:self.average.mainOutlet.value toOutletNamed:self.average.name];
+    [self sendOutputValue:self.stdDev.mainOutlet.value toOutletNamed:self.stdDev.name];
 
     return self.compareToSigLevel.mainOutlet.value;
 }
