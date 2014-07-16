@@ -17,6 +17,7 @@
 
 - (void)connectInlet:(BSDInlet *)inlet;
 - (void)disconnectInlet:(BSDInlet *)inlet;
+- (void)forwardOuputToOutlet:(BSDOutlet *)outlet;
 - (void)sendValue:(id)value;
 
 @end

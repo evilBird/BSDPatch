@@ -9,6 +9,8 @@
 #import "BSDInlet.h"
 #import "BSDOutlet.h"
 
+
+
 @implementation BSDInlet
 
 - (void)bang
@@ -21,9 +23,14 @@
     self.value = input;
 }
 
+- (void)forwardInputToInlet:(BSDInlet *)inlet
+{
+    [self addObserver:inlet forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([object isKindOfClass:[BSDOutlet class]]) {
+    if ([object isKindOfClass:[BSDOutlet class]] || [object isKindOfClass:[BSDInlet class]]) {
         [self input:[(BSDOutlet *)object value]];
     }
 }
