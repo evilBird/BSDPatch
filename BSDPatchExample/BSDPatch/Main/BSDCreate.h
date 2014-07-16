@@ -35,5 +35,6 @@
 + (BSDMedian *)median;
 + (BSDArraySort *)arraySort:(id)arguments;
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
++ (BSDArrayNormalize *)normalize;
 
 @end

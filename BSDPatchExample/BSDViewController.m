@@ -13,7 +13,6 @@
 
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDPTest *pTest;
-@property(nonatomic,strong)BSDChange *change;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -89,9 +88,9 @@
     if ([object isEqual:self.pTest]) {
         if ([outlet.name isEqualToString:@"main"]) {
             [self indicateSignificance:[value boolValue]];
-        }else if ([outlet.name rangeOfString:@"average"].length > 0) {
+        }else if ([outlet.name isEqualToString:@"average"]) {
             self.avgDistanceLabel.text = text;
-        }else if ([outlet.name rangeOfString:@"standard deviation"].length > 0){
+        }else if ([outlet.name isEqualToString:@"standard deviation"]){
             self.stddevDistanceLabel.text = text;
         }
     }else if ([object isEqual:self.distance]){

@@ -53,13 +53,12 @@
     if (bufferSize) {
         self.bufferSize = bufferSize.integerValue;
         self.inputBuffer = [NSMutableArray array];
-        self.name = [NSString stringWithFormat:@"running standard deviation (n=%@)",bufferSize];
         self.average = [[BSDAverage alloc]initWithBufferSize:self.bufferSize];
     }else{
-        self.name = @"standard deviation";
         self.average = [BSDCreate average];
     }
-    
+    self.name = @"standard deviation";
+
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
     self.deviance = [BSDCreate subtract];

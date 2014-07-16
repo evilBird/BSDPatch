@@ -28,12 +28,11 @@
     
     if (bufferSize) {
         _bufferSize = bufferSize.integerValue;
-        self.name = [NSString stringWithFormat:@"median (n=%@)",bufferSize];
     }else{
         _bufferSize = 0;
-        self.name = @"median";
     }
-    
+    self.name = @"median";
+
     self.inputBuffer = [NSMutableArray array];
 
 }

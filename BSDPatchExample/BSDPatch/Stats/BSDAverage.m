@@ -33,11 +33,9 @@
     if (bufferSize) {
         _bufferSize = bufferSize.integerValue;
         self.inputBuffer = [NSMutableArray array];
-        self.name = [NSString stringWithFormat:@"running average (n=%@)",bufferSize];
-    }else{
-        self.name = @"average";
+
     }
-    
+    self.name = @"average";
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];

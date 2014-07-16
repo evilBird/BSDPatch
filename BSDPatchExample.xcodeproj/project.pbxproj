@@ -52,6 +52,7 @@
 		F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E22197618F70083D1C9 /* BSDMedian.m */; };
 		F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E29197624BD0083D1C9 /* BSDArraySort.m */; };
 		F2F57E2D1976251E0083D1C9 /* BSDArrayFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */; };
+		F2F57E3019762A040083D1C9 /* BSDArrayNormalize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		F2F57E29197624BD0083D1C9 /* BSDArraySort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDArraySort.m; path = Array/BSDArraySort.m; sourceTree = "<group>"; };
 		F2F57E2B1976251E0083D1C9 /* BSDArrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayFilter.h; sourceTree = "<group>"; };
 		F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayFilter.m; sourceTree = "<group>"; };
+		F2F57E2E19762A040083D1C9 /* BSDArrayNormalize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayNormalize.h; sourceTree = "<group>"; };
+		F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayNormalize.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +380,8 @@
 				F2F57E29197624BD0083D1C9 /* BSDArraySort.m */,
 				F2F57E2B1976251E0083D1C9 /* BSDArrayFilter.h */,
 				F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */,
+				F2F57E2E19762A040083D1C9 /* BSDArrayNormalize.h */,
+				F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */,
 			);
 			name = Array;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				F2E7EBEA1974BF18004BB504 /* BSDEqualGreater.m in Sources */,
 				F2E7EBE91974BF18004BB504 /* BSDEqual.m in Sources */,
 				F2E7EBEE1974BF18004BB504 /* BSDCreate.m in Sources */,
+				F2F57E3019762A040083D1C9 /* BSDArrayNormalize.m in Sources */,
 				F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */,
 				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */,

@@ -33,5 +33,6 @@
 #import "BSDMedian.h"
 #import "BSDArraySort.h"
 #import "BSDArrayFilter.h"
+#import "BSDArrayNormalize.h"
 
 

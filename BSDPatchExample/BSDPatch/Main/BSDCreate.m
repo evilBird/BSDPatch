@@ -125,4 +125,9 @@
     return [[BSDArrayFilter alloc]initWithArguments:arguments];
 }
 
++ (BSDArrayNormalize *)normalize
+{
+    return [[BSDArrayNormalize alloc]initWithArguments:nil];
+}
+
 @end
