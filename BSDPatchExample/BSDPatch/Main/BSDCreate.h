@@ -16,6 +16,7 @@
 + (BSDSubtract *)subtract;
 + (BSDDivide *)divide;
 + (BSDSwap *)swap;
++ (BSDSequence *)sequence:(id)arguments;
 + (BSDValue *)value;
 + (BSDPower *)power;
 + (BSDEqual *)equals;

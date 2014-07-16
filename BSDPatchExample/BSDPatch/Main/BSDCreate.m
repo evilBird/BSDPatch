@@ -30,6 +30,11 @@
     return [[BSDDivide alloc]initWithArguments:nil];
 }
 
++ (BSDSequence *)sequence:(id)arguments
+{
+    return [[BSDSequence alloc]initWithArguments:arguments];
+}
+
 + (BSDSwap *)swap
 {
     return [[BSDSwap alloc]initWithArguments:nil];

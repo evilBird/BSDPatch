@@ -53,6 +53,7 @@
 		F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E29197624BD0083D1C9 /* BSDArraySort.m */; };
 		F2F57E2D1976251E0083D1C9 /* BSDArrayFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */; };
 		F2F57E3019762A040083D1C9 /* BSDArrayNormalize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */; };
+		F2F57E3319762F0C0083D1C9 /* BSDSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E3219762F0C0083D1C9 /* BSDSequence.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,8 @@
 		F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayFilter.m; sourceTree = "<group>"; };
 		F2F57E2E19762A040083D1C9 /* BSDArrayNormalize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayNormalize.h; sourceTree = "<group>"; };
 		F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayNormalize.m; sourceTree = "<group>"; };
+		F2F57E3119762F0C0083D1C9 /* BSDSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSequence.h; sourceTree = "<group>"; };
+		F2F57E3219762F0C0083D1C9 /* BSDSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSequence.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +314,8 @@
 				F2F57E131975BED00083D1C9 /* BSDCounter.m */,
 				F2E7EBBE1974BF18004BB504 /* BSDRoute.h */,
 				F2E7EBBF1974BF18004BB504 /* BSDRoute.m */,
+				F2F57E3119762F0C0083D1C9 /* BSDSequence.h */,
+				F2F57E3219762F0C0083D1C9 /* BSDSequence.m */,
 				F2E7EBC01974BF18004BB504 /* BSDSwap.h */,
 				F2E7EBC11974BF18004BB504 /* BSDSwap.m */,
 				F2E7EBC21974BF18004BB504 /* BSDValue.h */,
@@ -486,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E7EBF01974BF18004BB504 /* BSDInlet.m in Sources */,
+				F2F57E3319762F0C0083D1C9 /* BSDSequence.m in Sources */,
 				F2E7EBE31974BF18004BB504 /* BSDPower.m in Sources */,
 				F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */,
 				F243693B197499DF00512371 /* BSDViewController.m in Sources */,

@@ -59,14 +59,13 @@
     //Set up our gesture recognizer, which will feed input to the distance object
     self.gestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     [self.view addGestureRecognizer:self.gestureRecognizer];
-    
     [self test];
 
 }
 
 - (void)test
 {
-
+    
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender
