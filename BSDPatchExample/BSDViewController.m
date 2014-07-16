@@ -12,9 +12,8 @@
 @interface BSDViewController () <BSDObjectOutputUser>
 
 @property(nonatomic,strong)BSDDistance *distance;
-@property(nonatomic,strong)BSDAverage *average;
-@property(nonatomic,strong)BSDStdDev *stddev;
 @property(nonatomic,strong)BSDPTest *pTest;
+@property (nonatomic,strong)BSDMedian *median;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -33,13 +32,16 @@
     //Configure the BSDObjects
     self.distance = [BSDCreate distance];
     self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.90 bufferSize:100];
+    self.median = [[BSDMedian alloc]initWithBufferSize:50];
     
     //connect the distance output to p-test object
-    [self.distance connectToHot:self.pTest];
+    [self.distance connect:self.pTest.hotInlet];
+    [self.distance connect:self.median.hotInlet];
     
     //Register as an output user for each
     self.distance.outputUser = self;
     self.pTest.outputUser = self;
+    self.median.outputUser = self;
 
     //Set a reference point for BSDDistance object, from which distance will be measured
     //Arbitrarily we'll use the center of the screen
@@ -78,7 +80,6 @@
 -(void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
 {
     //Get output values from our objects & outlets and display them
-
     NSString *text = [NSString stringWithFormat:@"%@:\n%@",outlet.name,value];
     
     if ([object isEqual:self.pTest]) {
@@ -91,6 +92,9 @@
         }
     }else if ([object isEqual:self.distance]){
         self.distanceLabel.text = [NSString stringWithFormat:@"%@ from center is\n %@",object.name,value];
+    }else if ([object isEqual:self.median]){
+        
+        NSLog(@"%@",text);
     }
 }
 #pragma mark - Convenience methods

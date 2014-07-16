@@ -100,9 +100,19 @@
     return [[BSDAbs alloc]initWithArguments:nil];
 }
 
-+ (BSDChange *)change;
++ (BSDPTest *)pTest
+{
+    return [[BSDPTest alloc]initWithArguments:nil];
+}
+
++ (BSDChange *)change
 {
     return [[BSDChange alloc]initWithArguments:nil];
+}
+
++ (BSDMedian *)median
+{
+    return [[BSDMedian alloc]initWithArguments:nil];
 }
 
 @end

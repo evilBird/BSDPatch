@@ -76,7 +76,6 @@
 {
     
     if (self.bufferSize > 0) {
-
         id oldestValue = [self addBufferValue:self.hotInlet.value];
         
         if (oldestValue == NULL) {

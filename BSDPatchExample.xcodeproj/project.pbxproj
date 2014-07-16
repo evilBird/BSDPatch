@@ -49,6 +49,7 @@
 		F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E191975D55F0083D1C9 /* BSDPTest.m */; };
 		F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1C1975F0770083D1C9 /* BSDAbs.m */; };
 		F2F57E20197606680083D1C9 /* BSDChange.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1F197606680083D1C9 /* BSDChange.m */; };
+		F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E22197618F70083D1C9 /* BSDMedian.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,8 @@
 		F2F57E1C1975F0770083D1C9 /* BSDAbs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAbs.m; sourceTree = "<group>"; };
 		F2F57E1E197606680083D1C9 /* BSDChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDChange.h; sourceTree = "<group>"; };
 		F2F57E1F197606680083D1C9 /* BSDChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDChange.m; sourceTree = "<group>"; };
+		F2F57E21197618F70083D1C9 /* BSDMedian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDMedian.h; sourceTree = "<group>"; };
+		F2F57E22197618F70083D1C9 /* BSDMedian.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDMedian.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 			children = (
 				F226C36B1975B9EB00327AB5 /* BSDAverage.h */,
 				F226C36C1975B9EB00327AB5 /* BSDAverage.m */,
+				F2F57E21197618F70083D1C9 /* BSDMedian.h */,
+				F2F57E22197618F70083D1C9 /* BSDMedian.m */,
 				F226C36D1975B9EB00327AB5 /* BSDStdDev.h */,
 				F226C36E1975B9EB00327AB5 /* BSDStdDev.m */,
 				F2F57E181975D55F0083D1C9 /* BSDPTest.h */,
@@ -484,6 +489,7 @@
 				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */,
 				F2F57E141975BED00083D1C9 /* BSDCounter.m in Sources */,
+				F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */,
 				F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */,
 				F2E7EBEF1974BF18004BB504 /* BSDObject.m in Sources */,
 				F2E7EBE51974BF18004BB504 /* BSDRoute.m in Sources */,

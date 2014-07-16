@@ -31,5 +31,7 @@
 + (BSDLog *)naturalLog;
 + (BSDAbs *)absoluteValue;
 + (BSDChange *)change;
++ (BSDPTest *)pTest;
++ (BSDMedian *)median;
 
 @end
