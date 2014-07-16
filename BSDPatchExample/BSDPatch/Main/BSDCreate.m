@@ -115,4 +115,9 @@
     return [[BSDMedian alloc]initWithArguments:nil];
 }
 
++ (BSDArraySort *)arraySort:(id)arguments;
+{
+    return [[BSDArraySort alloc]initWithArguments:arguments];
+}
+
 @end

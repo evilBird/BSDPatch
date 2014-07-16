@@ -13,6 +13,7 @@
 
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDPTest *pTest;
+@property(nonatomic,strong)BSDArraySort *arraySort;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -59,7 +60,19 @@
     //Set up our gesture recognizer, which will feed input to the distance object
     self.gestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     [self.view addGestureRecognizer:self.gestureRecognizer];
+    
+    [self test];
 
+}
+
+- (void)test
+{
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"doubleValue" ascending:YES];
+    NSArray *anArray = @[@(20),@(10),@(5),@(7),@(100)];
+    self.arraySort = [BSDCreate arraySort:@[sort]];
+    self.arraySort.outputUser = self;
+    [self.arraySort hot:anArray];
+    NSLog(@"sorted array: %@",self.arraySort.mainOutlet.value);
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender
