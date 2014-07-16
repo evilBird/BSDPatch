@@ -34,5 +34,6 @@
 + (BSDPTest *)pTest;
 + (BSDMedian *)median;
 + (BSDArraySort *)arraySort:(id)arguments;
++ (BSDArrayFilter *)arrayFilter:(id)arguments;
 
 @end

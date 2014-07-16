@@ -51,6 +51,7 @@
 		F2F57E20197606680083D1C9 /* BSDChange.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E1F197606680083D1C9 /* BSDChange.m */; };
 		F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E22197618F70083D1C9 /* BSDMedian.m */; };
 		F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E29197624BD0083D1C9 /* BSDArraySort.m */; };
+		F2F57E2D1976251E0083D1C9 /* BSDArrayFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,8 @@
 		F2F57E22197618F70083D1C9 /* BSDMedian.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDMedian.m; sourceTree = "<group>"; };
 		F2F57E28197624BD0083D1C9 /* BSDArraySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDArraySort.h; path = Array/BSDArraySort.h; sourceTree = "<group>"; };
 		F2F57E29197624BD0083D1C9 /* BSDArraySort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDArraySort.m; path = Array/BSDArraySort.m; sourceTree = "<group>"; };
+		F2F57E2B1976251E0083D1C9 /* BSDArrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayFilter.h; sourceTree = "<group>"; };
+		F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +375,8 @@
 			children = (
 				F2F57E28197624BD0083D1C9 /* BSDArraySort.h */,
 				F2F57E29197624BD0083D1C9 /* BSDArraySort.m */,
+				F2F57E2B1976251E0083D1C9 /* BSDArrayFilter.h */,
+				F2F57E2C1976251E0083D1C9 /* BSDArrayFilter.m */,
 			);
 			name = Array;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				F2E7EBE61974BF18004BB504 /* BSDSwap.m in Sources */,
 				F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */,
 				F2436932197499DF00512371 /* BSDAppDelegate.m in Sources */,
+				F2F57E2D1976251E0083D1C9 /* BSDArrayFilter.m in Sources */,
 				F2E7EBED1974BF18004BB504 /* BSDLess.m in Sources */,
 				F2E7EBE41974BF18004BB504 /* BSDSubtract.m in Sources */,
 				F2E7EBE81974BF18004BB504 /* BSDDistance.m in Sources */,

@@ -20,6 +20,7 @@
 @property (nonatomic,strong)BSDDivide *divideDiffByStdDev;
 @property (nonatomic,strong)BSDEqualGreater *compareToSigLevel;
 @property (nonatomic,strong)BSDAbs *absoluteValue;
+@property (nonatomic,strong)BSDChange *change;
 
 @end
 
@@ -96,6 +97,8 @@
     [self.subtractInputFromAvg connect:self.divideDiffByStdDev.hotInlet];
     [self.divideDiffByStdDev connect:self.absoluteValue.hotInlet];
     [self.absoluteValue connect:self.compareToSigLevel.hotInlet];
+    self.change = [BSDCreate change];
+    [self.compareToSigLevel connect:self.change.hotInlet];
     
 }
 
@@ -113,7 +116,7 @@
     [self sendOutputValue:self.average.mainOutlet.value toOutletNamed:self.average.name];
     [self sendOutputValue:self.stdDev.mainOutlet.value toOutletNamed:self.stdDev.name];
 
-    return self.compareToSigLevel.mainOutlet.value;
+    return self.change.mainOutlet.value;
 }
 
 @end

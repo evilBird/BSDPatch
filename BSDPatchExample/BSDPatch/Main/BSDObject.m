@@ -179,11 +179,10 @@
 
 - (void)sendOutputValue:(id)value toOutletNamed:(NSString *)outletName
 {
-    if ([self.outlets.allKeys containsObject:outletName]) {
+    if (value != NULL && [self.outlets.allKeys containsObject:outletName]) {
         BSDOutlet *outlet = self.outlets[outletName];
         [outlet sendValue:value];
         if (self.outputUser) {
-            //[self.outputUser BSDObject:self sentOutputValue:value];
             [self.outputUser BSDObject:self outlet:outlet sentOutputValue:value];
         }
     }

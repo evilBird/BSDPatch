@@ -10,6 +10,7 @@
 
 @interface BSDChange : BSDObject
 
-//Not working...
+//Input: hot and cold inlets take any NSObject.
+//Output: sends the hot inlet value if and only if the value has changed since the last input
 
 @end

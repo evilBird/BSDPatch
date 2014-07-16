@@ -120,4 +120,9 @@
     return [[BSDArraySort alloc]initWithArguments:arguments];
 }
 
++ (BSDArrayFilter *)arrayFilter:(id)arguments
+{
+    return [[BSDArrayFilter alloc]initWithArguments:arguments];
+}
+
 @end
