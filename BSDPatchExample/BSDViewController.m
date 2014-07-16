@@ -83,7 +83,6 @@
     
     if ([object isEqual:self.pTest]) {
         if ([outlet.name isEqualToString:@"main"]) {
-            NSLog(@"%@",text);
             [self indicateSignificance:[value boolValue]];
         }else if ([outlet.name rangeOfString:@"average"].length > 0) {
             self.avgDistanceLabel.text = text;
@@ -94,23 +93,7 @@
         self.distanceLabel.text = [NSString stringWithFormat:@"%@ from center is\n %@",object.name,value];
     }
 }
-/*
-- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
-{
-    //Get output values from our objects and display them
-    NSString *textToDisplay = [NSString stringWithFormat:@"%@: \n%@",object.name,value];
-    if ([object isEqual:self.distance]) {
-        self.distanceLabel.text = textToDisplay;
-    }else if ([object isEqual:self.average]){
-        self.avgDistanceLabel.text = textToDisplay;
-    }else if ([object isEqual:self.stddev]){
-        self.stddevDistanceLabel.text = textToDisplay;
-    }else if ([object isEqual:self.pTest]){
-        NSInteger significant = [value integerValue];
-        [self colors:significant];
-    }
-}
- */
+#pragma mark - Convenience methods
 
 - (void)indicateSignificance:(BOOL)significant
 {
