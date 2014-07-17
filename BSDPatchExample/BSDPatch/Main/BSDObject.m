@@ -292,4 +292,15 @@
     }
 }
 
+- (void)dealloc
+{
+    [self.hotInlet removeObserver:self forKeyPath:@"value" context:nil];
+    self.hotInlet = nil;
+    self.coldInlet = nil;
+    self.inlets = nil;
+    self.outlets = nil;
+    self.outputUser = nil;
+    
+}
+
 @end

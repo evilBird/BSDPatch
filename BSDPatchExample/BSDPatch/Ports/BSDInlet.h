@@ -11,6 +11,8 @@
 
 @interface BSDInlet : BSDPort
 
+@property (nonatomic,strong)NSMutableArray *forwardInlets;
+
 - (void)input:(id)input;
 - (void)bang;
 - (void)forwardInputToInlet:(BSDInlet *)inlet;

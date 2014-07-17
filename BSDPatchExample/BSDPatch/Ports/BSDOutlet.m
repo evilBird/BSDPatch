@@ -36,6 +36,15 @@
     [self setValue:value];
 }
 
-
+- (void)dealloc
+{
+    if (self.connectedInlets.count) {
+        for (BSDInlet *inlet in self.connectedInlets) {
+            [self disconnectInlet:inlet];
+        }
+        
+        self.connectedInlets = nil;
+    }
+}
 
 @end

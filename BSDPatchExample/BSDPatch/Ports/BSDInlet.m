@@ -10,7 +10,6 @@
 #import "BSDOutlet.h"
 
 
-
 @implementation BSDInlet
 
 - (void)bang
@@ -25,6 +24,10 @@
 
 - (void)forwardInputToInlet:(BSDInlet *)inlet
 {
+    if (!self.forwardInlets) {
+        self.forwardInlets = [NSMutableArray array];
+    }
+    [self.forwardInlets addObject:inlet];
     [self addObserver:inlet forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -32,6 +35,17 @@
 {
     if ([object isKindOfClass:[BSDOutlet class]] || [object isKindOfClass:[BSDInlet class]]) {
         [self input:[(BSDOutlet *)object value]];
+    }
+}
+
+- (void)dealloc
+{
+    if (self.forwardInlets) {
+        for (BSDInlet *inlet in self.forwardInlets) {
+            [inlet removeObserver:self forKeyPath:@"value" context:nil];
+        }
+        
+        self.forwardInlets = nil;
     }
 }
 

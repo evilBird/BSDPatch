@@ -63,7 +63,14 @@
 
 - (void)test
 {
-    
+    BSDAdd *add = [BSDCreate add];
+    BSDMultiply *times = [BSDCreate multiply];
+    BSDSequence *sequence = [[BSDSequence alloc]initWithInlets:@[times.coldInlet,times.hotInlet]];
+    [add connect:sequence.hotInlet];
+    add.coldInlet.value = @(1);
+    add.hotInlet.value = @(1);
+    NSLog(@"sum = %@",add.mainOutlet.value);
+    NSLog(@"square = %@",times.mainOutlet.value);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
