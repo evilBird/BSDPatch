@@ -7,6 +7,7 @@
 //
 
 #import "BSDClassify.h"
+#import "BSDCreate.h"
 
 @implementation BSDClassify
 
@@ -66,5 +67,40 @@
     
     return nil;
 }
+
+#pragma mark - test
+
+/*
+- (void)test
+{
+    NSArray *testArray = [self testArrayWithLength:10000];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"var1 > 50"];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"var2 > 50"];
+    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"var3 > 50"];
+    
+    self.classify = [BSDCreate classify:@{@"to_classify": [NSNull null],
+                                          @"predicates":@[predicate1,predicate2,predicate3]}];
+    self.classify.outputUser = self;
+    [self.classify hot:testArray];
+}
+
+
+- (NSArray *)testArrayWithLength:(NSUInteger)length
+{
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:length];
+    for (NSInteger i = 0; i<length; i++) {
+        NSNumber *random1 = @(arc4random_uniform(100));
+        NSNumber *random2 = @(arc4random_uniform(100));
+        NSNumber *random3 = @(arc4random_uniform(100));
+        BSDTestVariable *variable = [[BSDTestVariable alloc]initVar1:random1
+                                                                var2:random2
+                                                                var3:random3];
+        [result addObject:variable];
+    }
+    
+    return result;
+}
+ 
+ */
 
 @end

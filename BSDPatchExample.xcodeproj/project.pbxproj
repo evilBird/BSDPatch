@@ -55,7 +55,7 @@
 		F2F57E3019762A040083D1C9 /* BSDArrayNormalize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E2F19762A040083D1C9 /* BSDArrayNormalize.m */; };
 		F2F57E3319762F0C0083D1C9 /* BSDSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E3219762F0C0083D1C9 /* BSDSequence.m */; };
 		F2F57E36197637A00083D1C9 /* BSDClassify.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E35197637A00083D1C9 /* BSDClassify.m */; };
-		F2F57E391976F6F40083D1C9 /* BSDVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E381976F6F40083D1C9 /* BSDVariable.m */; };
+		F2F57E391976F6F40083D1C9 /* BSDTestVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F57E381976F6F40083D1C9 /* BSDTestVariable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,8 +157,8 @@
 		F2F57E3219762F0C0083D1C9 /* BSDSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSequence.m; sourceTree = "<group>"; };
 		F2F57E34197637A00083D1C9 /* BSDClassify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDClassify.h; path = ../BSDClassify.h; sourceTree = "<group>"; };
 		F2F57E35197637A00083D1C9 /* BSDClassify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDClassify.m; path = ../BSDClassify.m; sourceTree = "<group>"; };
-		F2F57E371976F6F40083D1C9 /* BSDVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDVariable.h; sourceTree = "<group>"; };
-		F2F57E381976F6F40083D1C9 /* BSDVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDVariable.m; sourceTree = "<group>"; };
+		F2F57E371976F6F40083D1C9 /* BSDTestVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDTestVariable.h; sourceTree = "<group>"; };
+		F2F57E381976F6F40083D1C9 /* BSDTestVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDTestVariable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,8 +239,8 @@
 				F2436936197499DF00512371 /* Main_iPad.storyboard */,
 				F2436939197499DF00512371 /* BSDViewController.h */,
 				F243693A197499DF00512371 /* BSDViewController.m */,
-				F2F57E371976F6F40083D1C9 /* BSDVariable.h */,
-				F2F57E381976F6F40083D1C9 /* BSDVariable.m */,
+				F2F57E371976F6F40083D1C9 /* BSDTestVariable.h */,
+				F2F57E381976F6F40083D1C9 /* BSDTestVariable.m */,
 				F2E7EBB11974BF18004BB504 /* BSDPatch */,
 				F243693C197499DF00512371 /* Images.xcassets */,
 				F2436928197499DF00512371 /* Supporting Files */,
@@ -510,7 +510,7 @@
 				F2F57E36197637A00083D1C9 /* BSDClassify.m in Sources */,
 				F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */,
 				F226C36F1975B9EB00327AB5 /* BSDAverage.m in Sources */,
-				F2F57E391976F6F40083D1C9 /* BSDVariable.m in Sources */,
+				F2F57E391976F6F40083D1C9 /* BSDTestVariable.m in Sources */,
 				F2E7EBE71974BF18004BB504 /* BSDValue.m in Sources */,
 				F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,

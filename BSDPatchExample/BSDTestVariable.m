@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDVariable.h"
+#import "BSDTestVariable.h"
 
-@implementation BSDVariable
+@implementation BSDTestVariable
 
 -(id)initVar1:(NSNumber *)var1 var2:(NSNumber *)var2 var3:(NSNumber *)var3
 {

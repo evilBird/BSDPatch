@@ -8,7 +8,7 @@
 
 #import "BSDViewController.h"
 #import "BSDPatch.h"
-#import "BSDVariable.h"
+#import "BSDTestVariable.h"
 
 @interface BSDViewController () <BSDObjectOutputUser>
 
@@ -31,8 +31,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Configure the BSDObjects
+    //distance object will measure the distance between touches in the view
     self.distance = [BSDCreate distance];
-    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.90 bufferSize:100];
+    //p-test will take the output of the distance object and calculate the mean, standard deviation, and p-value of the value (alpha = 0.05, n = 256). If the average distances changes significantly, the screen will turn blue.
+    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.95 bufferSize:256];
     
     //connect the distance output to p-test object
     [self.distance connect:self.pTest.hotInlet];
@@ -40,12 +42,6 @@
     //Register as an output user for each
     self.distance.outputUser = self;
     self.pTest.outputUser = self;
-
-    //Set a reference point for BSDDistance object, from which distance will be measured
-    //Arbitrarily we'll use the center of the screen
-    [self.distance hot:@[@"x0",@(self.view.center.x)]];
-    [self.distance hot:@[@"y0",@(self.view.center.y)]];
-    
     
     //Set up our labels, which will display the output from the BSDObjects
     CGPoint origin = self.view.bounds.origin;
@@ -59,49 +55,40 @@
     [self.view addSubview:self.stddevDistanceLabel];
 
     //Set up our gesture recognizer, which will feed input to the distance object
-    self.gestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
-    [self.view addGestureRecognizer:self.gestureRecognizer];
+    self.view.multipleTouchEnabled = YES;
+
     [self test];
 
 }
 
 - (void)test
 {
-    NSArray *testArray = [self testArrayWithLength:50];
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"var1 > 50"];
-    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"var2 > 50"];
-    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"var3 > 50"];
     
-    self.classify = [BSDCreate classify:@{@"to_classify": [NSNull null],
-                                          @"predicates":@[predicate1,predicate2,predicate3]}];
-    self.classify.outputUser = self;
-    [self.classify hot:testArray];
 }
 
-
-- (NSArray *)testArrayWithLength:(NSUInteger)length
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:length];
-    for (NSInteger i = 0; i<length; i++) {
-        NSNumber *random1 = @(arc4random_uniform(100));
-        NSNumber *random2 = @(arc4random_uniform(100));
-        NSNumber *random3 = @(arc4random_uniform(100));
-        BSDVariable *variable = [[BSDVariable alloc]initVar1:random1
-                                                        var2:random2
-                                                        var3:random3];
-        [result addObject:variable];
-    }
-    
-    return result;
+    [self handleTouches:touches];
 }
 
-- (void)handlePanGesture:(UIPanGestureRecognizer *)sender
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint location = [sender locationInView:self.view];
-    
+    [self handleTouches:touches];
+}
+
+- (void)handleTouches:(NSSet *)touches
+{
     //Feed the BSDDistance object, which takes an array in the hot inlet. The array consists of a selector(String) and a value. In this case, the strings "xf" and yf" refer to the x and y values, respectively, of the touch location. These strings are used internally by BSDDistance to appropriately route the values.
-    [self.distance hot:@[@"xf",@(location.x)]];
-    [self.distance hot:@[@"yf",@(location.y)]];
+    
+    if (touches.count == 2) {
+        //Set a reference point for BSDDistance object, from which distance will be measured
+        CGPoint ref = [touches.allObjects[0] locationInView:self.view];
+        [self.distance hot:@[@"x0",@(ref.x)]];
+        [self.distance hot:@[@"y0",@(ref.y)]];
+        CGPoint pt = [touches.allObjects[1] locationInView:self.view];
+        [self.distance hot:@[@"xf",@(pt.x)]];
+        [self.distance hot:@[@"yf",@(pt.y)]];
+    }
 }
 
 #pragma mark - BSDObjectOutputUser method implementation
@@ -109,22 +96,23 @@
 -(void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
 {
     //Get output values from our objects & outlets and display them
-    NSString *text = [NSString stringWithFormat:@"%@:\n%@",outlet.name,value];
+    //NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
     
     if ([object isEqual:self.pTest]) {
         if ([outlet.name isEqualToString:@"main"]) {
             [self indicateSignificance:[value boolValue]];
         }else if ([outlet.name isEqualToString:@"average"]) {
+            NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
             self.avgDistanceLabel.text = text;
         }else if ([outlet.name isEqualToString:@"standard deviation"]){
+            NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
             self.stddevDistanceLabel.text = text;
         }
     }else if ([object isEqual:self.distance]){
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@ from center is\n %@",object.name,value];
-    }else if ([object isEqual:self.classify]){
-        NSLog(@"classified groups: %@",outlet.value);
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@ between touches is\n %.1f pts",object.name,[value floatValue]];
     }
 }
+
 #pragma mark - Convenience methods
 
 - (void)indicateSignificance:(BOOL)significant

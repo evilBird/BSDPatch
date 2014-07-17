@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BSDVariable : NSObject
+@interface BSDTestVariable : NSObject
 
 @property (nonatomic,strong)NSNumber *var1;
 @property (nonatomic,strong)NSNumber *var2;
