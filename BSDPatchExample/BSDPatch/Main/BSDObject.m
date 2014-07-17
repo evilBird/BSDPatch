@@ -13,195 +13,61 @@
 #pragma mark - Public
 #pragma mark - Constructors
 
-- (id)initWithArguments:(id)arguments
+- (instancetype)initWithArguments:(id)arguments
 {
     self = [super init];
     if (self) {
+        
+        _observedPorts = [NSMutableSet set];
+        _inlets = [NSMutableArray array];
+        _outlets = [NSMutableArray array];
+        
         _name = @"BSDObject";
-        _hotInlet = [[BSDInlet alloc]init];
+        _hotInlet = [[BSDInlet alloc]initHot];
         _hotInlet.name = @"hot";
         _hotInlet.objectId = [self objectId];
-        _inlets = [NSMutableDictionary dictionary];
-        [_hotInlet addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-        [self addInlet:_hotInlet named:_hotInlet.name];
-        _coldInlet = [[BSDInlet alloc]init];
+        [self addPort:_hotInlet];
+
+        _coldInlet = [[BSDInlet alloc]initCold];
         _coldInlet.name = @"cold";
         _coldInlet.objectId = [self objectId];
-        [self addInlet:_coldInlet named:_coldInlet.name];
+        [self addPort:_coldInlet];
+        
         _mainOutlet = [[BSDOutlet alloc]init];
         _mainOutlet.name = @"main";
         _mainOutlet.objectId = [self objectId];
-        _outlets = [NSMutableDictionary dictionary];
-        _activeOutletName = _mainOutlet.name;
-        [self addOutlet:_mainOutlet named:_mainOutlet.name];
+        [self addPort:_mainOutlet];
+
         [self setupWithArguments:arguments];
     }
     
     return self;
 }
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithArguments:nil];
 }
 
-- (NSString *)objectId
+- (void)setOutputBlock:(BSDObjectOutputBlock)outputBlock
 {
-    return [NSString stringWithFormat:@"%p",self];
-}
-
-#pragma mark - Get inlet values
-
-- (id)hotInletValue
-{
-    return self.hotInlet.value;
-}
-- (id)hot
-{
-    return self.hotInlet.value;
-}
-
-- (id)coldInletValue
-{
-    return self.coldInlet.value;
-}
-
-- (id)cold
-{
-    return self.coldInlet.value;
-}
-
-- (id)inletValue:(BSDInlet *)inlet
-{
-    return inlet.value;
-}
-
-- (id)valueForInletNamed:(NSString *)inletName
-{
-    if ([self.inlets.allKeys containsObject:inletName]) {
-        BSDInlet *inlet = self.inlets[inletName];
-        return inlet.value;
-    }
-    
-    return nil;
-}
-
-#pragma mark - Set inlet values
-
-- (void)setHotInletValue:(id)value
-{
-    [self.hotInlet input:value];
-}
-
-- (void)hot:(id)value
-{
-    [self.hotInlet input:value];
-}
-- (void)cold:(id)value
-{
-    [self.coldInlet input:value];
-}
-
-- (void)setColdInletValue:(id)value
-{
-    [self.coldInlet input:value];
-}
-
-- (void)setValue:(id)value forInlet:(BSDInlet *)inlet
-{
-    if (inlet == self.hotInlet) {
-        
-        [self setHotInletValue:value];
-        
-    }else if (inlet == self.coldInlet)
-    {
-        [self setColdInletValue:value];
-    }else if ([self.inlets.allValues containsObject:inlet])
-    {
-        [inlet input:value];
-    }
-}
-
-- (void)setValue:(id)value forInletNamed:(NSString *)inletName
-{
-    if ([self.inlets.allKeys containsObject:inletName]) {
-        BSDInlet *inlet = self.inlets[inletName];
-        [self setValue:value forInlet:inlet];
-    }
-}
-
-#pragma mark - get main outlet value
-
-- (id)getMainOutletValue
-{
-    return self.mainOutlet.value;
-}
-
-- (id)getOutletValue:(NSString *)outletName
-{
-    if ([self.outlets.allKeys containsObject:outletName]) {
-        BSDOutlet *outlet = self.outlets[outletName];
-        return outlet.value;
-    }
-    return nil;
+    self.mainOutlet.outputBlock = outputBlock;
 }
 
 #pragma mark - overrides
 
 - (void)setupWithArguments:(id)arguments
 {
-    //optionally configure your processing chain
-    
+    //override to configure before processing
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    // override
-    return nil;
-}
-
-#pragma mark - BSDObjectOutputUser
-
-- (void)BSDObject:(BSDObject *)object sentOutputValue:(id)value
-{
-    //Optionally take messages from another object
-}
-
-- (void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
-{
-    //As above, but specifying an outlet other than the main
-}
-
-- (void)sendOutputValue:(id)value
-{
-    [self sendOutputValue:value toOutletNamed:@"main"];
-}
-
-- (void)sendOutputValue:(id)value toOutletNamed:(NSString *)outletName
-{
-    if (value != NULL && [self.outlets.allKeys containsObject:outletName]) {
-        BSDOutlet *outlet = self.outlets[outletName];
-        [outlet sendValue:value];
-        if (self.outputUser) {
-            [self.outputUser BSDObject:self outlet:outlet sentOutputValue:value];
-        }
-    }
+    //override
 }
 
 #pragma mark - Connect to other objects/inlets
-
-- (void)connectToHot:(BSDObject *)object
-{
-    [self.mainOutlet connectInlet:object.hotInlet];
-}
-
-- (void)connectToCold:(BSDObject *)object
-{
-    [self.mainOutlet connectInlet:object.coldInlet];
-}
-
 //Manage connections with specific inlets
-
 - (void)connect:(BSDInlet *)inlet
 {
     [self.mainOutlet connectInlet:inlet];
@@ -212,17 +78,12 @@
     [self.mainOutlet disconnectInlet:inlet];
 }
 
-- (void)connectToObject:(BSDObject *)object inletName:(NSString *)inletName
-{
-    [self connectOutletNamed:nil toObject:object inletNamed:inletName];
-}
-
 - (void)connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName
 {
-    BSDInlet *inlet = [object getInletNamed:inletName];
+    BSDInlet *inlet = [object inletNamed:inletName];
     if (inlet) {
         if (outletName) {
-            BSDOutlet *outlet = [self getOutletNamed:outletName];
+            BSDOutlet *outlet = [self outletNamed:outletName];
             if (outlet) {
                 [outlet connectInlet:inlet];
             }
@@ -232,38 +93,68 @@
     }
 }
 
-//Manage internal inlets/outlets
-- (void)addInlet:(BSDInlet *)inlet named:(NSString *)inletName
+//Manage ports
+- (void)addPort:(BSDPort *)port
 {
-    if (inlet && inletName) {
-        self.inlets[inletName] = inlet;
+    if (port && port.name) {
+        if ([port isKindOfClass:[BSDInlet class]]) {
+            BSDInlet *inlet = (BSDInlet *)port;
+            if (inlet.isHot) {
+                [self.inlets addObject:inlet];
+                [self observePort:inlet];
+            }
+        } else if ([port isKindOfClass:[BSDOutlet class]]){
+            BSDOutlet *outlet = (BSDOutlet *)port;
+            [self.outlets addObject:outlet];
+            [self observePort:outlet];
+        }
     }
 }
 
-- (void)addOutlet:(BSDOutlet *)outlet named:(NSString *)outletName
+- (BSDInlet *) inletNamed:(NSString *)name
 {
-    if (outlet && outletName) {
-        self.outlets[outletName] = outlet;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
+    NSArray *matches = [self.inlets filteredArrayUsingPredicate:predicate];
+    if (!matches) {
+        return nil;
     }
-}
-- (BSDInlet *)getInletNamed:(NSString *)inletName
-{
-    if ([self.inlets.allKeys containsObject:inletName]) {
-        return self.inlets[inletName];
+    if (matches.count == 1) {
+        return matches.firstObject;
+    }
+    
+    if (matches.count > 1) {
+        NSLog(@"error: multiple inlets named %@: %@",name,matches);
+        return nil;
     }
     
     return nil;
 }
 
-- (BSDOutlet *)getOutletNamed:(NSString *)outletName
+- (BSDOutlet *) outletNamed:(NSString *)name
 {
-    if ([self.outlets.allKeys containsObject:outletName]) {
-        return self.outlets[outletName];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
+    NSArray *matches = [self.outlets filteredArrayUsingPredicate:predicate];
+    if (!matches) {
+        return nil;
+    }
+    if (matches.count == 1) {
+        return matches.firstObject;
+    }
+    
+    if (matches.count > 1) {
+        NSLog(@"error: multiple outlets named %@: %@",name,matches);
+        return nil;
     }
     
     return nil;
 }
 
+// Unique object identifier & equality
+
+- (NSString *)objectId
+{
+    return [NSString stringWithFormat:@"%p",self];
+}
 
 - (BOOL)isEqual:(id)object
 {
@@ -279,27 +170,42 @@
 #pragma mark - Private
 #pragma mark - KVO
 
+- (void)observePort:(BSDPort *)port
+{
+    [port addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [self.observedPorts addObject:port];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    /*
-    if ([keyPath isEqualToString:keyPath]) {
-        [self sendOutputValue:[self calculateOutputValue]];
-    }
-     */
-    if ([keyPath isEqualToString:keyPath]) {
-
-        [self sendOutputValue:[self calculateOutputValue] toOutletNamed:self.activeOutletName];
+    if ([keyPath isEqualToString:@"value"]) {
+        //handle data emitted from hot inlet(s)
+        if ([object isKindOfClass:[BSDInlet class]]) {
+            [self calculateOutput];
+        }else if ([object isKindOfClass:[BSDOutlet class]]){
+            //handle changes in outlet value
+            BSDOutlet *outlet = (BSDOutlet *)object;
+            if (outlet.outputBlock != NULL) {
+                __weak BSDObject *WEAK_SELF = self;
+                outlet.outputBlock(WEAK_SELF,outlet);
+            }
+        }
     }
 }
 
 - (void)dealloc
 {
-    [self.hotInlet removeObserver:self forKeyPath:@"value" context:nil];
+    if (self.observedPorts.count) {
+        
+        for (BSDPort *port in self.observedPorts) {
+            [port removeObserver:self forKeyPath:@"value" context:nil];
+        }
+    }
+    self.observedPorts = nil;
     self.hotInlet = nil;
     self.coldInlet = nil;
     self.inlets = nil;
     self.outlets = nil;
-    self.outputUser = nil;
     
 }
 

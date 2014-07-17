@@ -13,22 +13,13 @@
 
 - (void)connectInlet:(BSDInlet *)inlet
 {
-    if (!self.connectedInlets) {
-        self.connectedInlets = [NSMutableSet set];
-    }
-    
-    [self.connectedInlets addObject:inlet];
-    
-    [self addObserver:inlet forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [inlet observePort:self];
 }
 
 - (void)disconnectInlet:(BSDInlet *)inlet
 {
-    if (self.connectedInlets && [self.connectedInlets containsObject:inlet]) {
-        [self.connectedInlets removeObject:inlet];
-    }
-    
-    [self removeObserver:inlet forKeyPath:@"value"];
+
+    [inlet stopObservingPort:self];
 }
 
 - (void)sendValue:(id)value
@@ -36,15 +27,5 @@
     [self setValue:value];
 }
 
-- (void)dealloc
-{
-    if (self.connectedInlets.count) {
-        for (BSDInlet *inlet in self.connectedInlets) {
-            [self disconnectInlet:inlet];
-        }
-        
-        self.connectedInlets = nil;
-    }
-}
 
 @end

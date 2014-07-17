@@ -20,9 +20,9 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"normalize";
-    [self cold:@(1.0)];
+    self.coldInlet.value = @(1.0);
     self.divide = [BSDCreate divide];
-    [self.divide cold:@(1)];
+    self.divide.coldInlet.value = @(1);
     
 }
 
@@ -30,10 +30,10 @@
 {
     if (array) {
         NSNumber *sum = [array valueForKeyPath:@"@sum.self"];
-        [self.divide cold:sum];
+        [self.divide.coldInlet input:sum];
         NSMutableArray *outputContainer = [NSMutableArray array];
         for (NSNumber *num in array) {
-            [self.divide hot:num];
+            [self.divide.hotInlet input:num];
             [outputContainer addObject:self.divide.mainOutlet.value];
         }
         
@@ -43,9 +43,11 @@
     return NULL;
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    return [self normalizedArray:self.hotInlet.value];
+    self.mainOutlet.value = [self normalizedArray:self.hotInlet.value];
 }
+
+
 
 @end

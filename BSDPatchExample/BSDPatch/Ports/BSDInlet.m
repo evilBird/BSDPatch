@@ -12,6 +12,20 @@
 
 @implementation BSDInlet
 
+- (instancetype)initHot
+{
+    self = [super init];
+    if (self) {
+        _hot = YES;
+    }
+    return self;
+}
+
+- (instancetype)initCold
+{
+    return [super init];
+}
+
 - (void)bang
 {
     [self input:self.value];
@@ -24,28 +38,18 @@
 
 - (void)forwardInputToInlet:(BSDInlet *)inlet
 {
-    if (!self.forwardInlets) {
-        self.forwardInlets = [NSMutableArray array];
-    }
-    [self.forwardInlets addObject:inlet];
-    [self addObserver:inlet forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [inlet observePort:self];
+}
+
+- (void)removeForwardInlet:(BSDInlet *)inlet
+{
+    [inlet stopObservingPort:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([object isKindOfClass:[BSDOutlet class]] || [object isKindOfClass:[BSDInlet class]]) {
-        [self input:[(BSDOutlet *)object value]];
-    }
-}
-
-- (void)dealloc
-{
-    if (self.forwardInlets) {
-        for (BSDInlet *inlet in self.forwardInlets) {
-            [inlet removeObserver:self forKeyPath:@"value" context:nil];
-        }
-        
-        self.forwardInlets = nil;
+    if ([object isKindOfClass:[BSDPort class]] && [self.observedPorts containsObject:object]) {
+        [self input:[(BSDPort *)object value]];
     }
 }
 

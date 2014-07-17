@@ -15,9 +15,9 @@
     self.name = @"value";
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    return [self coldInletValue];
+    self.mainOutlet.value = self.coldInlet.value;
 }
 
 @end

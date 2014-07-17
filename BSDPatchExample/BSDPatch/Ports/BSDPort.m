@@ -10,7 +10,35 @@
 
 @implementation BSDPort
 
+- (void)observePort:(BSDPort *)port
+{
+    if (!self.observedPorts) {
+        self.observedPorts = [NSMutableSet set];
+    }
+    
+    if (![self.observedPorts containsObject:port]) {
+        [port addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        [self.observedPorts addObject:port];
+    }
+}
 
+- (void)stopObservingPort:(BSDPort *)port
+{
+    if (self.observedPorts && [self.observedPorts containsObject:port]) {
+        [port removeObserver:self forKeyPath:@"value"];
+        [self.observedPorts removeObject:port];
+    }
+}
 
+- (void)dealloc
+{
+    if (self.observedPorts) {
+        for (BSDPort *port in self.observedPorts) {
+            [port removeObserver:self forKeyPath:@"value"];
+        }
+    }
+    
+    self.observedPorts = nil;
+}
 
 @end

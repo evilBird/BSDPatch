@@ -15,10 +15,10 @@
     self.name = @"add";
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    double result = [self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue];
-    return @(result);
+    self.mainOutlet.value = @([self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue]);
 }
+
 
 @end

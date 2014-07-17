@@ -13,21 +13,19 @@
 - (void)setupWithArguments:(NSArray *)arguments
 {
     self.name = @"accum";
-    [self setColdInletValue:@(0)];
-}
-
-- (id)calculateOutputValue
-{
-    double hot = [self.hotInlet.value doubleValue];
-    double cold = [self.coldInlet.value doubleValue];
-    double result = cold+hot;
-    [self setColdInletValue:@(result)];
-    return @(result);
+    self.coldInlet.value = @(0);
 }
 
 - (void)reset
 {
-    [self setColdInletValue:@(0)];
+    self.coldInlet.value = @(0);
 }
+
+- (void)calculateOutput
+{
+    self.coldInlet.value = @([self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue]);
+    self.mainOutlet.value = self.coldInlet.value;
+}
+
 
 @end

@@ -15,13 +15,14 @@
     self.name = @"swap";
     BSDOutlet *rightOutlet = [[BSDOutlet alloc]init];
     rightOutlet.name = @"right";
-    [self addOutlet:rightOutlet named:rightOutlet.name];
+    [self addPort:rightOutlet];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    [self sendOutputValue:self.hotInlet.value toOutletNamed:@"right"];
-    return self.coldInlet.value;
+    BSDOutlet *rightOutlet = [self outletNamed:@"right"];
+    rightOutlet.value = self.hotInlet.value;
+    self.mainOutlet.value = self.coldInlet.value;
 }
 
 @end

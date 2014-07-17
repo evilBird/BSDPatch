@@ -39,8 +39,8 @@
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
-    [self.accum connectToHot:self.divide];
-    [self.counter connectToCold:self.divide];
+    [self.accum connect:self.divide.hotInlet];
+    [self.counter connect:self.divide.coldInlet];
 }
 
 - (id)addBufferValue:(id)value
@@ -70,31 +70,31 @@
     [self.inputBuffer removeAllObjects];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    
     if (self.bufferSize > 0) {
         id oldestValue = [self addBufferValue:self.hotInlet.value];
         
         if (oldestValue == NULL) {
-            [self.counter hot:self.hotInlet.value];
-            [self.accum hot:self.hotInlet.value];
+            [self.counter.hotInlet input:self.hotInlet.value];
+            [self.accum.hotInlet input:self.hotInlet.value];
         }else{
             double toSubtract = -[oldestValue doubleValue];
             double hotValue = [self.hotInlet.value doubleValue];
             double newValue = toSubtract+hotValue;
-            [self.counter cold:@(self.inputBuffer.count - 1)];
-            [self.counter hot:self.hotInlet.value];
-            [self.accum hot:@(newValue)];
+            [self.counter.coldInlet input:@(self.inputBuffer.count - 1)];
+            [self.counter.hotInlet input:self.hotInlet.value];
+            [self.accum.hotInlet input:@(newValue)];
         }
         
     }else{
         
-        [self.counter hot:self.hotInlet.value];
-        [self.accum hot:self.hotInlet.value];
+        [self.counter.hotInlet input:self.hotInlet.value];
+        [self.accum.hotInlet input:self.hotInlet.value];
     }
     
-    return [self.divide mainOutlet].value;
+    self.mainOutlet.value = [self.divide mainOutlet].value;
 }
+
 
 @end

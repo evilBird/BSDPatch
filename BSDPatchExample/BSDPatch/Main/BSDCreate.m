@@ -30,9 +30,9 @@
     return [[BSDDivide alloc]initWithArguments:nil];
 }
 
-+ (BSDSequence *)sequence:(id)arguments
++ (BSDSequence *)sequence:(NSArray *)inlets;
 {
-    return [[BSDSequence alloc]initWithArguments:arguments];
+    return [[BSDSequence alloc]initWithArguments:inlets];
 }
 
 + (BSDSwap *)swap

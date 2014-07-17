@@ -10,11 +10,10 @@
 #import "BSDPatch.h"
 #import "BSDTestVariable.h"
 
-@interface BSDViewController () <BSDObjectOutputUser>
+@interface BSDViewController ()
 
 @property(nonatomic,strong)BSDDistance *distance;
 @property(nonatomic,strong)BSDPTest *pTest;
-@property(nonatomic,strong)BSDClassify *classify;
 
 @property(nonatomic,strong)UILabel *distanceLabel;
 @property(nonatomic,strong)UILabel *avgDistanceLabel;
@@ -38,11 +37,7 @@
     
     //connect the distance output to p-test object
     [self.distance connect:self.pTest.hotInlet];
-    
-    //Register as an output user for each
-    self.distance.outputUser = self;
-    self.pTest.outputUser = self;
-    
+
     //Set up our labels, which will display the output from the BSDObjects
     CGPoint origin = self.view.bounds.origin;
     self.distanceLabel = [self newLabelWithOrigin:origin];
@@ -56,21 +51,34 @@
 
     //Set up our gesture recognizer, which will feed input to the distance object
     self.view.multipleTouchEnabled = YES;
-
+    
+    __weak BSDViewController *WEAK_SELF = self;
+    self.distance.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        WEAK_SELF.distanceLabel.text = [outlet.value stringValue];
+    };
+    
+    self.pTest.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        [WEAK_SELF indicateSignificance:[object.mainOutlet.value boolValue]];
+    };
+    
     [self test];
 
 }
-
 - (void)test
 {
     BSDAdd *add = [BSDCreate add];
-    BSDMultiply *times = [BSDCreate multiply];
-    BSDSequence *sequence = [[BSDSequence alloc]initWithInlets:@[times.coldInlet,times.hotInlet]];
-    [add connect:sequence.hotInlet];
     add.coldInlet.value = @(1);
-    add.hotInlet.value = @(1);
-    NSLog(@"sum = %@",add.mainOutlet.value);
-    NSLog(@"square = %@",times.mainOutlet.value);
+    BSDMultiply *mult = [BSDCreate multiply];
+    mult.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        
+        NSLog(@"mult val : %@",outlet.value);
+    };
+    
+    BSDSequence *sequence = [BSDCreate sequence:@[mult.coldInlet,mult.hotInlet]];
+    [add connect:sequence.hotInlet];
+    
+    [add.hotInlet input:@(1)];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -90,33 +98,11 @@
     if (touches.count == 2) {
         //Set a reference point for BSDDistance object, from which distance will be measured
         CGPoint ref = [touches.allObjects[0] locationInView:self.view];
-        [self.distance hot:@[@"x0",@(ref.x)]];
-        [self.distance hot:@[@"y0",@(ref.y)]];
+        [self.distance.hotInlet input:@[@"x0",@(ref.x)]];
+        [self.distance.hotInlet input:@[@"y0",@(ref.y)]];
         CGPoint pt = [touches.allObjects[1] locationInView:self.view];
-        [self.distance hot:@[@"xf",@(pt.x)]];
-        [self.distance hot:@[@"yf",@(pt.y)]];
-    }
-}
-
-#pragma mark - BSDObjectOutputUser method implementation
-
--(void)BSDObject:(BSDObject *)object outlet:(BSDOutlet *)outlet sentOutputValue:(id)value
-{
-    //Get output values from our objects & outlets and display them
-    //NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
-    
-    if ([object isEqual:self.pTest]) {
-        if ([outlet.name isEqualToString:@"main"]) {
-            [self indicateSignificance:[value boolValue]];
-        }else if ([outlet.name isEqualToString:@"average"]) {
-            NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
-            self.avgDistanceLabel.text = text;
-        }else if ([outlet.name isEqualToString:@"standard deviation"]){
-            NSString *text = [NSString stringWithFormat:@"%@:\n%.1f pts",outlet.name,[value floatValue]];
-            self.stddevDistanceLabel.text = text;
-        }
-    }else if ([object isEqual:self.distance]){
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@ between touches is\n %.1f pts",object.name,[value floatValue]];
+        [self.distance.hotInlet input:@[@"xf",@(pt.x)]];
+        [self.distance.hotInlet input:@[@"yf",@(pt.y)]];
     }
 }
 

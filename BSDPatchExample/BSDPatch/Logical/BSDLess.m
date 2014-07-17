@@ -15,12 +15,9 @@
     self.name = @"less than";
 }
 
--(id)calculateOutputValue
+- (void)calculateOutput
 {
-    double hot = [self.hotInlet.value doubleValue];
-    double cold = [self.coldInlet.value doubleValue];
-    double result = hot < cold;
-    return @(result);
+    self.mainOutlet.value = @([self.hotInlet.value doubleValue] < [self.coldInlet.value doubleValue]);
 }
 
 @end

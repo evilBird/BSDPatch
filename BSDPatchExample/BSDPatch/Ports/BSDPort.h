@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BSDPort : NSObject
+@interface BSDPort : NSObject 
 
+//Current value
 @property (nonatomic)id value;
+//Human readable name
 @property (nonatomic,strong) NSString *name;
 //Ports get assigned the object id of the BSDObject instance to which they belong
 @property (nonatomic,assign) NSString *objectId;
 
+@property (nonatomic,strong) NSMutableSet *observedPorts;
 
-
+- (void)observePort:(BSDPort *)port;
+- (void)stopObservingPort:(BSDPort *)port;
 
 @end

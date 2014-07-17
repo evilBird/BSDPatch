@@ -30,11 +30,11 @@
         BSDRoute *route = [[BSDRoute alloc]initWithArguments:args];
         [self.processingChain addObject:route];
         BSDSubtract *diffX = [BSDCreate subtract];
-        [diffX cold:@(0)];
+        diffX.coldInlet.value = @(0);
         [self.processingChain addObject:diffX];
         BSDSubtract *diffY = [BSDCreate subtract];
         [self.processingChain addObject:diffY];
-        [diffY cold:@(0)];
+        diffY.coldInlet.value = @(0);
         
         [route connectOutletNamed:args[0]
                          toObject:diffX
@@ -54,29 +54,29 @@
         
         BSDPower *squareX = [BSDCreate power];
         [self.processingChain addObject:squareX];
-        [squareX setColdInletValue:@(2)];
+        squareX.coldInlet.value = @(2);
         [diffX connect:squareX.hotInlet];
         BSDPower *squareY = [BSDCreate power];
         [self.processingChain addObject:squareY];
-        [squareY setColdInletValue:@(2)];
+        squareY.coldInlet.value = @(2);
         [diffY connect:squareY.hotInlet];
         BSDAdd *addSquares = [BSDCreate add];
         [self.processingChain addObject:addSquares];
-        [squareY connectToCold:addSquares];
-        [squareX connectToHot:addSquares];
+        [squareY connect:addSquares.coldInlet];
+        [squareX connect:addSquares.hotInlet];
         BSDPower *rootSum = [BSDCreate power];
         [self.processingChain addObject:rootSum];
-        [rootSum setColdInletValue:@(0.5)];
-        [addSquares connectToHot:rootSum];
+        rootSum.coldInlet.value = @(0.5);
+        [addSquares connect:rootSum.hotInlet];
     }
 
     
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    [(BSDObject *)self.processingChain.firstObject setHotInletValue:self.hotInlet.value];
-    return [(BSDObject *)self.processingChain.lastObject mainOutlet].value;
+    [(BSDObject *)self.processingChain.firstObject hotInlet].value = self.hotInlet.value;
+    self.mainOutlet.value = [(BSDObject *)self.processingChain.lastObject mainOutlet].value;;
 }
 
 @end

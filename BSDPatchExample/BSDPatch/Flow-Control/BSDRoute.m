@@ -15,31 +15,26 @@
     self.name = @"route";
     
     if ([arguments isKindOfClass:[NSArray class]]) {
-        NSArray *selectors = (NSArray *)arguments;
-        for (NSString *aSelector in selectors) {
-            
+        NSSet *selectors = [NSSet setWithArray:arguments];
+        for (NSString *aSelector in selectors.allObjects) {
             BSDOutlet *outlet = [[BSDOutlet alloc]init];
             outlet.name = aSelector;
-            [self addOutlet:outlet named:aSelector];
+            [self addPort:outlet];
         }
     }
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    //Override point for calculatng output
-    NSArray *inputArray = [self hotInletValue];
+    NSArray *inputArray = self.hotInlet.value;
     
     if ([inputArray respondsToSelector:@selector(objectAtIndex:)]
         && inputArray.count >= 2)
     {
         NSString *selector = inputArray.firstObject;
-        self.activeOutletName = selector;
-        return inputArray[1];
+        BSDOutlet *outlet = [self outletNamed:selector];
+        outlet.value = inputArray[1];
     }
-    
-    return nil;
 }
-
 
 @end

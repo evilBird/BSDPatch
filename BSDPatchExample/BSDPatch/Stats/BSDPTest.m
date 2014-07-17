@@ -80,15 +80,17 @@
     
     BSDOutlet *avgOutlet = [[BSDOutlet alloc]init];
     avgOutlet.name = self.average.name;
-    [self addOutlet:avgOutlet named:avgOutlet.name];
+    [self addPort:avgOutlet];
+    //[self addOutlet:avgOutlet named:avgOutlet.name];
     
     BSDOutlet *stdDevOutlet = [[BSDOutlet alloc]init];
     stdDevOutlet.name = self.stdDev.name;
-    [self addOutlet:stdDevOutlet named:stdDevOutlet.name];
+    [self addPort:stdDevOutlet];
+    //[self addOutlet:stdDevOutlet named:stdDevOutlet.name];
     
     self.compareToSigLevel = [BSDCreate equalOrGreater];
     self.absoluteValue = [BSDCreate absoluteValue];
-    [self.compareToSigLevel cold:[self criticalValueForSignificance:self.significanceLevel]];
+    self.compareToSigLevel.coldInlet.value = [self criticalValueForSignificance:self.significanceLevel];
 
     self.subtractInputFromAvg = [BSDCreate subtract];
     self.divideDiffByStdDev = [BSDCreate divide];
@@ -108,15 +110,20 @@
     [self.stdDev reset];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    [self.stdDev hot:self.hotInlet.value];
-    [self.average hot:self.hotInlet.value];
-    [self.subtractInputFromAvg hot:self.hotInlet.value];
-    [self sendOutputValue:self.average.mainOutlet.value toOutletNamed:self.average.name];
-    [self sendOutputValue:self.stdDev.mainOutlet.value toOutletNamed:self.stdDev.name];
+    [self.stdDev.hotInlet input:self.hotInlet.value];
+    [self.average.hotInlet input:self.hotInlet.value];
+    [self.subtractInputFromAvg.hotInlet input:self.hotInlet.value];
+    //BSDOutlet *avgOutlet = [self getOutletNamed:self.average.name];
+    BSDOutlet *avgOutlet = [self outletNamed:self.average.name];
 
-    return self.change.mainOutlet.value;
+    avgOutlet.value = self.average.mainOutlet.value;
+    //BSDOutlet *stdDevOutlet = [self getOutletNamed:self.stdDev.name];
+    BSDOutlet *stdDevOutlet = [self outletNamed:self.stdDev.name];
+    stdDevOutlet.value = self.stdDev.mainOutlet.value;
+    self.mainOutlet.value = self.change.mainOutlet.value;
 }
+
 
 @end

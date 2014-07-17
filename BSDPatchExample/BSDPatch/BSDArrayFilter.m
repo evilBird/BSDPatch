@@ -15,18 +15,19 @@
     self.name = @"filter";
     
     if (arguments) {
-        [self cold:arguments];
+        [self.coldInlet input:arguments];
     }else{
-        [self cold:[NSPredicate predicateWithValue:YES]];
+        [self.coldInlet input:[NSPredicate predicateWithValue:YES]];
     }
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
     NSMutableArray *inputCopy = [self.hotInlet.value mutableCopy];
     NSPredicate *predicate = self.coldInlet.value;
     [inputCopy filterUsingPredicate:predicate];
-    return inputCopy;
+    self.mainOutlet.value = inputCopy;
 }
+
 
 @end

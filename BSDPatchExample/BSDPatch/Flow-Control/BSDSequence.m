@@ -19,28 +19,24 @@
 {
     self.name = @"sequence";
     NSArray *inlets = (NSArray *)arguments;
+    
     if (inlets) {
         NSUInteger idx = 0;
         for (BSDInlet *anInlet in inlets) {
             BSDOutlet *anOutlet = [[BSDOutlet alloc]init];
             anOutlet.name = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
-            [self addOutlet:anOutlet named:anOutlet.name];
+            [self addPort:anOutlet];
             [anOutlet connectInlet:anInlet];
             idx ++;
         }
     }
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    for (NSUInteger idx = 0; idx < self.outlets.count; idx ++) {
-        NSString *outletName = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
-        BSDOutlet *outlet = [self getOutletNamed:outletName];
-        if (outlet) {
-            [self sendOutputValue:self.hotInlet.value toOutletNamed:outletName];
-        }
+    for (BSDOutlet *anOutlet in self.outlets) {
+        anOutlet.value = self.hotInlet.value;
     }
-    return NULL;
 }
 
 

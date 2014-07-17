@@ -15,12 +15,9 @@
     self.name = @"multiply";
 }
 
--(id)calculateOutputValue
+- (void)calculateOutput
 {
-    double hot = [self.hotInlet.value doubleValue];
-    double cold = [self.coldInlet.value doubleValue];
-    double result = pow(hot, cold);
-    return @(result);
+    self.mainOutlet.value = @(pow([self.hotInlet.value doubleValue], [self.coldInlet.value doubleValue]));
 }
 
 

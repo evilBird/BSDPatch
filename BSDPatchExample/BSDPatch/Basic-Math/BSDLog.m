@@ -15,11 +15,9 @@
     self.name = @"natural log";
 }
 
--(id)calculateOutputValue
+- (void)calculateOutput
 {
-    double hot = [self.hotInlet.value doubleValue];
-    double result = log(hot);
-    return @(result);
+    self.mainOutlet.value = @(log([self.hotInlet.value doubleValue]));
 }
 
 @end

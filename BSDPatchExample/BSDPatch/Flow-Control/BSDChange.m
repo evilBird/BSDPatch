@@ -13,17 +13,15 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"change";
-    [self cold:@(0)];
+    [self.coldInlet input:@(0)];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
-    if ([self hotInletValue] != [self coldInletValue]) {
-        [self cold:[self hotInletValue]];
-        return [self hotInletValue];
+    if (self.hotInlet.value != self.coldInlet.value) {
+        self.coldInlet.value = self.hotInlet.value;
+        self.mainOutlet.value = self.hotInlet.value;
     }
-    
-    return NULL;
 }
 
 @end

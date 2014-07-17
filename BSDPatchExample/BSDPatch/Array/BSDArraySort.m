@@ -15,18 +15,19 @@
     self.name = @"sort";
     NSArray *args = (NSArray *)arguments;
     if ([args respondsToSelector:@selector(count)]) {
-        [self cold:args];
+        [self.coldInlet input:args];
     }else{
-        [self cold:@[args]];
+        [self.coldInlet input:@[args]];
     }
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
     NSMutableArray *inputCopy = [self.hotInlet.value mutableCopy];
     NSArray *args = self.coldInlet.value;
     [inputCopy sortUsingDescriptors:args];
-    return inputCopy;
+    self.mainOutlet.value = inputCopy;
 }
+
 
 @end

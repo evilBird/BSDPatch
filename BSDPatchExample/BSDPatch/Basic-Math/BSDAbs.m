@@ -15,11 +15,10 @@
     self.name = @"absolute value";
 }
 
--(id)calculateOutputValue
+- (void)calculateOutput
 {
-    double hot = [self.hotInlet.value doubleValue];
-    double result = fabs(hot);
-    return @(result);
+    self.mainOutlet.value = @(fabs([self.hotInlet.value doubleValue]));
 }
+
 
 @end

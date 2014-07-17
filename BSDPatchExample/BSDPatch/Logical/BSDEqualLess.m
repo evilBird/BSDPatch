@@ -15,12 +15,9 @@
     self.name = @"equal or less than";
 }
 
--(id)calculateOutputValue
+- (void)calculateOutput
 {
-    double hot = [[self hotInletValue]doubleValue];
-    double cold = [[self coldInletValue]doubleValue];
-    NSInteger result = hot <= cold;
-    return @(result);
+    self.mainOutlet.value = @([self.hotInlet.value doubleValue] <= [self.coldInlet.value doubleValue]);
 }
 
 @end

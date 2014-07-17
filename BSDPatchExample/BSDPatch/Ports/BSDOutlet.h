@@ -10,14 +10,17 @@
 #import "BSDPort.h"
 
 @class BSDInlet;
+@class BSDOutlet;
+@class BSDObject;
+
+typedef void (^BSDObjectOutputBlock)(BSDObject *object, BSDOutlet *outlet);
 
 @interface BSDOutlet : BSDPort
 
+@property (nonatomic,strong)BSDObjectOutputBlock outputBlock;
 @property (nonatomic,strong)NSMutableSet *connectedInlets;
 
 - (void)connectInlet:(BSDInlet *)inlet;
 - (void)disconnectInlet:(BSDInlet *)inlet;
-- (void)forwardOuputToOutlet:(BSDOutlet *)outlet;
-- (void)sendValue:(id)value;
 
 @end

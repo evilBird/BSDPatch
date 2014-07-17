@@ -60,7 +60,7 @@
     [self.inputBuffer removeAllObjects];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
     if (self.bufferSize > 0) {
         [self addBufferValue:self.hotInlet.value];
@@ -74,11 +74,10 @@
         [bufferCopy sortUsingDescriptors:@[sortDescriptor]];
         NSUInteger index = bufferCopy.count/2;
         if (index < bufferCopy.count) {
-            return bufferCopy[index];
+            self.mainOutlet.value = bufferCopy[index];
         }
     }
-
-    return nil;
 }
+
 
 @end

@@ -52,21 +52,20 @@
     return [self classifyGroups:newGroups predicates:predicates];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
     id hot = self.hotInlet.value;
     id cold = self.coldInlet.value;
     if (cold == NULL) {
-        return hot;
+        self.mainOutlet.value = hot;
     }
     
     if (hot != NULL) {
         NSDictionary *all = @{@"":hot};
-        return [self classifyGroups:all predicates:cold];
+        self.mainOutlet.value = [self classifyGroups:all predicates:cold];
     }
-    
-    return nil;
 }
+
 
 #pragma mark - test
 

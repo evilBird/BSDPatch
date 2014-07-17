@@ -67,16 +67,16 @@
     self.rootDeviance = [BSDCreate power];
     self.accum = [BSDCreate accumulate];
     
-    [self.dof cold:@(1)];
-    [self.squaredDeviance cold:@(2)];
-    [self.rootDeviance cold:@(0.5)];
-    [self.average connectToCold:self.deviance];
-    [self.counter connectToHot:self.dof];
-    [self.dof connectToCold:self.divide];
-    [self.deviance connectToHot:self.squaredDeviance];
-    [self.squaredDeviance connectToHot:self.accum];
-    [self.accum connectToHot:self.divide];
-    [self.divide connectToHot:self.rootDeviance];
+    self.dof.coldInlet.value = @(1);
+    self.squaredDeviance.coldInlet.value = @(2);
+    self.rootDeviance.coldInlet.value = @(0.5);
+    [self.average connect:self.deviance.coldInlet];
+    [self.counter connect:self.dof.hotInlet];
+    [self.dof connect:self.divide.coldInlet];
+    [self.deviance connect:self.squaredDeviance.hotInlet];
+    [self.squaredDeviance connect:self.accum.hotInlet];
+    [self.accum connect:self.divide.hotInlet];
+    [self.divide connect:self.rootDeviance.hotInlet];
     
 }
 
@@ -108,7 +108,7 @@
     [self.inputBuffer removeAllObjects];
 }
 
-- (id)calculateOutputValue
+- (void)calculateOutput
 {
     if (self.bufferSize > 0) {
         
@@ -116,30 +116,32 @@
         
         if (oldestValue == NULL) {
             
-            [self.average hot:self.hotInlet.value];
-            [self.counter hot:self.hotInlet.value];
-            [self.deviance hot:self.hotInlet.value];
+            [self.average.hotInlet input:self.hotInlet.value];
+            [self.counter.hotInlet input:self.hotInlet.value];
+            [self.deviance.hotInlet input:self.hotInlet.value];
             
         }else{
             
             double toSubtract = -[oldestValue doubleValue];
             double coldValue = [self.accum.coldInlet.value doubleValue];
             double newValue = toSubtract+coldValue;
-            [self.accum cold:@(newValue)];
-            [self.average hot:self.hotInlet.value];
-            [self.counter cold:@(self.inputBuffer.count - 1)];
-            [self.counter hot:self.hotInlet.value];
-            [self.deviance hot:self.hotInlet.value];
+            [self.accum.coldInlet input:@(newValue)];
+            [self.average.hotInlet input:self.hotInlet.value];
+            [self.counter.hotInlet input:@(self.inputBuffer.count - 1)];
+            [self.counter.hotInlet input:self.hotInlet.value];
+            [self.deviance.hotInlet input:self.hotInlet.value];
         }
         
     }else{
-    
-        [self.average hot:self.hotInlet.value];
-        [self.counter hot:self.hotInlet.value];
-        [self.deviance hot:self.hotInlet.value];
+        
+        [self.average.hotInlet input:self.hotInlet.value];
+        [self.counter.hotInlet input:self.hotInlet.value];
+        [self.deviance.hotInlet input:self.hotInlet.value];
     }
     
-    return [self.rootDeviance mainOutlet].value;
+    self.mainOutlet.value = [self.rootDeviance mainOutlet].value;
 }
+
+
 
 @end
