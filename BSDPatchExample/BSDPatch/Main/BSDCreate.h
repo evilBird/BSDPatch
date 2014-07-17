@@ -27,7 +27,7 @@
 + (BSDAccum *)accumulate;
 + (BSDCounter *)counter;
 + (BSDAverage *)average;
-+ (BSDDistance *)distance;
++ (BSDDistance2D *)distance;
 + (BSDStdDev *)standardDeviation;
 + (BSDLog *)naturalLog;
 + (BSDAbs *)absoluteValue;

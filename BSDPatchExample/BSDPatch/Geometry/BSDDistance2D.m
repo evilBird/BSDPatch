@@ -6,22 +6,21 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDDistance.h"
+#import "BSDDistance2D.h"
 #import "BSDCreate.h"
 
-@implementation BSDDistance
+@implementation BSDDistance2D
 
 
 - (void)setupWithArguments:(id)arguments
 {
-    
     //setup arguments are an array of strings used to route values sent to the hot inlet: @[@"x0",@"y0",@"xf",@"yf"]
     //The first two arguments route x and y values, respectively, for a reference coordinate (x0,y0)
     //The last two arguments route x and y values, respectively, for a second coordinate (xf,yf)
     //The output is distance between these coordinates. Both coordinates may be dynamic.
-    
     self.name = @"distance";
     self.processingChain = [NSMutableArray array];
+    
     NSArray *args = (NSArray *)arguments;
     if (args.count < 4) {
         NSLog(@"BSDDistance setup failed - expected 4 arguments, got %lu",(unsigned long)args.count);

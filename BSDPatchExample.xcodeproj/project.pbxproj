@@ -33,7 +33,7 @@
 		F2E7EBE51974BF18004BB504 /* BSDRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBBF1974BF18004BB504 /* BSDRoute.m */; };
 		F2E7EBE61974BF18004BB504 /* BSDSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBC11974BF18004BB504 /* BSDSwap.m */; };
 		F2E7EBE71974BF18004BB504 /* BSDValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBC31974BF18004BB504 /* BSDValue.m */; };
-		F2E7EBE81974BF18004BB504 /* BSDDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBC61974BF18004BB504 /* BSDDistance.m */; };
+		F2E7EBE81974BF18004BB504 /* BSDDistance2D.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBC61974BF18004BB504 /* BSDDistance2D.m */; };
 		F2E7EBE91974BF18004BB504 /* BSDEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBC91974BF18004BB504 /* BSDEqual.m */; };
 		F2E7EBEA1974BF18004BB504 /* BSDEqualGreater.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBCB1974BF18004BB504 /* BSDEqualGreater.m */; };
 		F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBCD1974BF18004BB504 /* BSDEqualLess.m */; };
@@ -111,8 +111,8 @@
 		F2E7EBC11974BF18004BB504 /* BSDSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSwap.m; sourceTree = "<group>"; };
 		F2E7EBC21974BF18004BB504 /* BSDValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDValue.h; sourceTree = "<group>"; };
 		F2E7EBC31974BF18004BB504 /* BSDValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDValue.m; sourceTree = "<group>"; };
-		F2E7EBC51974BF18004BB504 /* BSDDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDistance.h; sourceTree = "<group>"; };
-		F2E7EBC61974BF18004BB504 /* BSDDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDDistance.m; sourceTree = "<group>"; };
+		F2E7EBC51974BF18004BB504 /* BSDDistance2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDistance2D.h; sourceTree = "<group>"; };
+		F2E7EBC61974BF18004BB504 /* BSDDistance2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDDistance2D.m; sourceTree = "<group>"; };
 		F2E7EBC81974BF18004BB504 /* BSDEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEqual.h; sourceTree = "<group>"; };
 		F2E7EBC91974BF18004BB504 /* BSDEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEqual.m; sourceTree = "<group>"; };
 		F2E7EBCA1974BF18004BB504 /* BSDEqualGreater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEqualGreater.h; sourceTree = "<group>"; };
@@ -337,8 +337,8 @@
 		F2E7EBC41974BF18004BB504 /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				F2E7EBC51974BF18004BB504 /* BSDDistance.h */,
-				F2E7EBC61974BF18004BB504 /* BSDDistance.m */,
+				F2E7EBC51974BF18004BB504 /* BSDDistance2D.h */,
+				F2E7EBC61974BF18004BB504 /* BSDDistance2D.m */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				F2F57E2D1976251E0083D1C9 /* BSDArrayFilter.m in Sources */,
 				F2E7EBED1974BF18004BB504 /* BSDLess.m in Sources */,
 				F2E7EBE41974BF18004BB504 /* BSDSubtract.m in Sources */,
-				F2E7EBE81974BF18004BB504 /* BSDDistance.m in Sources */,
+				F2E7EBE81974BF18004BB504 /* BSDDistance2D.m in Sources */,
 				F226C3701975B9EB00327AB5 /* BSDStdDev.m in Sources */,
 				F243692E197499DF00512371 /* main.m in Sources */,
 				F2E7EBEA1974BF18004BB504 /* BSDEqualGreater.m in Sources */,

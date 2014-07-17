@@ -23,7 +23,7 @@
 #import "BSDAccum.h"
 #import "BSDCounter.h"
 #import "BSDRoute.h"
-#import "BSDDistance.h"
+#import "BSDDistance2D.h"
 #import "BSDAverage.h"
 #import "BSDStdDev.h"
 #import "BSDLog.h"

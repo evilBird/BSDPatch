@@ -99,8 +99,8 @@
     if (port && port.name) {
         if ([port isKindOfClass:[BSDInlet class]]) {
             BSDInlet *inlet = (BSDInlet *)port;
+            [self.inlets addObject:inlet];
             if (inlet.isHot) {
-                [self.inlets addObject:inlet];
                 [self observePort:inlet];
             }
         } else if ([port isKindOfClass:[BSDOutlet class]]){

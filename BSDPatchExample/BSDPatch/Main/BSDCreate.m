@@ -76,9 +76,9 @@
     return [[BSDAccum alloc]initWithArguments:nil];
 }
 
-+ (BSDDistance *)distance
++ (BSDDistance2D *)distance
 {
-    return [[BSDDistance alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
+    return [[BSDDistance2D alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
 }
 + (BSDCounter *)counter
 {

@@ -12,12 +12,11 @@
 
 @interface BSDViewController ()
 
-@property(nonatomic,strong)BSDDistance *distance;
-@property(nonatomic,strong)BSDPTest *pTest;
+@property(nonatomic,strong)BSDDistance2D *distance;
 
-@property(nonatomic,strong)UILabel *distanceLabel;
-@property(nonatomic,strong)UILabel *avgDistanceLabel;
-@property(nonatomic,strong)UILabel *stddevDistanceLabel;
+@property(nonatomic,strong)UILabel *label1;
+@property(nonatomic,strong)UILabel *label2;
+@property(nonatomic,strong)UILabel *label3;
 @property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 
 @end
@@ -32,52 +31,23 @@
     //Configure the BSDObjects
     //distance object will measure the distance between touches in the view
     self.distance = [BSDCreate distance];
-    //p-test will take the output of the distance object and calculate the mean, standard deviation, and p-value of the value (alpha = 0.05, n = 256). If the average distances changes significantly, the screen will turn blue.
-    self.pTest = [[BSDPTest alloc]initWithSignificanceLevel:0.95 bufferSize:256];
     
-    //connect the distance output to p-test object
-    [self.distance connect:self.pTest.hotInlet];
-
     //Set up our labels, which will display the output from the BSDObjects
-    CGPoint origin = self.view.bounds.origin;
-    self.distanceLabel = [self newLabelWithOrigin:origin];
-    [self.view addSubview:self.distanceLabel];
-    origin.y = CGRectGetMaxY(self.distanceLabel.frame);
-    self.avgDistanceLabel = [self newLabelWithOrigin:origin];
-    [self.view addSubview:self.avgDistanceLabel];
-    origin.y = CGRectGetMaxY(self.avgDistanceLabel.frame);
-    self.stddevDistanceLabel = [self newLabelWithOrigin:origin];
-    [self.view addSubview:self.stddevDistanceLabel];
+    [self addLabels];
 
     //Set up our gesture recognizer, which will feed input to the distance object
     self.view.multipleTouchEnabled = YES;
     
     __weak BSDViewController *WEAK_SELF = self;
     self.distance.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        WEAK_SELF.distanceLabel.text = [outlet.value stringValue];
+        WEAK_SELF.label1.text = [outlet.value stringValue];
     };
-    
-    self.pTest.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        [WEAK_SELF indicateSignificance:[object.mainOutlet.value boolValue]];
-    };
-    
+
     [self test];
 
 }
 - (void)test
 {
-    BSDAdd *add = [BSDCreate add];
-    add.coldInlet.value = @(1);
-    BSDMultiply *mult = [BSDCreate multiply];
-    mult.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        
-        NSLog(@"mult val : %@",outlet.value);
-    };
-    
-    BSDSequence *sequence = [BSDCreate sequence:@[mult.coldInlet,mult.hotInlet]];
-    [add connect:sequence.hotInlet];
-    
-    [add.hotInlet input:@(1)];
     
 }
 
@@ -115,6 +85,19 @@
     }else{
         self.view.backgroundColor = [UIColor whiteColor];
     }
+}
+
+- (void)addLabels
+{
+    CGPoint origin = self.view.bounds.origin;
+    self.label1 = [self newLabelWithOrigin:origin];
+    [self.view addSubview:self.label1];
+    origin.y = CGRectGetMaxY(self.label1.frame);
+    self.label2 = [self newLabelWithOrigin:origin];
+    [self.view addSubview:self.label2];
+    origin.y = CGRectGetMaxY(self.label2.frame);
+    self.label3 = [self newLabelWithOrigin:origin];
+    [self.view addSubview:self.label3];
 }
 
 - (UILabel *)newLabelWithOrigin:(CGPoint)origin
