@@ -11,9 +11,7 @@
 
 @interface BSDPTest ()
 
-@property (nonatomic)double significanceLevel;
-@property (nonatomic)double zscore;
-@property (nonatomic)NSUInteger bufferSize;
+@property (nonatomic,strong)BSDSequence *sequence;
 @property (nonatomic,strong)BSDSubtract *subtractInputFromAvg;
 @property (nonatomic,strong)BSDAverage *average;
 @property (nonatomic,strong)BSDStdDev *stdDev;
@@ -26,19 +24,78 @@
 
 @implementation BSDPTest
 
-
-- (id)initWithSignificanceLevel:(double)significanceLevel bufferSize:(NSUInteger)bufferSize
+- (instancetype)initWithAlpha:(double)alpha bufferSize:(NSUInteger)bufferSize
 {
-    NSDictionary *args = @{@"significance": @(significanceLevel),
-                           @"buffer":@(bufferSize)
-                           };
+    NSArray *args = @[@(alpha),@(bufferSize)];
     return [super initWithArguments:args];
 }
 
-- (id)initWithSignificanceLevel:(double)significanceLevel
+- (void)setupWithArguments:(id)arguments
 {
-    NSDictionary *args = @{@"significance": @(significanceLevel)};
-    return [super initWithArguments:args];
+    self.name = @"p-test";
+    NSArray *args = (NSArray *)arguments;
+    
+    if (!args) {
+        _alpha = 0.95;
+        _bufferSize = 0;
+    }else {
+        
+        if (args.count > 0) {
+            _alpha = [args[0] doubleValue];
+        }
+        
+        if (args.count > 1) {
+            _bufferSize = [args[1] integerValue];
+            self.average = [BSDCreate averageBufferSize:args[1]];
+            self.stdDev = [BSDCreate standardDeviationBufferSize:args[1]];
+        }else{
+            _bufferSize = 0;
+            self.average = [BSDCreate average];
+            self.stdDev = [BSDCreate standardDeviation];
+        }
+    }
+    
+    BSDOutlet *avgOutlet = [[BSDOutlet alloc]init];
+    avgOutlet.name = self.average.name;
+    [self addPort:avgOutlet];
+    
+    BSDOutlet *stdDevOutlet = [[BSDOutlet alloc]init];
+    stdDevOutlet.name = self.stdDev.name;
+    [self addPort:stdDevOutlet];
+    
+    self.compareToSigLevel = [BSDCreate equalOrGreater];
+    self.absoluteValue = [BSDCreate absoluteValue];
+    self.subtractInputFromAvg = [BSDCreate subtract];
+    self.divideDiffByStdDev = [BSDCreate divide];
+    self.change = [BSDCreate change];
+    self.sequence = [BSDCreate sequenceInlets:@[self.stdDev.hotInlet, self.average.hotInlet, self.subtractInputFromAvg.hotInlet]];
+    [self.hotInlet forwardToPort:self.sequence.hotInlet];
+    
+    self.compareToSigLevel.coldInlet.value = [self criticalValueForSignificance:self.alpha];
+    
+    [self.stdDev connect:self.divideDiffByStdDev.coldInlet];
+    [self.average connect:self.subtractInputFromAvg.coldInlet];
+    [self.subtractInputFromAvg connect:self.divideDiffByStdDev.hotInlet];
+    
+    [self.divideDiffByStdDev connect:self.absoluteValue.hotInlet];
+    [self.absoluteValue connect:self.compareToSigLevel.hotInlet];
+    [self.compareToSigLevel connect:self.change.hotInlet];
+    
+    [self.average.mainOutlet forwardToPort:avgOutlet];
+    [self.stdDev.mainOutlet forwardToPort:stdDevOutlet];
+    [self.change.mainOutlet forwardToPort:self.mainOutlet];
+    
+}
+
+- (void)reset
+{
+    [self.average reset];
+    [self.stdDev reset];
+}
+
+- (void)calculateOutput
+{
+
 }
 
 - (NSNumber *)criticalValueForSignificance:(double)significance
@@ -53,77 +110,5 @@
         return @(1.96);
     }
 }
-
-- (void)setupWithArguments:(id)arguments
-{
-    self.name = @"p-test";
-    NSDictionary *args = (NSDictionary *)arguments;
-    
-    if (!args) {
-        self.significanceLevel = 0.95;
-        self.bufferSize = 0;
-    }else {
-        if ([args.allKeys containsObject:@"significance"]){
-        self.significanceLevel = [args[@"significance"]doubleValue];
-        }
-        
-        if ([args.allKeys containsObject:@"buffer"]) {
-            self.bufferSize = [args[@"buffer"]integerValue];
-            self.average = [[BSDAverage alloc]initWithBufferSize:self.bufferSize];
-            self.stdDev = [[BSDStdDev alloc]initWithBufferSize:self.bufferSize];
-        }else{
-            self.bufferSize = 0;
-            self.average = [BSDCreate average];
-            self.stdDev = [BSDCreate standardDeviation];
-        }
-    }
-    
-    BSDOutlet *avgOutlet = [[BSDOutlet alloc]init];
-    avgOutlet.name = self.average.name;
-    [self addPort:avgOutlet];
-    //[self addOutlet:avgOutlet named:avgOutlet.name];
-    
-    BSDOutlet *stdDevOutlet = [[BSDOutlet alloc]init];
-    stdDevOutlet.name = self.stdDev.name;
-    [self addPort:stdDevOutlet];
-    //[self addOutlet:stdDevOutlet named:stdDevOutlet.name];
-    
-    self.compareToSigLevel = [BSDCreate equalOrGreater];
-    self.absoluteValue = [BSDCreate absoluteValue];
-    self.compareToSigLevel.coldInlet.value = [self criticalValueForSignificance:self.significanceLevel];
-
-    self.subtractInputFromAvg = [BSDCreate subtract];
-    self.divideDiffByStdDev = [BSDCreate divide];
-    [self.stdDev connect:self.divideDiffByStdDev.coldInlet];
-    [self.average connect:self.subtractInputFromAvg.coldInlet];
-    [self.subtractInputFromAvg connect:self.divideDiffByStdDev.hotInlet];
-    [self.divideDiffByStdDev connect:self.absoluteValue.hotInlet];
-    [self.absoluteValue connect:self.compareToSigLevel.hotInlet];
-    self.change = [BSDCreate change];
-    [self.compareToSigLevel connect:self.change.hotInlet];
-    
-}
-
-- (void)reset
-{
-    [self.average reset];
-    [self.stdDev reset];
-}
-
-- (void)calculateOutput
-{
-    [self.stdDev.hotInlet input:self.hotInlet.value];
-    [self.average.hotInlet input:self.hotInlet.value];
-    [self.subtractInputFromAvg.hotInlet input:self.hotInlet.value];
-    //BSDOutlet *avgOutlet = [self getOutletNamed:self.average.name];
-    BSDOutlet *avgOutlet = [self outletNamed:self.average.name];
-
-    avgOutlet.value = self.average.mainOutlet.value;
-    //BSDOutlet *stdDevOutlet = [self getOutletNamed:self.stdDev.name];
-    BSDOutlet *stdDevOutlet = [self outletNamed:self.stdDev.name];
-    stdDevOutlet.value = self.stdDev.mainOutlet.value;
-    self.mainOutlet.value = self.change.mainOutlet.value;
-}
-
 
 @end

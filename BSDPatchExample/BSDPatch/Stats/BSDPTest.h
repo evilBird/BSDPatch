@@ -10,8 +10,10 @@
 
 @interface BSDPTest : BSDObject
 
-- (id)initWithSignificanceLevel:(double)significanceLevel;
-- (id)initWithSignificanceLevel:(double)significanceLevel bufferSize:(NSUInteger)bufferSize;
+@property (nonatomic,readonly)NSUInteger bufferSize;
+@property (nonatomic,readonly)double alpha;
+
+- (instancetype)initWithAlpha:(double)alpha bufferSize:(NSUInteger)bufferSize;
 - (void)reset;
 
 @end

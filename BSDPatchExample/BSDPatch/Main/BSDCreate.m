@@ -20,7 +20,7 @@
     return [[BSDMultiply alloc]initWithArguments:nil];
 }
 
-+ (BSDMultiply *)multiply:(NSNumber *)coldInletValue
++ (BSDMultiply *)multiplyCold:(NSNumber *)coldInletValue
 {
     return [[BSDMultiply alloc]initWithArguments:coldInletValue];
 }
@@ -35,7 +35,7 @@
     return [[BSDSubtract alloc]initWithArguments:nil];
 }
 
-+ (BSDSubtract *)subtract:(NSNumber *)coldInletValue;
++ (BSDSubtract *)subtractCold:(NSNumber *)coldInletValue
 {
     return [[BSDSubtract alloc]initWithArguments:coldInletValue];
 }
@@ -45,7 +45,7 @@
     return [[BSDDivide alloc]initWithArguments:nil];
 }
 
-+ (BSDSequence *)sequence:(NSArray *)inlets;
++ (BSDSequence *)sequenceInlets:(NSArray *)inlets
 {
     return [[BSDSequence alloc]initWithArguments:inlets];
 }
@@ -55,7 +55,7 @@
     return [[BSDRoute alloc]initWithArguments:nil];
 }
 
-+ (BSDRoute *)route:(NSArray *)selectors
++ (BSDRoute *)routeSelectors:(NSArray *)selectors
 {
     return [[BSDRoute alloc]initWithArguments:selectors];
 }
@@ -75,7 +75,7 @@
     return [[BSDPower alloc]initWithArguments:nil];
 }
 
-+ (BSDPower *)power:(NSNumber *)coldInletValue
++ (BSDPower *)powerCold:(NSNumber *)coldInletValue
 {
     return [[BSDPower alloc]initWithArguments:coldInletValue];
 }
@@ -120,7 +120,7 @@
     return [[BSDAverage alloc]initWithArguments:nil];
 }
 
-+ (BSDAverage *)average:(NSNumber *)bufferSize
++ (BSDAverage *)averageBufferSize:(NSNumber *)bufferSize
 {
     return [[BSDAverage alloc]initWithArguments:bufferSize];
 }
@@ -130,7 +130,7 @@
     return [[BSDStdDev alloc]initWithArguments:nil];
 }
 
-+ (BSDStdDev *)standardDeviation:(NSNumber *)bufferSize
++ (BSDStdDev *)standardDeviationBufferSize:(NSNumber *)bufferSize
 {
     return [[BSDStdDev alloc]initWithArguments:bufferSize];
 }
@@ -150,6 +150,11 @@
     return [[BSDPTest alloc]initWithArguments:nil];
 }
 
++ (BSDPTest *)pTestAlpha:(NSNumber *)alpha bufferSize:(NSNumber *)bufferSize
+{
+    return [[BSDPTest alloc]initWithArguments:@[alpha,bufferSize]];
+}
+
 + (BSDChange *)change
 {
     return [[BSDChange alloc]initWithArguments:nil];
@@ -160,12 +165,12 @@
     return [[BSDMedian alloc]initWithArguments:nil];
 }
 
-+ (BSDMedian *)median:(NSNumber *)bufferSize
++ (BSDMedian *)medianBufferSize:(NSNumber *)bufferSize
 {
     return [[BSDMedian alloc]initWithArguments:bufferSize];
 }
 
-+ (BSDArraySort *)arraySort:(id)arguments;
++ (BSDArraySort *)arraySort:(id)arguments
 {
     return [[BSDArraySort alloc]initWithArguments:arguments];
 }

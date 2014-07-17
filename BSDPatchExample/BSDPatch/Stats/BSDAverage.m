@@ -41,8 +41,8 @@
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
-    self.subtract = [BSDCreate subtract:@(0)];
-    self.sequence = [BSDCreate sequence:@[self.counter.hotInlet,self.subtract.hotInlet]];
+    self.subtract = [BSDCreate subtractCold:@(0)];
+    self.sequence = [BSDCreate sequenceInlets:@[self.counter.hotInlet,self.subtract.hotInlet]];
     [self.hotInlet forwardToPort:self.sequence.hotInlet];
     [self.subtract connect:self.accum.hotInlet];
     [self.accum connect:self.divide.hotInlet];

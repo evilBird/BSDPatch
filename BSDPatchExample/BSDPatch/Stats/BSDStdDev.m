@@ -39,7 +39,7 @@
     if (bufferSize) {
         _bufferSize = bufferSize.integerValue;
         self.inputBuffer = [NSMutableArray array];
-        self.average = [BSDCreate average:bufferSize];
+        self.average = [BSDCreate averageBufferSize:bufferSize];
     }else{
         self.average = [BSDCreate average];
     }
@@ -48,13 +48,13 @@
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
     self.deviance = [BSDCreate subtract];
-    self.subtract = [BSDCreate subtract:@(0)];
-    self.dof = [BSDCreate subtract:@(1)];
-    self.squaredDeviance = [BSDCreate power:@(2)];
-    self.rootDeviance = [BSDCreate power:@(0.5)];
+    self.subtract = [BSDCreate subtractCold:@(0)];
+    self.dof = [BSDCreate subtractCold:@(1)];
+    self.squaredDeviance = [BSDCreate powerCold:@(2)];
+    self.rootDeviance = [BSDCreate powerCold:@(0.5)];
     self.accum = [BSDCreate accumulate];
     
-    self.sequence = [BSDCreate sequence:@[self.average.hotInlet, self.counter.hotInlet, self.subtract.hotInlet]];
+    self.sequence = [BSDCreate sequenceInlets:@[self.average.hotInlet, self.counter.hotInlet, self.subtract.hotInlet]];
     [self.hotInlet forwardToPort:self.sequence.hotInlet];
     [self.subtract connect:self.accum.hotInlet];
     [self.average connect:self.deviance.coldInlet];

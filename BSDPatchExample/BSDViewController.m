@@ -13,8 +13,7 @@
 @interface BSDViewController ()
 
 @property(nonatomic,strong)BSDDistance2D *distance;
-@property(nonatomic,strong)BSDAverage *average;
-@property(nonatomic,strong)BSDStdDev *standardDeviation;
+@property(nonatomic,strong)BSDPTest *pTest;
 
 @property(nonatomic,strong)UILabel *label1;
 @property(nonatomic,strong)UILabel *label2;
@@ -33,11 +32,8 @@
     //Configure the BSDObjects
     //distance object will measure the distance between touches in the view
     self.distance = [BSDCreate distance2D];
-    self.average = [BSDCreate average:@(256)];
-    self.standardDeviation = [BSDCreate standardDeviation:@(256)];
-    [self.distance connect:self.average.hotInlet];
-    [self.distance connect:self.standardDeviation.hotInlet];
-    
+    self.pTest = [BSDCreate pTestAlpha:@(0.95) bufferSize:@(1024)];
+    [self.distance connect:self.pTest.hotInlet];
     //Set up our labels, which will display the output from the BSDObjects
     [self addLabels];
 
@@ -50,12 +46,16 @@
         WEAK_SELF.label1.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
     };
     
-    self.average.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        WEAK_SELF.label2.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+    [self.pTest outletNamed:@"average"].outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        WEAK_SELF.label2.text= [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
     };
     
-    self.standardDeviation.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        WEAK_SELF.label3.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+    [self.pTest outletNamed:@"standard deviation"].outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+      WEAK_SELF.label3.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+    };
+    
+    self.pTest.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        [WEAK_SELF indicateSignificance:[outlet.value boolValue]];
     };
 
     [self test];

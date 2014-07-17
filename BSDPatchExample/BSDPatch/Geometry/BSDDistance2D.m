@@ -34,14 +34,14 @@
     
     NSArray *routingSelectors = @[@"x0",@"y0",@"xf",@"yf"];
     
-    self.route = [BSDCreate route:routingSelectors];
+    self.route = [BSDCreate routeSelectors:routingSelectors];
     [self.hotInlet forwardToPort:self.route.hotInlet];
-    self.diffX = [BSDCreate subtract:@(0)];
-    self.diffY = [BSDCreate subtract:@(0)];
-    self.squareX = [BSDCreate power:@(2)];
-    self.squareY = [BSDCreate power:@(2)];
+    self.diffX = [BSDCreate subtractCold:@(0)];
+    self.diffY = [BSDCreate subtractCold:@(0)];
+    self.squareX = [BSDCreate powerCold:@(2)];
+    self.squareY = [BSDCreate powerCold:@(2)];
     self.addSquares = [BSDCreate add];
-    self.rootSum = [BSDCreate power:@(0.5)];
+    self.rootSum = [BSDCreate powerCold:@(0.5)];
     
     [[self.route outletNamed:routingSelectors[0]]connectInlet:self.diffX.coldInlet];
     [[self.route outletNamed:routingSelectors[1]]connectInlet:self.diffY.coldInlet];
