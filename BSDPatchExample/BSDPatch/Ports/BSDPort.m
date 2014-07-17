@@ -30,6 +30,16 @@
     }
 }
 
+- (void)forwardToPort:(BSDPort *)port
+{
+    [port observePort:self];
+}
+
+- (void)removeForwardPort:(BSDPort *)port
+{
+    [port stopObservingPort:self];
+}
+
 - (void)dealloc
 {
     if (self.observedPorts) {

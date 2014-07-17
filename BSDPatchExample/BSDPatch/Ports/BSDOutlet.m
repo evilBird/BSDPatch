@@ -18,7 +18,6 @@
 
 - (void)disconnectInlet:(BSDInlet *)inlet
 {
-
     [inlet stopObservingPort:self];
 }
 
@@ -27,5 +26,11 @@
     [self setValue:value];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:[BSDPort class]] && [self.observedPorts containsObject:object]) {
+        [self setValue:[(BSDPort *)object value]];
+    }
+}
 
 @end

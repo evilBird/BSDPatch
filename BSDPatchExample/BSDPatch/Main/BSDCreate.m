@@ -15,6 +15,11 @@
     return [[BSDMultiply alloc]initWithArguments:nil];
 }
 
++ (BSDMultiply *)multiply:(NSNumber *)coldInletValue
+{
+    return [[BSDMultiply alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDAdd *)add
 {
     return [[BSDAdd alloc]initWithArguments:nil];
@@ -25,6 +30,11 @@
     return [[BSDSubtract alloc]initWithArguments:nil];
 }
 
++ (BSDSubtract *)subtract:(NSNumber *)coldInletValue;
+{
+    return [[BSDSubtract alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDDivide *)divide
 {
     return [[BSDDivide alloc]initWithArguments:nil];
@@ -33,6 +43,16 @@
 + (BSDSequence *)sequence:(NSArray *)inlets;
 {
     return [[BSDSequence alloc]initWithArguments:inlets];
+}
+
++ (BSDRoute *)route
+{
+    return [[BSDRoute alloc]initWithArguments:nil];
+}
+
++ (BSDRoute *)route:(NSArray *)selectors
+{
+    return [[BSDRoute alloc]initWithArguments:selectors];
 }
 
 + (BSDSwap *)swap
@@ -48,6 +68,11 @@
 + (BSDPower *)power
 {
     return [[BSDPower alloc]initWithArguments:nil];
+}
+
++ (BSDPower *)power:(NSNumber *)coldInletValue
+{
+    return [[BSDPower alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDEqual *)equals
@@ -76,9 +101,9 @@
     return [[BSDAccum alloc]initWithArguments:nil];
 }
 
-+ (BSDDistance2D *)distance
++ (BSDDistance2D *)distance2D
 {
-    return [[BSDDistance2D alloc]initWithArguments:@[@"x0",@"xf",@"y0",@"yf"]];
+    return [[BSDDistance2D alloc]initWithArguments:nil];
 }
 + (BSDCounter *)counter
 {

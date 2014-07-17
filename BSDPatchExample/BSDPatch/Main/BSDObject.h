@@ -57,6 +57,7 @@
 // Connect to other Objects/Inlets
 - (void) connect:(BSDInlet *)inlet;
 - (void) disconnect:(BSDInlet *)inlet;
+- (void) connectOutlet:(BSDOutlet *)outlet toInlet:(BSDInlet *)inlet;
 - (void) connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName;
 
 // Compare to other objects

@@ -78,6 +78,11 @@
     [self.mainOutlet disconnectInlet:inlet];
 }
 
+- (void) connectOutlet:(BSDOutlet *)outlet toInlet:(BSDInlet *)inlet
+{
+    [outlet connectInlet:inlet];
+}
+
 - (void)connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName
 {
     BSDInlet *inlet = [object inletNamed:inletName];

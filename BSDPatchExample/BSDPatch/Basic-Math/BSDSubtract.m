@@ -13,6 +13,9 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"subtract";
+    if (arguments) {
+        self.coldInlet.value = arguments;
+    }
 }
 
 - (void)calculateOutput

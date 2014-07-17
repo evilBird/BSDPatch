@@ -20,7 +20,7 @@
 - (void)input:(id)input;
 
 // forward received values to another inlet
-- (void)forwardInputToInlet:(BSDInlet *)inlet;
-- (void)removeForwardInlet:(BSDInlet *)inlet;
+//- (void)forwardInputToInlet:(BSDInlet *)inlet;
+//- (void)removeForwardInlet:(BSDInlet *)inlet;
 
 @end

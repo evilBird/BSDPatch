@@ -13,6 +13,9 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"multiply";
+    if (arguments) {
+        self.coldInlet.value = arguments;
+    }
 }
 
 - (void)calculateOutput

@@ -30,7 +30,7 @@
     
     //Configure the BSDObjects
     //distance object will measure the distance between touches in the view
-    self.distance = [BSDCreate distance];
+    self.distance = [BSDCreate distance2D];
     
     //Set up our labels, which will display the output from the BSDObjects
     [self addLabels];

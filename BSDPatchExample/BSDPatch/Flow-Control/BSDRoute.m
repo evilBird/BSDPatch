@@ -13,10 +13,8 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"route";
-    
     if ([arguments isKindOfClass:[NSArray class]]) {
-        NSSet *selectors = [NSSet setWithArray:arguments];
-        for (NSString *aSelector in selectors.allObjects) {
+        for (NSString *aSelector in arguments) {
             BSDOutlet *outlet = [[BSDOutlet alloc]init];
             outlet.name = aSelector;
             [self addPort:outlet];
@@ -28,9 +26,7 @@
 {
     NSArray *inputArray = self.hotInlet.value;
     
-    if ([inputArray respondsToSelector:@selector(objectAtIndex:)]
-        && inputArray.count >= 2)
-    {
+    if (inputArray.count >=2) {
         NSString *selector = inputArray.firstObject;
         BSDOutlet *outlet = [self outletNamed:selector];
         outlet.value = inputArray[1];

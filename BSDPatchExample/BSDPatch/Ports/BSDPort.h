@@ -21,5 +21,7 @@
 
 - (void)observePort:(BSDPort *)port;
 - (void)stopObservingPort:(BSDPort *)port;
+- (void)forwardToPort:(BSDPort *)port;
+- (void)removeForwardPort:(BSDPort *)port;
 
 @end

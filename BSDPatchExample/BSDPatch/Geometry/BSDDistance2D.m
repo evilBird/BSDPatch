@@ -9,8 +9,20 @@
 #import "BSDDistance2D.h"
 #import "BSDCreate.h"
 
-@implementation BSDDistance2D
+@interface BSDDistance2D ()
 
+
+@property (nonatomic,strong)BSDRoute *route;
+@property (nonatomic,strong)BSDSubtract *diffX;
+@property (nonatomic,strong)BSDSubtract *diffY;
+@property (nonatomic,strong)BSDPower *squareX;
+@property (nonatomic,strong)BSDPower *squareY;
+@property (nonatomic,strong)BSDAdd *addSquares;
+@property (nonatomic,strong)BSDPower *rootSum;
+
+@end
+
+@implementation BSDDistance2D
 
 - (void)setupWithArguments:(id)arguments
 {
@@ -19,63 +31,35 @@
     //The last two arguments route x and y values, respectively, for a second coordinate (xf,yf)
     //The output is distance between these coordinates. Both coordinates may be dynamic.
     self.name = @"distance";
-    self.processingChain = [NSMutableArray array];
     
-    NSArray *args = (NSArray *)arguments;
-    if (args.count < 4) {
-        NSLog(@"BSDDistance setup failed - expected 4 arguments, got %lu",(unsigned long)args.count);
-    }else{
-        
-        BSDRoute *route = [[BSDRoute alloc]initWithArguments:args];
-        [self.processingChain addObject:route];
-        BSDSubtract *diffX = [BSDCreate subtract];
-        diffX.coldInlet.value = @(0);
-        [self.processingChain addObject:diffX];
-        BSDSubtract *diffY = [BSDCreate subtract];
-        [self.processingChain addObject:diffY];
-        diffY.coldInlet.value = @(0);
-        
-        [route connectOutletNamed:args[0]
-                         toObject:diffX
-                       inletNamed:@"cold"];
-        
-        [route connectOutletNamed:args[1]
-                         toObject:diffX
-                       inletNamed:@"hot"];
-        
-        [route connectOutletNamed:args[2]
-                         toObject:diffY
-                       inletNamed:@"cold"];
-        
-        [route connectOutletNamed:args[3]
-                         toObject:diffY
-                       inletNamed:@"hot"];
-        
-        BSDPower *squareX = [BSDCreate power];
-        [self.processingChain addObject:squareX];
-        squareX.coldInlet.value = @(2);
-        [diffX connect:squareX.hotInlet];
-        BSDPower *squareY = [BSDCreate power];
-        [self.processingChain addObject:squareY];
-        squareY.coldInlet.value = @(2);
-        [diffY connect:squareY.hotInlet];
-        BSDAdd *addSquares = [BSDCreate add];
-        [self.processingChain addObject:addSquares];
-        [squareY connect:addSquares.coldInlet];
-        [squareX connect:addSquares.hotInlet];
-        BSDPower *rootSum = [BSDCreate power];
-        [self.processingChain addObject:rootSum];
-        rootSum.coldInlet.value = @(0.5);
-        [addSquares connect:rootSum.hotInlet];
-    }
+    NSArray *routingSelectors = @[@"x0",@"y0",@"xf",@"yf"];
+    
+    self.route = [BSDCreate route:routingSelectors];
+    [self.hotInlet forwardToPort:self.route.hotInlet];
+    self.diffX = [BSDCreate subtract:@(0)];
+    self.diffY = [BSDCreate subtract:@(0)];
+    self.squareX = [BSDCreate power:@(2)];
+    self.squareY = [BSDCreate power:@(2)];
+    self.addSquares = [BSDCreate add];
+    self.rootSum = [BSDCreate power:@(0.5)];
+    
+    [[self.route outletNamed:routingSelectors[0]]connectInlet:self.diffX.coldInlet];
+    [[self.route outletNamed:routingSelectors[1]]connectInlet:self.diffY.coldInlet];
+    [[self.route outletNamed:routingSelectors[2]]connectInlet:self.diffX.hotInlet];
+    [[self.route outletNamed:routingSelectors[3]]connectInlet:self.diffY.hotInlet];
 
+    [self.diffX connect:self.squareX.hotInlet];
+    [self.diffY connect:self.squareY.hotInlet];
+    [self.squareY connect:self.addSquares.coldInlet];
+    [self.squareX connect:self.addSquares.hotInlet];
+    [self.addSquares connect:self.rootSum.hotInlet];
+    [self.rootSum.mainOutlet forwardToPort:self.mainOutlet];
     
 }
 
 - (void)calculateOutput
 {
-    [(BSDObject *)self.processingChain.firstObject hotInlet].value = self.hotInlet.value;
-    self.mainOutlet.value = [(BSDObject *)self.processingChain.lastObject mainOutlet].value;;
+    //self.mainOutlet.value = self.rootSum.mainOutlet.value;
 }
 
 @end
