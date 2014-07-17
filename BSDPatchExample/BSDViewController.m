@@ -13,6 +13,8 @@
 @interface BSDViewController ()
 
 @property(nonatomic,strong)BSDDistance2D *distance;
+@property(nonatomic,strong)BSDAverage *average;
+@property(nonatomic,strong)BSDStdDev *standardDeviation;
 
 @property(nonatomic,strong)UILabel *label1;
 @property(nonatomic,strong)UILabel *label2;
@@ -31,6 +33,10 @@
     //Configure the BSDObjects
     //distance object will measure the distance between touches in the view
     self.distance = [BSDCreate distance2D];
+    self.average = [BSDCreate average:@(256)];
+    self.standardDeviation = [BSDCreate standardDeviation:@(256)];
+    [self.distance connect:self.average.hotInlet];
+    [self.distance connect:self.standardDeviation.hotInlet];
     
     //Set up our labels, which will display the output from the BSDObjects
     [self addLabels];
@@ -38,9 +44,18 @@
     //Set up our gesture recognizer, which will feed input to the distance object
     self.view.multipleTouchEnabled = YES;
     
+    //Set the output blocks for BSDObjects, which are executed whenever a new value is emitted from the specified outlet
     __weak BSDViewController *WEAK_SELF = self;
     self.distance.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        WEAK_SELF.label1.text = [outlet.value stringValue];
+        WEAK_SELF.label1.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+    };
+    
+    self.average.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        WEAK_SELF.label2.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+    };
+    
+    self.standardDeviation.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        WEAK_SELF.label3.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
     };
 
     [self test];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BSDPort.h"
+#import "BSDBang.h"
 
 @interface BSDInlet : BSDPort
 
@@ -19,8 +20,5 @@
 // pass value to inlet
 - (void)input:(id)input;
 
-// forward received values to another inlet
-//- (void)forwardInputToInlet:(BSDInlet *)inlet;
-//- (void)removeForwardInlet:(BSDInlet *)inlet;
 
 @end

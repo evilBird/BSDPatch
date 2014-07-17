@@ -11,10 +11,11 @@
 
 @interface BSDAverage ()
 
+@property (nonatomic,strong)BSDSequence *sequence;
+@property (nonatomic,strong)BSDSubtract *subtract;
 @property (nonatomic,strong)BSDAccum *accum;
 @property (nonatomic,strong)BSDCounter *counter;
 @property (nonatomic,strong)BSDDivide *divide;
-@property (nonatomic)NSUInteger bufferSize;
 @property (nonatomic,strong)NSMutableArray *inputBuffer;
 
 @end
@@ -35,12 +36,18 @@
         self.inputBuffer = [NSMutableArray array];
 
     }
+    
     self.name = @"average";
     self.accum = [BSDCreate accumulate];
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
+    self.subtract = [BSDCreate subtract:@(0)];
+    self.sequence = [BSDCreate sequence:@[self.counter.hotInlet,self.subtract.hotInlet]];
+    [self.hotInlet forwardToPort:self.sequence.hotInlet];
+    [self.subtract connect:self.accum.hotInlet];
     [self.accum connect:self.divide.hotInlet];
     [self.counter connect:self.divide.coldInlet];
+    [self.divide.mainOutlet forwardToPort:self.mainOutlet];
 }
 
 - (id)addBufferValue:(id)value
@@ -75,25 +82,14 @@
     if (self.bufferSize > 0) {
         id oldestValue = [self addBufferValue:self.hotInlet.value];
         
-        if (oldestValue == NULL) {
-            [self.counter.hotInlet input:self.hotInlet.value];
-            [self.accum.hotInlet input:self.hotInlet.value];
-        }else{
-            double toSubtract = -[oldestValue doubleValue];
-            double hotValue = [self.hotInlet.value doubleValue];
-            double newValue = toSubtract+hotValue;
+        if (oldestValue != NULL) {
+            [self.subtract.coldInlet input:oldestValue];
             [self.counter.coldInlet input:@(self.inputBuffer.count - 1)];
-            [self.counter.hotInlet input:self.hotInlet.value];
-            [self.accum.hotInlet input:@(newValue)];
+            
+        }else{
+            [self.subtract.coldInlet input:@(0)];
         }
-        
-    }else{
-        
-        [self.counter.hotInlet input:self.hotInlet.value];
-        [self.accum.hotInlet input:self.hotInlet.value];
     }
-    
-    self.mainOutlet.value = [self.divide mainOutlet].value;
 }
 
 

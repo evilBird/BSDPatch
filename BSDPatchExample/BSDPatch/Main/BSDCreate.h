@@ -11,6 +11,7 @@
 
 @interface BSDCreate : NSObject
 
++ (BSDBang *)bang;
 + (BSDMultiply *)multiply;
 + (BSDMultiply *)multiply:(NSNumber *)coldInletValue;
 + (BSDAdd *)add;
@@ -32,13 +33,16 @@
 + (BSDAccum *)accumulate;
 + (BSDCounter *)counter;
 + (BSDAverage *)average;
++ (BSDAverage *)average:(NSNumber *)bufferSize;
 + (BSDDistance2D *)distance2D;
 + (BSDStdDev *)standardDeviation;
++ (BSDStdDev *)standardDeviation:(NSNumber *)bufferSize;
 + (BSDLog *)naturalLog;
 + (BSDAbs *)absoluteValue;
 + (BSDChange *)change;
 + (BSDPTest *)pTest;
 + (BSDMedian *)median;
++ (BSDMedian *)median:(NSNumber *)bufferSize;
 + (BSDArraySort *)arraySort:(id)arguments;
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
 + (BSDArrayNormalize *)normalize;

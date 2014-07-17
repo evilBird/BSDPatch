@@ -54,12 +54,12 @@
     [self.squareX connect:self.addSquares.hotInlet];
     [self.addSquares connect:self.rootSum.hotInlet];
     [self.rootSum.mainOutlet forwardToPort:self.mainOutlet];
-    
 }
 
 - (void)calculateOutput
 {
-    //self.mainOutlet.value = self.rootSum.mainOutlet.value;
+    
 }
+
 
 @end

@@ -10,6 +10,9 @@
 
 @interface BSDMedian : BSDObject
 
+@property (nonatomic,readonly) NSUInteger bufferSize;
+
 - (id)initWithBufferSize:(NSUInteger)bufferSize;
+- (void)reset;
 
 @end

@@ -36,5 +36,5 @@
 #import "BSDArrayNormalize.h"
 #import "BSDSequence.h"
 #import "BSDClassify.h"
-
+#import "BSDBang.h"
 

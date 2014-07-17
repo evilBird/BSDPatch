@@ -10,7 +10,7 @@
 
 @interface BSDMedian ()
 
-@property (nonatomic)NSUInteger bufferSize;
+//@property (nonatomic)NSUInteger bufferSize;
 @property (nonatomic,strong)NSMutableArray *inputBuffer;
 
 @end
@@ -32,7 +32,6 @@
         _bufferSize = 0;
     }
     self.name = @"median";
-
     self.inputBuffer = [NSMutableArray array];
 
 }
@@ -57,7 +56,9 @@
 
 - (void)reset
 {
-    [self.inputBuffer removeAllObjects];
+    if (self.inputBuffer.count) {
+        [self.inputBuffer removeAllObjects];
+    }
 }
 
 - (void)calculateOutput

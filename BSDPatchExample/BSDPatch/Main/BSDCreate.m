@@ -10,6 +10,11 @@
 
 @implementation BSDCreate
 
++ (BSDBang *)bang
+{
+    return [[BSDBang alloc]init];
+}
+
 + (BSDMultiply *)multiply
 {
     return [[BSDMultiply alloc]initWithArguments:nil];
@@ -115,9 +120,19 @@
     return [[BSDAverage alloc]initWithArguments:nil];
 }
 
++ (BSDAverage *)average:(NSNumber *)bufferSize
+{
+    return [[BSDAverage alloc]initWithArguments:bufferSize];
+}
+
 + (BSDStdDev *)standardDeviation
 {
     return [[BSDStdDev alloc]initWithArguments:nil];
+}
+
++ (BSDStdDev *)standardDeviation:(NSNumber *)bufferSize
+{
+    return [[BSDStdDev alloc]initWithArguments:bufferSize];
 }
 
 + (BSDLog *)naturalLog
@@ -143,6 +158,11 @@
 + (BSDMedian *)median
 {
     return [[BSDMedian alloc]initWithArguments:nil];
+}
+
++ (BSDMedian *)median:(NSNumber *)bufferSize
+{
+    return [[BSDMedian alloc]initWithArguments:bufferSize];
 }
 
 + (BSDArraySort *)arraySort:(id)arguments;

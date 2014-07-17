@@ -11,6 +11,8 @@
 
 @interface BSDStdDev ()
 
+@property (nonatomic,strong)BSDSequence *sequence;
+@property (nonatomic,strong)BSDSubtract *subtract;
 @property (nonatomic,strong)BSDAverage *average;
 @property (nonatomic,strong)BSDAccum *accum;
 @property (nonatomic,strong)BSDSubtract *deviance;
@@ -18,8 +20,8 @@
 @property (nonatomic,strong)BSDPower *rootDeviance;
 @property (nonatomic,strong)BSDSubtract *dof;
 @property (nonatomic,strong)BSDDivide *divide;
+@property (nonatomic,strong)BSDCounter *counter;
 @property (nonatomic,strong)NSMutableArray *inputBuffer;
-@property (nonatomic)NSUInteger bufferSize;
 
 @end
 
@@ -30,30 +32,14 @@
     return [super initWithArguments:@(bufferSize)];
 }
 
-/*
- Standard Deviation block diagram
- [self hot]->[average hot]
- [avg out]-> [deviance cold]
- [self hot]-> [counter hot]
- [counter out]-> [dof hot]
- [dof out]-> [divide cold]
- [self hot]-> [deviance hot]
- [deviance out]->[squaredDev hot]
- [squaredDev out]->[accum hot]
- [accum out]-> [divide hot]
- [divide out]->[rootDev hot]
- [rootDev out]-> [self out];
- */
-
 - (void)setupWithArguments:(id)arguments
 {
-    
     NSNumber *bufferSize = (NSNumber *)arguments;
     
     if (bufferSize) {
-        self.bufferSize = bufferSize.integerValue;
+        _bufferSize = bufferSize.integerValue;
         self.inputBuffer = [NSMutableArray array];
-        self.average = [[BSDAverage alloc]initWithBufferSize:self.bufferSize];
+        self.average = [BSDCreate average:bufferSize];
     }else{
         self.average = [BSDCreate average];
     }
@@ -62,14 +48,15 @@
     self.counter = [BSDCreate counter];
     self.divide = [BSDCreate divide];
     self.deviance = [BSDCreate subtract];
-    self.dof = [BSDCreate subtract];
-    self.squaredDeviance = [BSDCreate power];
-    self.rootDeviance = [BSDCreate power];
+    self.subtract = [BSDCreate subtract:@(0)];
+    self.dof = [BSDCreate subtract:@(1)];
+    self.squaredDeviance = [BSDCreate power:@(2)];
+    self.rootDeviance = [BSDCreate power:@(0.5)];
     self.accum = [BSDCreate accumulate];
     
-    self.dof.coldInlet.value = @(1);
-    self.squaredDeviance.coldInlet.value = @(2);
-    self.rootDeviance.coldInlet.value = @(0.5);
+    self.sequence = [BSDCreate sequence:@[self.average.hotInlet, self.counter.hotInlet, self.subtract.hotInlet]];
+    [self.hotInlet forwardToPort:self.sequence.hotInlet];
+    [self.subtract connect:self.accum.hotInlet];
     [self.average connect:self.deviance.coldInlet];
     [self.counter connect:self.dof.hotInlet];
     [self.dof connect:self.divide.coldInlet];
@@ -78,6 +65,7 @@
     [self.accum connect:self.divide.hotInlet];
     [self.divide connect:self.rootDeviance.hotInlet];
     
+    [self.rootDeviance.mainOutlet forwardToPort:self.mainOutlet];
 }
 
 - (id)addBufferValue:(id)value
@@ -114,32 +102,17 @@
         
         id oldestValue = [self addBufferValue:self.accum.hotInlet.value];
         
-        if (oldestValue == NULL) {
-            
-            [self.average.hotInlet input:self.hotInlet.value];
-            [self.counter.hotInlet input:self.hotInlet.value];
-            [self.deviance.hotInlet input:self.hotInlet.value];
+        if (oldestValue != NULL) {
+            [self.subtract.coldInlet input:oldestValue];
+            [self.counter.coldInlet input:@(self.inputBuffer.count - 1)];
             
         }else{
-            
-            double toSubtract = -[oldestValue doubleValue];
-            double coldValue = [self.accum.coldInlet.value doubleValue];
-            double newValue = toSubtract+coldValue;
-            [self.accum.coldInlet input:@(newValue)];
-            [self.average.hotInlet input:self.hotInlet.value];
-            [self.counter.hotInlet input:@(self.inputBuffer.count - 1)];
-            [self.counter.hotInlet input:self.hotInlet.value];
-            [self.deviance.hotInlet input:self.hotInlet.value];
+            [self.subtract.coldInlet input:@(0)];
+
         }
         
-    }else{
-        
-        [self.average.hotInlet input:self.hotInlet.value];
-        [self.counter.hotInlet input:self.hotInlet.value];
-        [self.deviance.hotInlet input:self.hotInlet.value];
     }
     
-    self.mainOutlet.value = [self.rootDeviance mainOutlet].value;
 }
 
 

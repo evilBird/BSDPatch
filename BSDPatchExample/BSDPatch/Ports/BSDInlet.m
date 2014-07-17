@@ -33,17 +33,11 @@
 
 - (void)input:(id)input;
 {
-    self.value = input;
-}
-
-- (void)forwardInputToInlet:(BSDInlet *)inlet
-{
-    [inlet observePort:self];
-}
-
-- (void)removeForwardInlet:(BSDInlet *)inlet
-{
-    [inlet stopObservingPort:self];
+    if ([input isKindOfClass:[BSDBang class]]) {
+        [self bang];
+    }else{
+        self.value = input;
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
