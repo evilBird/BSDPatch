@@ -20,5 +20,4 @@
     self.mainOutlet.value = @([self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue]);
 }
 
-
 @end

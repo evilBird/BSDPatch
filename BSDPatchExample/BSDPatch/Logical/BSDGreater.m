@@ -13,6 +13,10 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"greater than";
+    NSNumber *initVal = (NSNumber *)arguments;
+    if (initVal) {
+        [self.coldInlet input:initVal];
+    }
 }
 
 - (void)calculateOutput

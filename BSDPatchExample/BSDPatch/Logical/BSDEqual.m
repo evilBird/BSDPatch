@@ -13,11 +13,15 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"equal";
+    NSNumber *initVal = (NSNumber *)arguments;
+    if (initVal) {
+        [self.coldInlet input:initVal];
+    }
 }
 
 - (void)calculateOutput
 {
-    self.mainOutlet.value = @(self.hotInlet.value == self.coldInlet.value);
+    self.mainOutlet.value = @([self.hotInlet.value doubleValue] == [self.coldInlet.value doubleValue]);
 }
 
 @end

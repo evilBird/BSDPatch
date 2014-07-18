@@ -34,10 +34,10 @@
 - (void)input:(id)input;
 {
     if ([input isKindOfClass:[BSDBang class]]) {
-        [self bang];
-    }else{
-        self.value = input;
+        [(BSDBang *)input setValue:self.value];
     }
+    
+    self.value = input;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

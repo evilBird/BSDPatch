@@ -61,9 +61,37 @@
     //override to configure before processing
 }
 
+- (void) hotInlet:(BSDInlet *)inlet receivedValue:(id)value
+{
+    //override to get access to the hot inlet that changed
+}
+
 - (void)calculateOutput
 {
     //override
+}
+
+- (void) reset
+{
+    //override
+}
+
+- (NSString *)debugDescription
+{
+    NSMutableString *description = [[NSMutableString alloc]init];
+    [description appendFormat:@"\n\nBSDOBJECT DEBUG\n"];
+    [description appendFormat:@"\nobject class: %@",NSStringFromClass([self class])];
+    [description appendFormat:@"\nobject name: %@",self.name];
+    [description appendFormat:@"\nobject id: %@",self.objectId];
+    for (BSDInlet *inlet in self.inlets) {
+        [description appendFormat:@"\ninlet %@ value = %@",inlet.name,inlet.value];
+    }
+    
+    for (BSDOutlet *outlet in self.outlets) {
+        [description appendFormat:@"\noutlet %@ value = %@",outlet.name,outlet.value];
+    }
+    [description appendFormat:@"\n\n"];
+    return description;
 }
 
 #pragma mark - Connect to other objects/inlets
@@ -172,6 +200,15 @@
     return NO;
 }
 
+- (BOOL) isBang: (id)value
+{
+    if ([value isKindOfClass:[BSDBang class]]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - Private
 #pragma mark - KVO
 
@@ -186,7 +223,12 @@
     if ([keyPath isEqualToString:@"value"]) {
         //handle data emitted from hot inlet(s)
         if ([object isKindOfClass:[BSDInlet class]]) {
+            BSDInlet *hotInlet = (BSDInlet *)object;
+            [self hotInlet:hotInlet receivedValue:hotInlet.value];
             [self calculateOutput];
+            if (self.debug) {
+                NSLog(@"%@",[self debugDescription]);
+            }
         }else if ([object isKindOfClass:[BSDOutlet class]]){
             //handle changes in outlet value
             BSDOutlet *outlet = (BSDOutlet *)object;

@@ -19,6 +19,8 @@
 @property (nonatomic,strong) NSString *name;
 // Unique per-object identifier
 @property (nonatomic,readonly) NSString *objectId;
+// Debug an object by printing its debug description to the log
+@property (nonatomic)BOOL debug;
 
 // Default port configuration
 @property (nonatomic,strong) BSDInlet *hotInlet;
@@ -53,6 +55,7 @@
 
 // Send output value
 - (void) calculateOutput;
+- (void) hotInlet:(BSDInlet *)inlet receivedValue:(id)value;
 
 // Connect to other Objects/Inlets
 - (void) connect:(BSDInlet *)inlet;
@@ -62,5 +65,8 @@
 
 // Compare to other objects
 - (BOOL) isEqual:(id)object;
+- (BOOL) isBang: (id)value;
+- (NSString *)debugDescription;
+- (void) reset;
 
 @end

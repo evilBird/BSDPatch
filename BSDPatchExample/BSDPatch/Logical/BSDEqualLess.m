@@ -13,6 +13,10 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"equal or less than";
+    NSNumber *initVal = (NSNumber *)arguments;
+    if (arguments) {
+        self.coldInlet.value = initVal;
+    }
 }
 
 - (void)calculateOutput

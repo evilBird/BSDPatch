@@ -12,6 +12,7 @@
 
 // Takes any NSObject as input/Output
 
-- (void)reset;
+@property (nonatomic)BSDInlet *stepSizeInlet;
+
 
 @end

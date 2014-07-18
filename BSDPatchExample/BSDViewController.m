@@ -63,6 +63,17 @@
 }
 - (void)test
 {
+    NSArray *array = @[@(9),@(10),@(45),@(13)];
+    
+    BSDArraySerialize *serialize = [BSDCreate arraySerializeCold:@[array,@(YES),@(NO)]];
+    serialize.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+      
+        NSLog(@"\n\nSERIALIZE OUTPUT\n\n%@",[object debugDescription]);
+    };
+    
+    for (NSInteger idx = 0; idx < 10; idx ++) {
+        [serialize.hotInlet input:[BSDBang bang]];
+    }
     
 }
 

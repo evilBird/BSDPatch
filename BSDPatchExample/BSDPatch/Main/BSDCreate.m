@@ -12,7 +12,17 @@
 
 + (BSDBang *)bang
 {
-    return [[BSDBang alloc]init];
+    return [BSDBang bang];
+}
+
++ (BSDSpigot *)spigot
+{
+    return [[BSDSpigot alloc]initWithArguments:nil];
+}
+
++ (BSDSpigot *)spigotCold:(NSNumber *)coldInletValue
+{
+    return [[BSDSpigot alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDMultiply *)multiply
@@ -65,9 +75,14 @@
     return [[BSDSwap alloc]initWithArguments:nil];
 }
 
-+ (BSDValue *)value
++ (BSDValueBox *)valueBox
 {
-    return [[BSDValue alloc]initWithArguments:nil];
+    return [[BSDValueBox alloc]initWithArguments:nil];
+}
+
++ (BSDValueBox *)valueBoxCold:(NSNumber *)coldInletValue
+{
+    return [[BSDValueBox alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDPower *)power
@@ -92,13 +107,78 @@
 {
     return [[BSDLess alloc]initWithArguments:nil];
 }
+
++ (BSDEqual *)equalsCold:(NSNumber *)coldInletValue
+{
+    return [[BSDEqual alloc]initWithArguments:coldInletValue];
+}
++ (BSDGreater *)greaterCold:(NSNumber *)coldInletValue
+{
+    return [[BSDGreater alloc]initWithArguments:coldInletValue];
+}
++ (BSDLess *)lessCold:(NSNumber *)coldInletValue
+{
+    return [[BSDLess alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDEqualGreater *)equalOrGreater
 {
     return [[BSDEqualGreater alloc]initWithArguments:nil];
 }
+
++ (BSDEqualGreater *)equalOrGreaterCold:(NSNumber *)coldInletValue
+{
+    return [[BSDEqualGreater alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDEqualLess *)equalOrLess
 {
     return [[BSDEqualLess alloc]initWithArguments:nil];
+}
+
++ (BSDEqualLess *)equalOrLessCold:(NSNumber *)coldInletValue
+{
+    return [[BSDEqualLess alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDMax *)max
+{
+    return [[BSDMax alloc]initWithArguments:nil];
+}
+
++ (BSDMax *)maxCold:(NSNumber *)coldInletValue
+{
+    return [[BSDMax alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDMin *)min
+{
+    return [[BSDMin alloc]initWithArguments:nil];
+}
+
++ (BSDMin *)minCold:(NSNumber *)coldInletValue
+{
+    return [[BSDMin alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDClip *)clip
+{
+    return [[BSDClip alloc]initWithArguments:nil];
+}
+
++ (BSDClip *)clipMin:(NSNumber *)minValue Max:(NSNumber *)maxValue
+{
+    return [[BSDClip alloc]initWithArguments:@[minValue,maxValue]];
+}
+
++ (BSDClipFilter *)clipFilter
+{
+    return [[BSDClipFilter alloc]initWithArguments:nil];
+}
+
++ (BSDClipFilter *)clipFilterMin:(NSNumber *)minValue Max:(NSNumber *)maxValue
+{
+    return [[BSDClipFilter alloc]initWithArguments:@[minValue,maxValue]];
 }
 
 + (BSDAccum *)accumulate
@@ -113,6 +193,21 @@
 + (BSDCounter *)counter
 {
     return [[BSDCounter alloc]initWithArguments:nil];
+}
+
++ (BSDCounter *)counterCold:(NSNumber *)coldInletValue stepSize:(NSNumber *)stepInletValue
+{
+    return [[BSDCounter alloc]initWithArguments:@[coldInletValue,stepInletValue]];
+}
+
++ (BSDMod *) modulus
+{
+    return [[BSDMod alloc]initWithArguments:nil];
+}
+
++ (BSDMod *) modulusCold:(NSNumber *)coldInletValue
+{
+    return [[BSDMod alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDAverage *)average
@@ -170,6 +265,16 @@
     return [[BSDMedian alloc]initWithArguments:bufferSize];
 }
 
++ (BSDArrayBox *)arrayBox
+{
+    return [[BSDArrayBox alloc]initWithArguments:nil];
+}
+
++ (BSDArrayBox *)arrayBoxCold:(NSArray *)coldInletValue
+{
+    return [[BSDArrayBox alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDArraySort *)arraySort:(id)arguments
 {
     return [[BSDArraySort alloc]initWithArguments:arguments];
@@ -178,6 +283,25 @@
 + (BSDArrayFilter *)arrayFilter:(id)arguments
 {
     return [[BSDArrayFilter alloc]initWithArguments:arguments];
+}
+
++ (BSDArraySerialize *)arraySerialize
+{
+    return [[BSDArraySerialize alloc]initWithArguments:nil];
+}
++ (BSDArraySerialize *)arraySerializeCold:(NSArray *)array
+{
+    return [[BSDArraySerialize alloc]initWithArguments:array];
+}
+
++ (BSDArrayElement *)arrayElement
+{
+    return [[BSDArrayElement alloc]initWithArguments:nil];
+}
+
++ (BSDArrayElement *)arrayElementCold:(NSArray *)array
+{
+    return [[BSDArrayElement alloc]initWithArguments:array];
 }
 
 + (BSDArrayNormalize *)normalize

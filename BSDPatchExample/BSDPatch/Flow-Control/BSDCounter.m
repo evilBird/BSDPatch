@@ -13,20 +13,35 @@
 - (void)setupWithArguments:(NSArray *)arguments
 {
     self.name = @"counter";
-    self.coldInlet.value = @(0);
+    [self.coldInlet input:@(0)];
+    self.stepSizeInlet = [[BSDInlet alloc]initCold];
+    self.stepSizeInlet.name = @"step";
+    [self addPort:self.stepSizeInlet];
+    [self.stepSizeInlet input:@(1)];
+
+    if (arguments.count > 0) {
+        NSNumber *initVal = arguments[0];
+        [self.coldInlet input:initVal];
+    }
+    
+    if (arguments.count > 1) {
+        NSNumber *stepSize = arguments[1];
+        [self.stepSizeInlet input:stepSize];
+    }
 }
 
 - (void)reset
 {
-    self.coldInlet.value = @(0);
+    [self.coldInlet input:@(0)];    
 }
 
 - (void)calculateOutput
 {
     double cold = [self.coldInlet.value doubleValue];
-    double result = cold+1;
-    self.mainOutlet.value = @(result);
+    double step = [self.stepSizeInlet.value doubleValue];
+    double result = cold+step;
     self.coldInlet.value = @(result);
+    self.mainOutlet.value = @(result);
 }
 
 @end

@@ -12,4 +12,6 @@
 
 + (BSDBang *)bang;
 
+@property(nonatomic,strong)id value;
+
 @end
