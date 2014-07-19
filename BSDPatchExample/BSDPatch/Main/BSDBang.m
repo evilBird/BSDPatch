@@ -15,12 +15,5 @@
     return [[BSDBang alloc]init];
 }
 
-- (void)setValue:(id)value
-{
-    if (![value isKindOfClass:[BSDBang class]]) {
-        
-        _value = value;
-    }
-}
 
 @end

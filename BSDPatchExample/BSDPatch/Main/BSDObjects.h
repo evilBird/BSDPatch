@@ -38,6 +38,7 @@
 #import "BSDSequence.h"
 #import "BSDClassify.h"
 #import "BSDBang.h"
+#import "BSDBangBox.h"
 #import "BSDMod.h"
 #import "BSDArraySerialize.h"
 #import "BSDMax.h"
@@ -46,4 +47,5 @@
 #import "BSDClipFilter.h"
 #import "BSDArrayElement.h"
 #import "BSDArrayBox.h"
+#import "BSDBuffer.h"
 

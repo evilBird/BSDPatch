@@ -15,6 +15,20 @@
     return [BSDBang bang];
 }
 
++ (BSDBangBox *)bangBox
+{
+    return [[BSDBangBox alloc]initWithArguments:nil];
+}
+
++ (BSDBuffer *)buffer
+{
+    return [[BSDBuffer alloc]initWithArguments:nil];
+}
++ (BSDBuffer *)bufferSize:(NSNumber *)bufferSize
+{
+    return [[BSDBuffer alloc]initWithArguments:bufferSize];
+}
+
 + (BSDSpigot *)spigot
 {
     return [[BSDSpigot alloc]initWithArguments:nil];

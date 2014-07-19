@@ -32,6 +32,8 @@
 		F2AFEF93197983A600461AE9 /* BSDSpigot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF92197983A600461AE9 /* BSDSpigot.m */; };
 		F2AFEF96197987F600461AE9 /* BSDClipFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF95197987F600461AE9 /* BSDClipFilter.m */; };
 		F2AFEF991979A70200461AE9 /* BSDArrayBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF981979A70200461AE9 /* BSDArrayBox.m */; };
+		F2AFEF9C1979C54F00461AE9 /* BSDBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF9B1979C54F00461AE9 /* BSDBuffer.m */; };
+		F2AFEF9F1979E14B00461AE9 /* BSDBangBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */; };
 		F2BB03381978ECA100392FF1 /* BSDArraySerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB03371978ECA100392FF1 /* BSDArraySerialize.m */; };
 		F2BB033B1978F74D00392FF1 /* BSDMod.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB033A1978F74D00392FF1 /* BSDMod.m */; };
 		F2C40F2519787E300093968A /* BSDBang.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C40F2419787E300093968A /* BSDBang.m */; };
@@ -119,6 +121,10 @@
 		F2AFEF95197987F600461AE9 /* BSDClipFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDClipFilter.m; sourceTree = "<group>"; };
 		F2AFEF971979A70200461AE9 /* BSDArrayBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayBox.h; sourceTree = "<group>"; };
 		F2AFEF981979A70200461AE9 /* BSDArrayBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayBox.m; sourceTree = "<group>"; };
+		F2AFEF9A1979C54F00461AE9 /* BSDBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDBuffer.h; sourceTree = "<group>"; };
+		F2AFEF9B1979C54F00461AE9 /* BSDBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDBuffer.m; sourceTree = "<group>"; };
+		F2AFEF9D1979E14B00461AE9 /* BSDBangBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDBangBox.h; sourceTree = "<group>"; };
+		F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDBangBox.m; sourceTree = "<group>"; };
 		F2BB03361978ECA100392FF1 /* BSDArraySerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDArraySerialize.h; path = ../BSDArraySerialize.h; sourceTree = "<group>"; };
 		F2BB03371978ECA100392FF1 /* BSDArraySerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDArraySerialize.m; path = ../BSDArraySerialize.m; sourceTree = "<group>"; };
 		F2BB03391978F74D00392FF1 /* BSDMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDMod.h; sourceTree = "<group>"; };
@@ -226,6 +232,8 @@
 				F226C36E1975B9EB00327AB5 /* BSDStdDev.m */,
 				F2F57E181975D55F0083D1C9 /* BSDPTest.h */,
 				F2F57E191975D55F0083D1C9 /* BSDPTest.m */,
+				F2AFEF9A1979C54F00461AE9 /* BSDBuffer.h */,
+				F2AFEF9B1979C54F00461AE9 /* BSDBuffer.m */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -413,6 +421,8 @@
 				F2E7EBD61974BF18004BB504 /* BSDObject.m */,
 				F2C40F2319787E300093968A /* BSDBang.h */,
 				F2C40F2419787E300093968A /* BSDBang.m */,
+				F2AFEF9D1979E14B00461AE9 /* BSDBangBox.h */,
+				F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -566,6 +576,7 @@
 				F2F57E391976F6F40083D1C9 /* BSDTestVariable.m in Sources */,
 				F2BB033B1978F74D00392FF1 /* BSDMod.m in Sources */,
 				F2E7EBE71974BF18004BB504 /* BSDValueBox.m in Sources */,
+				F2AFEF9F1979E14B00461AE9 /* BSDBangBox.m in Sources */,
 				F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,
 				F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */,
@@ -591,6 +602,7 @@
 				F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */,
 				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2AFEF991979A70200461AE9 /* BSDArrayBox.m in Sources */,
+				F2AFEF9C1979C54F00461AE9 /* BSDBuffer.m in Sources */,
 				F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */,
 				F2F57E141975BED00083D1C9 /* BSDCounter.m in Sources */,
 				F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */,

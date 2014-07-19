@@ -23,8 +23,14 @@
 
 - (void)calculateOutput
 {
-    self.coldInlet.value = @([self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue]);
-    self.mainOutlet.value = self.coldInlet.value;
+    id hot = self.hotInlet.value;
+    if ([self isBang:hot]) {
+        self.mainOutlet.value = self.coldInlet.value;
+    }else{
+        id result = @([self.hotInlet.value doubleValue] + [self.coldInlet.value doubleValue]);
+        self.mainOutlet.value = result;
+        self.coldInlet.value = result;
+    }
 }
 
 

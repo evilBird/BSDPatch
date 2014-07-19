@@ -54,35 +54,47 @@
             self.stdDev = [BSDCreate standardDeviation];
         }
     }
+
+    self.muOut = [[BSDOutlet alloc]init];
+    self.muOut.name = @"mu";
+    [self addPort:self.muOut];
     
-    BSDOutlet *avgOutlet = [[BSDOutlet alloc]init];
-    avgOutlet.name = self.average.name;
-    [self addPort:avgOutlet];
-    
-    BSDOutlet *stdDevOutlet = [[BSDOutlet alloc]init];
-    stdDevOutlet.name = self.stdDev.name;
-    [self addPort:stdDevOutlet];
+    self.sigmaOut = [[BSDOutlet alloc]init];
+    self.sigmaOut.name = @"sigma";
+    [self addPort:self.sigmaOut];
     
     self.compareToSigLevel = [BSDCreate equalOrGreater];
+    self.compareToSigLevel.debug = YES;
     self.absoluteValue = [BSDCreate absoluteValue];
     self.subtractInputFromAvg = [BSDCreate subtract];
     self.divideDiffByStdDev = [BSDCreate divide];
     self.change = [BSDCreate change];
     self.sequence = [BSDCreate sequenceInlets:@[self.stdDev.hotInlet, self.average.hotInlet, self.subtractInputFromAvg.hotInlet]];
     [self.hotInlet forwardToPort:self.sequence.hotInlet];
-    
     self.compareToSigLevel.coldInlet.value = [self criticalValueForSignificance:self.alpha];
     
     [self.stdDev connect:self.divideDiffByStdDev.coldInlet];
     [self.average connect:self.subtractInputFromAvg.coldInlet];
     [self.subtractInputFromAvg connect:self.divideDiffByStdDev.hotInlet];
+    self.subtractInputFromAvg.debug = YES;
+    self.subtractInputFromAvg.name = @"dev = (x-mu)";
     
     [self.divideDiffByStdDev connect:self.absoluteValue.hotInlet];
+    self.divideDiffByStdDev.name = @"z = dev/sigma";
+    self.divideDiffByStdDev.debug = YES;
     [self.absoluteValue connect:self.compareToSigLevel.hotInlet];
+    self.absoluteValue.name = @"z = abs(z)";
+    self.absoluteValue.debug = YES;
     [self.compareToSigLevel connect:self.change.hotInlet];
+    self.compareToSigLevel.debug = YES;
+    self.compareToSigLevel.name = @"z > alpha";
     
-    [self.average.mainOutlet forwardToPort:avgOutlet];
-    [self.stdDev.mainOutlet forwardToPort:stdDevOutlet];
+    [self.average.mainOutlet forwardToPort:self.muOut];
+    self.average.debug = YES;
+    self.average.name = @"mu";
+    self.stdDev.debug = YES;
+    self.stdDev.name = @"sigma";
+    [self.stdDev.mainOutlet forwardToPort:self.sigmaOut];
     [self.change.mainOutlet forwardToPort:self.mainOutlet];
     
 }

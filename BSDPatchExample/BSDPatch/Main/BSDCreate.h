@@ -12,6 +12,7 @@
 @interface BSDCreate : NSObject
 
 + (BSDBang *)bang;
++ (BSDBangBox *)bangBox;
 
 + (BSDSwap *)swap;
 + (BSDChange *)change;
@@ -22,6 +23,9 @@
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets;
 + (BSDRoute *)route;
 + (BSDRoute *)routeSelectors:(NSArray *)selectors;
+
++ (BSDBuffer *)buffer;
++ (BSDBuffer *)bufferSize:(NSNumber *)bufferSize;
 
 + (BSDMultiply *)multiply;
 + (BSDMultiply *)multiplyCold:(NSNumber *)coldInletValue;

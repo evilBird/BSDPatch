@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface BSDBang : NSObject
 
 + (BSDBang *)bang;
 
-@property(nonatomic,strong)id value;
+@property (nonatomic,strong)id value;
 
 @end

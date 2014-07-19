@@ -12,6 +12,5 @@
 
 //Input and Output are NSNumber
 
-- (void)reset;
 
 @end
