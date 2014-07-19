@@ -48,4 +48,6 @@
 #import "BSDArrayElement.h"
 #import "BSDArrayBox.h"
 #import "BSDBuffer.h"
+#import "BSDTestVariable.h"
+
 

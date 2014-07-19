@@ -8,7 +8,7 @@
 
 #import "BSDViewController.h"
 #import "BSDPatch.h"
-#import "BSDTestVariable.h"
+#import "BSDOutlet.h"
 
 @interface BSDViewController ()
 
@@ -32,9 +32,8 @@
     //Configure the BSDObjects
     //distance object will measure the distance between touches in the view
     self.distance = [BSDCreate distance2D];
-    self.stdDev = [BSDCreate standardDeviationBufferSize:@(32)];
+    self.stdDev = [BSDCreate standardDeviationBufferSize:@(64)];
     [self.distance connect:self.stdDev.hotInlet];
-    self.stdDev.debug = YES;
     
     //Set up our labels, which will display the output from the BSDObjects
     [self addLabels];
@@ -44,13 +43,23 @@
     
     //Set the output blocks for BSDObjects, which are executed whenever a new value is emitted from the specified outlet
     __weak BSDViewController *WEAK_SELF = self;
+    
     self.distance.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
-        WEAK_SELF.label2.text = [NSString stringWithFormat:@"%@ value: %@",object.name,outlet.value];
+        WEAK_SELF.label2.text = [NSString stringWithFormat:@"%@: \n%.2fpts",object.name,[outlet.value floatValue]];
     };
 
+    self.stdDev.mainOutlet.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+      WEAK_SELF.label3.text = [NSString stringWithFormat:@"%@: \n%.2fpts",object.name,[outlet.value floatValue]];
+    };
+    
+    self.stdDev.muOut.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+      WEAK_SELF.label1.text = [NSString stringWithFormat:@"avg distance: \n%.2fpts",[outlet.value floatValue]];
+    };
+    
     [self test];
 
 }
+
 - (void)test
 {
     

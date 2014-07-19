@@ -74,16 +74,6 @@ static BOOL kDebug;
 
 - (void)configureWithBufferSize:(NSUInteger)bufferSize
 {
-    /*
-     sequence  ->average (hot)->deviance(cold)
-     ->counter (hot)->clip (hot)->dof (hot)-> divide(cold)
-     ->deviance (hot)->squaredDeviance (hot)-> sub_sequence->buffer(hot)->subtractOld(cold)
-     ->bang->accum(hot)->subtractOld(hot)->sub_sub_seq->accum(cold)
-     ->addNew(cold)
-     ->addNew(hot)->dof(hot)->rootDev(hot)->outlet
-     
-     */
-    
     _bufferSize = bufferSize;
     self.subtract = [BSDCreate subtractCold:@(0)];
     
