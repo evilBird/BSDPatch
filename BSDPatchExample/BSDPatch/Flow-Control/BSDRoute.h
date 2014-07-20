@@ -13,4 +13,6 @@
 //Input: takes an NSArray with two objects: a string and a value, e.g. @["routing_tag",@(value)]
 //Output: sends any NSObject out the outlet specified by the string in the input, e.g. the above array would cause @(value) to be sent from the outlet named "routing_tag"
 
+- (instancetype)initWithKeys:(NSArray *)keys forInlets:(NSArray *)inlets;
+
 @end

@@ -38,7 +38,7 @@
 @property (nonatomic,strong) BSDObjectOutputBlock outputBlock;
 
 // Optionally keep an array or dictionary of sub-objects
-@property (nonatomic,strong) NSMutableArray *processingChain;
+@property (nonatomic,strong) NSMutableArray *subobjects;
 
 // designated initializer
 - (instancetype) initWithArguments:(id)arguments;
@@ -61,13 +61,11 @@
 - (void) connect:(BSDInlet *)inlet;
 - (void) disconnect:(BSDInlet *)inlet;
 - (void) connectOutlet:(BSDOutlet *)outlet toInlet:(BSDInlet *)inlet;
-- (void) connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName;
 
 // Compare to other objects
 - (BOOL) isEqual:(id)object;
 - (BOOL) isBang: (id)value;
-- (NSString *)debugDescription;
-- (NSDictionary *) plist;
+- (NSString *) debugDescription;
 - (void) reset;
 
 @end

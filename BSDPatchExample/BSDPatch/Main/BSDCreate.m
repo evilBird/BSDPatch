@@ -109,6 +109,11 @@
     return [[BSDRoute alloc]initWithArguments:selectors];
 }
 
++ (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets
+{
+    return [[BSDRoute alloc]initWithKeys:keys forInlets:inlets];
+}
+
 + (BSDSwap *)swap
 {
     return [[BSDSwap alloc]initWithArguments:nil];
@@ -411,6 +416,24 @@
 + (BSDPoint *)pointWithCGPoint:(CGPoint)point
 {
     return [[BSDPoint alloc]initWithCGPoint:point];
+}
+
++ (BSDFormatString *)formatString
+{
+    return [[BSDFormatString alloc]initWithArguments:nil];
+}
++ (BSDFormatString *)formatString:(NSString *)coldInletValue
+{
+    return [[BSDFormatString alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDLabel *)label
+{
+    return [[BSDLabel alloc]initWithArguments:nil];
+}
++ (BSDLabel *)labelWithUILabel:(UILabel*)label
+{
+    return [[BSDLabel alloc]initWithUILabel:label];
 }
 
 @end

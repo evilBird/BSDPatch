@@ -24,6 +24,14 @@
 @property(nonatomic,strong)BSDReferencePointView *refPtView1;
 @property(nonatomic,strong)BSDReferencePointView *refPtView2;
 
+@property(nonatomic,strong)BSDFormatString *formatString2;
+@property(nonatomic,strong)BSDFormatString *formatString3;
+@property(nonatomic,strong)BSDLabel *b_label2;
+@property(nonatomic,strong)BSDLabel *b_label3;
+@property(nonatomic,strong)BSDPrependKey *preprendTextKey2;
+@property(nonatomic,strong)BSDPrependKey *prependTextKey3;
+@property(nonatomic,strong)BSDRoute *routeText;
+
 @property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 @property(nonatomic)CGPoint touchLocation;
 @property(nonatomic)CGPoint refpt1;
@@ -43,6 +51,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self configure];
+    [self test];
+}
+
+- (void)test
+{
+
 
 }
 
@@ -99,21 +113,36 @@
     [self.i2c connectOutlet:self.i2c.circle1Center toInlet:self.estPtView1.center];
     [self.i2c connectOutlet:self.i2c.circle2Center toInlet:self.estPtView2.center];
     
+    NSString *formatString = @"estimated pt %@:\n(%@,%@)";
+    
+    self.formatString2 = [BSDCreate formatString:formatString];
+    self.preprendTextKey2 = [BSDCreate prependKeyCold:@"text"];
+    self.b_label2 = [BSDCreate labelWithUILabel:self.label2];
+    [self.formatString2 connect:self.preprendTextKey2.hotInlet];
+    [self.preprendTextKey2 connect:self.b_label2.hotInlet];
+    
+    self.formatString3 = [BSDCreate formatString:formatString];
+    self.prependTextKey3 = [BSDCreate prependKeyCold:@"text"];
+    self.b_label3 = [BSDCreate labelWithUILabel:self.label3];
+    [self.formatString3 connect:self.prependTextKey3.hotInlet];
+    [self.prependTextKey3 connect:self.b_label3.hotInlet];
+
     //set completion block to update our labels as the point estimates are updated
     __weak BSDViewController *weakself = self;
     
     self.i2c.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
         NSDictionary *points = outlet.value;
-        CGPoint actualPt = weakself.touchLocation;
-        weakself.label1.text = [NSString stringWithFormat:@"actual touch location:\n(%.1f, %.1f)",actualPt.x,actualPt.y];
+        
+        //CGPoint actualPt = weakself.touchLocation;
+        //weakself.label1.text = [NSString stringWithFormat:@"actual touch location:\n(%.1f, %.1f)",actualPt.x,actualPt.y];
         if (points) {
             CGPoint i = [points[@"i"] CGPointValue];
             CGPoint j = [points[@"j"] CGPointValue];
             [weakself.estPtView1.alpha input:@(1)];
             [weakself.estPtView2.alpha input:@(1)];
-            weakself.label2.text = [NSString stringWithFormat:@"est. touch location i:\n(%.1f, %.1f)",i.x,i.y];
+            [weakself.formatString2.hotInlet input:@[@"i", @((int)i.x),@((int)i.y)]];
+            [weakself.formatString3.hotInlet input:@[@"j", @((int)j.x),@((int)j.y)]];
             weakself.label2.textColor = [[weakself.estPtView1 view]backgroundColor];
-            weakself.label3.text = [NSString stringWithFormat:@"est. touch location j:\n(%.1f, %.1f)",j.x,i.y];
             weakself.label3.textColor = [[weakself.estPtView2 view]backgroundColor];
         }else{
             [weakself.estPtView1.alpha input:@(0)];

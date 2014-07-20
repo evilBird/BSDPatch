@@ -1,26 +1,26 @@
 //
-//  BSDView.m
+//  BSDLabel.m
 //  BSDPatchExample
 //
-//  Created by Travis Henspeter on 7/19/14.
+//  Created by Travis Henspeter on 7/20/14.
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDView.h"
+#import "BSDLabel.h"
 
-@implementation BSDView
+@implementation BSDLabel
 
-- (instancetype)initWithUIView:(UIView *)view
+- (instancetype)initWithUILabel:(UILabel *)label
 {
-    return [super initWithArguments:view];
+    return [super initWithArguments:label];
 }
 
 - (void)setupWithArguments:(id)arguments
 {
-    self.name = @"view";
-    UIView *view = (UIView *)arguments;
-    if (view) {
-        self.coldInlet.value = view;
+    self.name = @"label";
+    UILabel *label = (UILabel *)arguments;
+    if (label) {
+        self.coldInlet.value = label;
     }
 }
 
@@ -37,12 +37,9 @@
     }
 }
 
-- (UIView *)view
+- (UILabel *)label
 {
     return self.coldInlet.value;
 }
-
-
-
 
 @end

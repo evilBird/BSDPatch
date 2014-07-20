@@ -18,7 +18,6 @@
 @property (nonatomic,strong)BSDView *mainView;
 
 - (instancetype)initWithUIView:(UIView *)view;
-
 - (UIView *)view;
 
 @end

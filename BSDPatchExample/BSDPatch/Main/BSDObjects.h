@@ -57,7 +57,9 @@
 #import "BSDView.h"
 #import "BSDRect.h"
 #import "BSDPoint.h"
+#import "BSDLabel.h"
 
 #import "BSDPrependKey.h"
+#import "BSDFormatString.h"
 
 #import "NSValue+BSD.h"

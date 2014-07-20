@@ -133,9 +133,6 @@
     [self.buffer reset];
 }
 
-- (void)calculateOutput
-{
-    
-}
+
 
 @end

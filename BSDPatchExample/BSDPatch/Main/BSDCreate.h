@@ -27,6 +27,8 @@
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets;
 + (BSDRoute *)route;
 + (BSDRoute *)routeSelectors:(NSArray *)selectors;
++ (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets;
+
 
 + (BSDBuffer *)buffer;
 + (BSDBuffer *)bufferSize:(NSNumber *)bufferSize;
@@ -111,5 +113,11 @@
 + (BSDRect *)rectWithCGRect:(CGRect)rect;
 + (BSDPoint *)point;
 + (BSDPoint *)pointWithCGPoint:(CGPoint)point;
+
++ (BSDFormatString *)formatString;
++ (BSDFormatString *)formatString:(NSString *)coldInletValue;
+
++ (BSDLabel *)label;
++ (BSDLabel *)labelWithUILabel:(UILabel*)label;
 
 @end
