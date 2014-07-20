@@ -10,4 +10,9 @@
 
 @interface BSDRectSplit : BSDObject
 
+@property (nonatomic,strong)BSDOutlet *originXOutlet;
+@property (nonatomic,strong)BSDOutlet *originYOutlet;
+@property (nonatomic,strong)BSDOutlet *widthOutlet;
+@property (nonatomic,strong)BSDOutlet *heightOutlet;
+
 @end

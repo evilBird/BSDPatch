@@ -8,8 +8,11 @@
 
 #import "BSDObject.h"
 
-@interface BSDArraySplit : BSDObject
+@interface BSDSplitArray : BSDObject
 
 //split one array into two smaller arrays
+- (instancetype)initWithArray:(NSArray *)array;
+
+@property (nonatomic,strong)BSDOutlet *rightOutlet;
 
 @end

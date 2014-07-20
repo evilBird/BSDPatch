@@ -8,6 +8,9 @@
 
 #import "BSDObject.h"
 
-@interface BSDPointSplit : BSDObject
+@interface BSDSplitPoint : BSDObject
+
+@property (nonatomic,strong)BSDOutlet *x;
+@property (nonatomic,strong)BSDOutlet *y;
 
 @end

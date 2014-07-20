@@ -10,6 +10,8 @@
 
 @interface BSDSelect : BSDObject
 
-//given a list of selectors and outlets, emit a bang out of the outlet whose selector matches the input
+//given a list of values and inlets, emit a bang to the inlet whose value matches the input
+
+- (instancetype)initWithValues:(NSArray *)values inlets:(NSArray *)inlets;
 
 @end

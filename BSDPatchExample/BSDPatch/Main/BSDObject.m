@@ -78,22 +78,14 @@
     //override
 }
 
-- (NSString *)debugDescription
+- (void)inletWasBanged:(BSDInlet *)inlet
 {
-    NSMutableString *description = [[NSMutableString alloc]init];
-    [description appendFormat:@"\n\nBSDOBJECT DEBUG\n"];
-    [description appendFormat:@"\nobject class: %@",NSStringFromClass([self class])];
-    [description appendFormat:@"\nobject name: %@",self.name];
-    [description appendFormat:@"\nobject id: %@",self.objectId];
-    for (BSDInlet *inlet in self.inlets) {
-        [description appendFormat:@"\ninlet %@ value = %@",inlet.name,inlet.value];
-    }
     
-    for (BSDOutlet *outlet in self.outlets) {
-        [description appendFormat:@"\noutlet %@ value = %@",outlet.name,outlet.value];
-    }
-    [description appendFormat:@"\n\n"];
-    return description;
+}
+
+- (void)test
+{
+    
 }
 
 #pragma mark - Connect to other objects/inlets
@@ -113,20 +105,6 @@
     [outlet connectInlet:inlet];
 }
 
-- (void)connectOutletNamed:(NSString *)outletName toObject:(BSDObject *)object inletNamed:(NSString *)inletName
-{
-    BSDInlet *inlet = [object inletNamed:inletName];
-    if (inlet) {
-        if (outletName) {
-            BSDOutlet *outlet = [self outletNamed:outletName];
-            if (outlet) {
-                [outlet connectInlet:inlet];
-            }
-        }else{
-            [self.mainOutlet connectInlet:inlet];
-        }
-    }
-}
 
 //Manage ports
 - (void)addPort:(BSDPort *)port
@@ -223,6 +201,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"value"]) {
+        
         //handle data emitted from hot inlet(s)
         if ([object isKindOfClass:[BSDInlet class]]) {
             BSDInlet *hotInlet = (BSDInlet *)object;
@@ -230,10 +209,10 @@
             [self hotInlet:hotInlet receivedValue:hotInlet.value];
             [self calculateOutput];
             hotInlet.open = YES;
-            if (self.debug) {
-                NSLog(@"%@",[self debugDescription]);
-            }
+            if (self.debug) { NSLog(@"%@",[self debugDescription]);}
+            
         }else if ([object isKindOfClass:[BSDOutlet class]]){
+            
             //handle changes in outlet value
             BSDOutlet *outlet = (BSDOutlet *)object;
             if (outlet.outputBlock != NULL) {
@@ -242,6 +221,24 @@
             }
         }
     }
+}
+
+- (NSString *)debugDescription
+{
+    NSMutableString *description = [[NSMutableString alloc]init];
+    [description appendFormat:@"\n\nBSDOBJECT DEBUG\n"];
+    [description appendFormat:@"\nobject class: %@",NSStringFromClass([self class])];
+    [description appendFormat:@"\nobject name: %@",self.name];
+    [description appendFormat:@"\nobject id: %@",self.objectId];
+    for (BSDInlet *inlet in self.inlets) {
+        [description appendFormat:@"\ninlet %@ value = %@",inlet.name,inlet.value];
+    }
+    
+    for (BSDOutlet *outlet in self.outlets) {
+        [description appendFormat:@"\noutlet %@ value = %@",outlet.name,outlet.value];
+    }
+    [description appendFormat:@"\n\n"];
+    return description;
 }
 
 - (void)dealloc

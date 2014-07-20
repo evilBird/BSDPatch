@@ -56,8 +56,8 @@
 
 - (void)test
 {
-
-
+    BSDRectSplit *split = [[BSDRectSplit alloc]init];
+    [split test];
 }
 
 - (void)configure

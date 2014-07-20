@@ -37,10 +37,13 @@
 #import "BSDArrayNormalize.h"
 #import "BSDSequence.h"
 #import "BSDClassify.h"
+
+#import "BSDSelect.h"
 #import "BSDBang.h"
 #import "BSDBangBox.h"
 #import "BSDMod.h"
 #import "BSDArraySerialize.h"
+#import "BSDSplitArray.h"
 #import "BSDMax.h"
 #import "BSDMin.h"
 #import "BSDClip.h"
@@ -56,7 +59,9 @@
 
 #import "BSDView.h"
 #import "BSDRect.h"
+#import "BSDRectSplit.h"
 #import "BSDPoint.h"
+#import "BSDSplitPoint.h"
 #import "BSDLabel.h"
 
 #import "BSDPrependKey.h"

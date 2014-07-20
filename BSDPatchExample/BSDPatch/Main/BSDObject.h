@@ -66,6 +66,8 @@
 - (BOOL) isEqual:(id)object;
 - (BOOL) isBang: (id)value;
 - (NSString *) debugDescription;
+- (void)inletWasBanged:(BSDInlet *)inlet;
 - (void) reset;
+- (void) test;
 
 @end
