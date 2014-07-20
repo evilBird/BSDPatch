@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
+#import "BSDInt.h"
 #import "BSDReciprocal.h"
 #import "BSDMultiply.h"
 #import "BSDAdd.h"
@@ -35,6 +36,7 @@
 #import "BSDArraySort.h"
 #import "BSDArrayFilter.h"
 #import "BSDArrayNormalize.h"
+#import "BSDArrayPrepend.h"
 #import "BSDSequence.h"
 #import "BSDClassify.h"
 
@@ -44,6 +46,10 @@
 #import "BSDMod.h"
 #import "BSDArraySerialize.h"
 #import "BSDSplitArray.h"
+#import "BSDArrayMake.h"
+
+#import "BSDDictionaryDrip.h"
+
 #import "BSDMax.h"
 #import "BSDMin.h"
 #import "BSDClip.h"
