@@ -8,30 +8,30 @@
 
 #import "BSDViewController.h"
 #import "BSDPatch.h"
-#import "BSDCircleView.h"
+#import "BSDReferencePointView.h"
+#import "BSDEstimatedPointView.h"
 
 @interface BSDViewController ()
 
-//test 1
 @property(nonatomic,strong)BSDDistanceFrom2DPoint *d1;
 @property(nonatomic,strong)BSDDistanceFrom2DPoint *d2;
 @property(nonatomic,strong)BSDIntersect2Circles *i2c;
 @property(nonatomic,strong)BSDIntersect2CirclesHelper *d1h;
 @property(nonatomic,strong)BSDIntersect2CirclesHelper *d2h;
 
-@property(nonatomic,strong)UIView *iv;
-@property(nonatomic,strong)UIView *jv;
+@property(nonatomic,strong)BSDEstimatedPointView *estPtView1;
+@property(nonatomic,strong)BSDEstimatedPointView *estPtView2;
+@property(nonatomic,strong)BSDReferencePointView *refPtView1;
+@property(nonatomic,strong)BSDReferencePointView *refPtView2;
 
-@property(nonatomic,strong)BSDCircleView *circleView1;
-@property(nonatomic,strong)BSDCircleView *circleView2;
-
+@property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 @property(nonatomic)CGPoint touchLocation;
 @property(nonatomic)CGPoint refpt1;
 @property(nonatomic)CGPoint refpt2;
+
 @property(nonatomic,strong)UILabel *label1;
 @property(nonatomic,strong)UILabel *label2;
 @property(nonatomic,strong)UILabel *label3;
-@property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
 
 @end
 
@@ -42,13 +42,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [self test1];
-    [self test2];
-
+    [self configure];
 
 }
 
-- (void)test1
+- (void)configure
 {
     //Set up our labels, which will display the output from the BSDObjects
     [self addLabels];
@@ -63,24 +61,45 @@
     //set up distance measurement objects & helpers
     self.d1 = [BSDCreate distanceFrom2DPointCold:[NSValue wrapPoint:self.refpt1]];
     self.d1h = [BSDCreate intersect2CirclesHelperCold:self.d1.coldInlet.value];
-    [self.d1 connect:self.d1h.hotInlet];
+    [self.d1 connect:self.d1h.circleRadius];
     
     self.d2 = [BSDCreate distanceFrom2DPointCold:[NSValue wrapPoint:self.refpt2]];
     self.d2h = [BSDCreate intersect2CirclesHelperCold:self.d2.coldInlet.value];
-    [self.d2 connect:self.d2h.hotInlet];
+    [self.d2 connect:self.d2h.circleRadius];
     
     //connect helpers to intersect2Circles
     self.i2c = [BSDCreate intersect2Circles];
-    [self.d2h connect:self.i2c.coldInlet];
-    [self.d1h connect:self.i2c.hotInlet];
+    [self.d2h connect:self.i2c.circle1];
+    [self.d1h connect:self.i2c.circle2];
     
-    //add views to show the estimated points
-    self.iv = [self newPointWithColor:[UIColor blueColor]];
-    [self.view addSubview:self.iv];
-    self.jv = [self newPointWithColor:[UIColor redColor]];
-    [self.view addSubview:self.jv];
+    //create our reference point views and send the distance outputs to them
     
-    //set completion block to update our views & labels as the point estimates are updated
+    UIColor *refPtColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+    
+    self.refPtView1 = [[BSDReferencePointView alloc]initWithUIView:[self newPointWithCenter:self.refpt1
+                                                                                      color:refPtColor
+                                                                                      alpha:1]];
+    self.refPtView2 = [[BSDReferencePointView alloc]initWithUIView:[self newPointWithCenter:self.refpt2
+                                                                                      color:refPtColor
+                                                                                      alpha:1]];
+    
+    [self.d1 connect:self.refPtView1.hotInlet];
+    [self.d2 connect:self.refPtView2.hotInlet];
+    
+    //create our estmated point views and send the intersect circles outputs to them
+    
+    self.estPtView1 = [[BSDEstimatedPointView alloc]initWithUIView:[self newPointWithCenter:self.view.center
+                                                                                      color:[UIColor blueColor]
+                                                                                      alpha:0]];
+
+    self.estPtView2 = [[BSDEstimatedPointView alloc]initWithUIView:[self newPointWithCenter:self.view.center
+                                                                                      color:[UIColor redColor]
+                                                                                      alpha:0]];
+
+    [self.i2c connectOutlet:self.i2c.circle1Center toInlet:self.estPtView1.center];
+    [self.i2c connectOutlet:self.i2c.circle2Center toInlet:self.estPtView2.center];
+    
+    //set completion block to update our labels as the point estimates are updated
     __weak BSDViewController *weakself = self;
     
     self.i2c.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
@@ -90,17 +109,15 @@
         if (points) {
             CGPoint i = [points[@"i"] CGPointValue];
             CGPoint j = [points[@"j"] CGPointValue];
-            weakself.iv.center = i;
-            weakself.iv.alpha = 1;
-            weakself.jv.center = j;
-            weakself.jv.alpha = 1;
+            [weakself.estPtView1.alpha input:@(1)];
+            [weakself.estPtView2.alpha input:@(1)];
             weakself.label2.text = [NSString stringWithFormat:@"est. touch location i:\n(%.1f, %.1f)",i.x,i.y];
-            weakself.label2.textColor = weakself.iv.backgroundColor;
+            weakself.label2.textColor = [[weakself.estPtView1 view]backgroundColor];
             weakself.label3.text = [NSString stringWithFormat:@"est. touch location j:\n(%.1f, %.1f)",j.x,i.y];
-            weakself.label3.textColor = weakself.jv.backgroundColor;
+            weakself.label3.textColor = [[weakself.estPtView2 view]backgroundColor];
         }else{
-            weakself.iv.alpha = 0;
-            weakself.jv.alpha = 0;
+            [weakself.estPtView1.alpha input:@(0)];
+            [weakself.estPtView2.alpha input:@(0)];
             weakself.label2.text = @"cannot locate touch";
             weakself.label2.textColor = [UIColor blackColor];
             weakself.label3.text = @"cannot locate touch";
@@ -112,20 +129,16 @@
 - (void)test2
 {
     //create views to pass to our circle view objects
-    UIColor *circleColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+    UIColor *refPtColor = [UIColor colorWithWhite:0.8 alpha:0.5];
     
-    UIView *circleView1 = [self newPointWithColor:circleColor];
-    circleView1.center = self.refpt1;
-    [self.view insertSubview:circleView1 atIndex:0];
+    UIView *refPtView1 = [self newPointWithCenter:self.refpt1 color:refPtColor alpha:1.0];
     
-    UIView *circleView2 = [self newPointWithColor:circleColor];
-    circleView2.center = self.refpt2;
-    [self.view insertSubview:circleView2 atIndex:0];
+    UIView *refPtView2 = [self newPointWithCenter:self.refpt2 color:refPtColor alpha:1.0];
     
-    self.circleView1 = [[BSDCircleView alloc]initWithUIView:circleView1];
-    [self.d1 connect:self.circleView1.hotInlet];
-    self.circleView2 = [[BSDCircleView alloc]initWithUIView:circleView2];
-    [self.d2 connect:self.circleView2.hotInlet];
+    self.refPtView1 = [[BSDReferencePointView alloc]initWithUIView:refPtView1];
+    [self.d1 connect:self.refPtView1.hotInlet];
+    self.refPtView2 = [[BSDReferencePointView alloc]initWithUIView:refPtView2];
+    [self.d2 connect:self.refPtView2.hotInlet];
     
 }
 
@@ -149,17 +162,18 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.iv.alpha = 0;
-    self.jv.alpha = 0;
     self.label1.text = @"";
     self.label2.text = @"";
     self.label3.text = @"";
+    [self.estPtView1.alpha input:@(0)];
+    [self.estPtView2.alpha input:@(0)];
 }
 
 - (void)setTouchLocation:(CGPoint)touchLocation
 {
     _touchLocation = touchLocation;
     
+    //feed the touch location to the distance objects
     [self.d1.hotInlet input:[NSValue wrapPoint:touchLocation]];
     [self.d2.hotInlet input:[NSValue wrapPoint:touchLocation]];
 }
@@ -191,13 +205,15 @@
     return label;
 }
 
-- (UIView *)newPointWithColor:(UIColor *)color
+- (UIView *)newPointWithCenter:(CGPoint)center color:(UIColor *)color alpha:(CGFloat)alpha
 {
     CGRect frame = CGRectMake(0, 0, 44, 44);
     UIView *point = [[UIView alloc]initWithFrame:frame];
     point.layer.cornerRadius = frame.size.width/2;
     point.backgroundColor = color;
-    point.alpha = 0.0;
+    point.alpha = alpha;
+    point.center = center;
+    [self.view addSubview:point];
     
     return point;
 }

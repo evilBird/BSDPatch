@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDCircleView.h"
+#import "BSDReferencePointView.h"
 
-@implementation BSDCircleView
+@implementation BSDReferencePointView
 
 - (instancetype)initWithUIView:(UIView *)view
 {
@@ -17,15 +17,20 @@
 
 - (void)setupWithArguments:(id)arguments
 {
-    
     UIView *aView = (UIView *)arguments;
     
     if (aView) {
         //create a view box
-        self.view1 = [BSDCreate viewWithUIView:aView];
+        self.mainView = [BSDCreate viewWithUIView:aView];
         
         //create a rect box
-        self.view1rect = [BSDCreate rectWithCGRect:aView.frame];
+        self.mainViewRect = [BSDCreate rectWithCGRect:aView.frame];
+        
+        //create a view that will stay in the center
+        self.centerView = [[UIView alloc]initWithFrame:aView.bounds];
+        self.centerView.backgroundColor = [UIColor blackColor];
+        self.centerView.layer.cornerRadius = aView.frame.size.width/2;
+        [aView addSubview:self.centerView];
         
         //create a multiply box
         self.times = [BSDCreate multiplyCold:@(2)];
@@ -52,8 +57,8 @@
         [self.hotInlet forwardToPort:self.swapY.hotInlet];
         
         //send product of multiply box to the rect box width & height inlets
-        [self.times connect:self.view1rect.heightInlet];
-        [self.times connect:self.view1rect.widthInlet];
+        [self.times connect:self.mainViewRect.heightInlet];
+        [self.times connect:self.mainViewRect.widthInlet];
         
         //send the outputs of the swap box to the subtract box
         //swap right output goes to subtract cold
@@ -65,14 +70,14 @@
         
         
         //send the output of the subtract box to the rect box origin inlets
-        [self.minusX connect:self.view1rect.originXInlet];
-        [self.minusY connect:self.view1rect.originYInlet];
+        [self.minusX connect:self.mainViewRect.originXInlet];
+        [self.minusY connect:self.mainViewRect.originYInlet];
         
         //send the output of the rect box to the 'frame' prepend key box
-        [self.view1rect connect:self.prependFrame.hotInlet];
+        [self.mainViewRect connect:self.prependFrame.hotInlet];
         
         //send the output of the 'frame' prepend key box to the view box
-        [self.prependFrame connect:self.view1.hotInlet];
+        [self.prependFrame connect:self.mainView.hotInlet];
         
         //send the hot input to a swap box
         self.swapInput = [BSDCreate swapCold:@(1000)];
@@ -89,14 +94,17 @@
         //send the output of the divide box to the 'alpha' prepend key box
         [self.divide connect:self.prependAlpha.hotInlet];
         
-        //send the output of the 'alpha' prepend key box to the view box
-        [self.prependAlpha connect:self.view1.hotInlet];
+        //send the output of the 'alpha' prepend key box to the main view box
+        [self.prependAlpha connect:self.mainView.hotInlet];
         
         //set the output block on the view so we can adjust the corner radius
-        self.view1.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
+        __weak BSDReferencePointView *weakself = self;
+        self.mainView.outputBlock = ^(BSDObject *object, BSDOutlet *outlet){
             UIView *view = outlet.value;
             if (view) {
                 view.layer.cornerRadius = view.frame.size.width/2;
+                CGPoint center = CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds));
+                weakself.centerView.center = center;
             }
         };
     }
@@ -115,7 +123,7 @@
 
 - (UIView *)view
 {
-    return self.view1.coldInlet.value;
+    return self.mainView.coldInlet.value;
 }
 
 @end

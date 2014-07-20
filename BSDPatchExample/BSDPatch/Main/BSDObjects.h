@@ -56,6 +56,7 @@
 
 #import "BSDView.h"
 #import "BSDRect.h"
+#import "BSDPoint.h"
 
 #import "BSDPrependKey.h"
 

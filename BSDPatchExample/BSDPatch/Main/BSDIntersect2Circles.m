@@ -85,41 +85,60 @@ int circle_circle_intersection(double x0, double y0, double r0,
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"2 circle intersect";
-    //Hot and cold inlets both take a dictionary with coordinate and radius/distance information
-    //eg @{x:1, y:1, r:4} (the output of a BSD2CircleIntersectHelper instance)
+    self.circle1 = self.hotInlet;
+    self.circle2 = self.coldInlet;
+    
+    self.circle1Center = [[BSDOutlet alloc]init];
+    self.circle1Center.name = @"circle 1 center";
+    self.circle2Center = [[BSDOutlet alloc]init];
+    self.circle2Center.name = @"circle 2 center";
+    
+    [self addPort:self.circle1Center];
+    [self addPort:self.circle2Center];
 }
 
 - (void)calculateOutput
 {
-    NSDictionary *hot = self.hotInlet.value;
-    NSDictionary *cold = self.coldInlet.value;
+    NSDictionary *circle1 = self.circle1.value;
+    NSDictionary *circle2 = self.circle2.value;
     
-    if (hot && cold) {
+    if (circle1 && circle2) {
         
-        double x0 = [cold[@"x"]doubleValue];
-        double y0 = [cold[@"y"]doubleValue];
-        double r0 = [cold[@"r"]doubleValue];
-        double x1 = [hot[@"x"]doubleValue];
-        double y1 = [hot[@"y"]doubleValue];
-        double r1 = [hot[@"r"]doubleValue];
+        NSValue *circle1CenterValue = circle1[@"center"];
+        NSNumber *circle1Radius = circle1[@"radius"];
+        CGPoint circle1Center = circle1CenterValue.CGPointValue;
+        double x1 = circle1Center.x;
+        double y1 = circle1Center.y;
+        double r1 = circle1Radius.doubleValue;
+        
+        NSValue *circle2CenterValue = circle2[@"center"];
+        NSNumber *circle2Radius = circle2[@"radius"];
+        CGPoint circle2Center = circle2CenterValue.CGPointValue;
+        
+        double x2 = circle2Center.x;
+        double y2 = circle2Center.y;
+        double r2 = circle2Radius.doubleValue;
         
         double xi,yi,xj,yj;
         
-        int result = circle_circle_intersection(x0, y0, r0, x1, y1, r1, &xi, &yi, &xj, &yj);
+        int result = circle_circle_intersection(x1, y1, r1, x2, y2, r2, &xi, &yi, &xj, &yj);
         NSString *debugText = nil;
         if (result) {
             CGPoint i = CGPointMake(xi, yi);
             CGPoint j = CGPointMake(xj, yj);
+            self.circle1Center.value = [NSValue wrapPoint:i];
+            self.circle2Center.value = [NSValue wrapPoint:j];
+            
             self.mainOutlet.value = @{@"i": [NSValue wrapPoint:i],@"j":[NSValue wrapPoint:j]};
             
-            debugText = [NSString stringWithFormat:@"\n\nINTERSECT CIRCLES\n\nREFERENCE CIRCLE 0\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nREFERENCE CIRCLE 1\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nRESULTS\n\tintersection i = (%.1f, %.1f)\n\tintersection j = (%.1f, %.1f)\n\n",x0,y0,r0,x1,y1,r1,xi,yi,xj,yj];
+            debugText = [NSString stringWithFormat:@"\n\nINTERSECT CIRCLES\n\nREFERENCE CIRCLE 1\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nREFERENCE CIRCLE 2\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nRESULTS\n\tintersection i = (%.1f, %.1f)\n\tintersection j = (%.1f, %.1f)\n\n",x1,y1,r1,x2,y2,r2,xi,yi,xj,yj];
             
         }else{
             
 
             self.mainOutlet.value = NULL;
             
-            debugText = [NSString stringWithFormat:@"\n\nINTERSECT CIRCLES\n\nREFERENCE CIRCLE 0\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nREFERENCE CIRCLE 1\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nRESULTS\n\nNO INTERSECTIONS WERE FOUND!!\nFUUUUUUU....\n\n",x0,y0,r0,x1,y1,r1];
+            debugText = [NSString stringWithFormat:@"\n\nINTERSECT CIRCLES\n\nREFERENCE CIRCLE 1\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nREFERENCE CIRCLE 2\n\tcenter = (%.1f, %.1f)\n\tradius = %.1f\n\nRESULTS\n\nNO INTERSECTIONS WERE FOUND!!\nFUUUUUUU....\n\n",x1,y1,r1,x2,y2,r2];
         }
         
         if (kExtendedDebugging) {
@@ -129,11 +148,6 @@ int circle_circle_intersection(double x0, double y0, double r0,
     
 }
 
-- (void)test
-{
-    self.coldInlet.value = @{@"x": @(10),@"y":@(5),@"d":@(6)};
-    self.hotInlet.value = @{@"x": @(5),@"y":@(10),@"d":@(3)};
-}
 
 
 

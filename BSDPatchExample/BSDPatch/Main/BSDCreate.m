@@ -403,4 +403,14 @@
     return [[BSDView alloc]initWithUIView:view];
 }
 
++ (BSDPoint *)point
+{
+    return [[BSDPoint alloc]initWithArguments:nil];
+}
+
++ (BSDPoint *)pointWithCGPoint:(CGPoint)point
+{
+    return [[BSDPoint alloc]initWithCGPoint:point];
+}
+
 @end

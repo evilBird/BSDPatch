@@ -13,7 +13,10 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"2 circle intersect helper";
-    //cold inlet takes a coordinate wrapped in an instance of NSValue
+    
+    self.circleRadius = self.hotInlet;
+    self.cicleCenter = self.coldInlet;
+    
     NSValue *coordinateValue = (NSValue *)arguments;
     if (coordinateValue && [coordinateValue isKindOfClass:[NSValue class]]) {
         self.coldInlet.value = coordinateValue;
@@ -23,15 +26,12 @@
 
 - (void)calculateOutput
 {
-    //hot inlet takes the observed distance (circle radius) and a coordinate and packages it for use by a d2c object
     NSValue *coordinateValue = self.coldInlet.value;
     NSNumber *radius = self.hotInlet.value;
     if (coordinateValue && radius) {
-        CGPoint coordinate = [coordinateValue CGPointValue];
         NSMutableDictionary *output = [NSMutableDictionary dictionary];
-        output[@"x"] = @(coordinate.x);
-        output[@"y"] = @(coordinate.y);
-        output[@"r"] = radius;
+        output[@"center"] = coordinateValue;
+        output[@"radius"] = radius;
         self.mainOutlet.value = output;
     }
 }

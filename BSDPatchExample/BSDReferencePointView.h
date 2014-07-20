@@ -9,22 +9,23 @@
 #import "BSDObject.h"
 #import "BSDCreate.h"
 
-@interface BSDCircleView : BSDObject
+@interface BSDReferencePointView : BSDObject
 
 - (instancetype)initWithUIView:(UIView *)view;
 - (UIView *)view;
 
-@property(nonatomic,strong)BSDView *view1;
+@property(nonatomic,strong)BSDView *mainView;
 @property(nonatomic,strong)BSDMultiply *times;
 @property(nonatomic,strong)BSDSwap *swapInput;
 @property(nonatomic,strong)BSDSubtract *invertInput;
 @property(nonatomic,strong)BSDDivide *divide;
-@property(nonatomic,strong)BSDRect *view1rect;
+@property(nonatomic,strong)BSDRect *mainViewRect;
 @property(nonatomic,strong)BSDSwap *swapX;
 @property(nonatomic,strong)BSDSubtract *minusX;
 @property(nonatomic,strong)BSDSwap *swapY;
 @property(nonatomic,strong)BSDSubtract *minusY;
 @property(nonatomic,strong)BSDPrependKey *prependFrame;
 @property(nonatomic,strong)BSDPrependKey *prependAlpha;
+@property(nonatomic,strong)UIView *centerView;
 
 @end

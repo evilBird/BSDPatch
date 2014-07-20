@@ -109,5 +109,7 @@
 + (BSDView *)viewWithUIView:(UIView *)view;
 + (BSDRect *)rect;
 + (BSDRect *)rectWithCGRect:(CGRect)rect;
++ (BSDPoint *)point;
++ (BSDPoint *)pointWithCGPoint:(CGPoint)point;
 
 @end

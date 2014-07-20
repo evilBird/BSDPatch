@@ -71,7 +71,6 @@
 {
     //override to get access to the hot inlet that changed
     if ([inlet isEqual:self.refPtInlet]) {
-        NSLog(@"new value in ref pt inlet");
         NSValue *newRefPt = value;
         if (newRefPt) {
             CGPoint pt = [newRefPt CGPointValue];
