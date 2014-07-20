@@ -67,6 +67,7 @@
 - (BOOL) isEqual:(id)object;
 - (BOOL) isBang: (id)value;
 - (NSString *)debugDescription;
+- (NSDictionary *) plist;
 - (void) reset;
 
 @end

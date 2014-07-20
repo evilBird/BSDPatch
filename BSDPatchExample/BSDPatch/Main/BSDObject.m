@@ -40,6 +40,7 @@
         [self addPort:_mainOutlet];
 
         [self setupWithArguments:arguments];
+        
     }
     
     return self;

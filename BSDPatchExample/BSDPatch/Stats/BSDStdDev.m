@@ -9,8 +9,6 @@
 #import "BSDStdDev.h"
 #import "BSDCreate.h"
 
-static BOOL kDebug;
-
 @interface BSDStdDev ()
 
 @property (nonatomic,strong)BSDSequence *sequence;

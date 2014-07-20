@@ -14,17 +14,17 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"mapObject";
+    //self.debug = YES;
 
 }
 
 - (void)calculateOutput
 {
     id hot = self.hotInlet.value;
-    
-
+    self.mainOutlet.value = plist_for_object(hot);
 }
-/*
-+ (NSDictionary *)propertyListForObject:(id)obj
+
+NSDictionary* plist_for_object(id obj)
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
@@ -38,49 +38,26 @@
         id object = [obj valueForKey:key];
         
         if (classObject) {
-            id subObj = [BSDStyleSheetUtility propertyListForObject:object];
+            id subObj = plist_for_object(object);
             [dict setObject:subObj forKey:key];
         }
         else if([object isKindOfClass:[NSArray class]])
         {
             NSMutableArray *subObj = [NSMutableArray array];
             for (id o in object) {
-                [subObj addObject:[BSDStyleSheetUtility propertyListForObject:o] ];
+                [subObj addObject:plist_for_object(o) ];
             }
             [dict setObject:subObj forKey:key];
         }
         else
         {
-            if(object) [dict setObject:object forKey:key];
+            if(object) [dict setObject:[NSString stringWithFormat:@"%p",object] forKey:key];
         }
     }
     
     free(properties);
     return [NSDictionary dictionaryWithDictionary:dict];
 }
- */
 
-+ (NSArray *)stackForObject:(id)object
-{
-    NSMutableArray *stacks = [NSMutableArray array];
-    
-    for (NSString *sourceString in [NSThread callStackSymbols]) {
-        NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-        NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
-        [array removeObject:@""];
-        if (array.count >= 5) {
-            NSDictionary *componentDictionary = @{@"stack": array[0],
-                                                  @"id": array[2],
-                                                  @"class":array[3],
-                                                  @"method":array[4]
-                                                  };
-            [stacks addObject:componentDictionary];
-            
-        }
-        
-    }
-    
-    return stacks;
-}
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-
+#import "BSDReciprocal.h"
 #import "BSDMultiply.h"
 #import "BSDAdd.h"
 #import "BSDSubtract.h"
@@ -49,5 +49,14 @@
 #import "BSDArrayBox.h"
 #import "BSDBuffer.h"
 #import "BSDTestVariable.h"
+#import "BSDMapObject.h"
+#import "BSDIntersect2Circles.h"
+#import "BSDIntersect2CirclesHelper.h"
+#import "BSDDistanceFrom2DPoint.h"
 
+#import "BSDView.h"
+#import "BSDRect.h"
 
+#import "BSDPrependKey.h"
+
+#import "NSValue+BSD.h"

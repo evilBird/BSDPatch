@@ -15,10 +15,14 @@
 + (BSDBangBox *)bangBox;
 
 + (BSDSwap *)swap;
++ (BSDSwap *)swapCold:(id)coldInletValue;
+
 + (BSDChange *)change;
 + (BSDSpigot *)spigot;
 + (BSDSpigot *)spigotCold:(NSNumber *)coldInletValue;
 
++ (BSDPrependKey *)prependKey;
++ (BSDPrependKey *)prependKeyCold:(NSString *)coldInletValue;
 
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets;
 + (BSDRoute *)route;
@@ -27,12 +31,18 @@
 + (BSDBuffer *)buffer;
 + (BSDBuffer *)bufferSize:(NSNumber *)bufferSize;
 
++ (BSDReciprocal *)reciprocal;
++ (BSDReciprocal *)reciprocalCold:(NSNumber *)coldInletValue;
+
 + (BSDMultiply *)multiply;
 + (BSDMultiply *)multiplyCold:(NSNumber *)coldInletValue;
 + (BSDAdd *)add;
 + (BSDSubtract *)subtract;
 + (BSDSubtract *)subtractCold:(NSNumber *)coldInletValue;
+
 + (BSDDivide *)divide;
++ (BSDDivide *)divideCold:(NSNumber *)coldInletValue;
+
 + (BSDValueBox *)valueBox;
 + (BSDValueBox *)valueBoxCold:(NSNumber *)coldInletValue;
 + (BSDPower *)power;
@@ -68,10 +78,15 @@
 
 + (BSDAverage *)average;
 + (BSDAverage *)averageBufferSize:(NSNumber *)bufferSize;
-+ (BSDDistance2D *)distance2D;
 + (BSDStdDev *)standardDeviation;
 + (BSDStdDev *)standardDeviationBufferSize:(NSNumber *)bufferSize;
 
++ (BSDDistance2D *)distance2D;
++ (BSDDistanceFrom2DPoint *)distanceFrom2DPoint;
++ (BSDDistanceFrom2DPoint *)distanceFrom2DPointCold:(NSValue *)coldInletValue;
++ (BSDIntersect2Circles *)intersect2Circles;
++ (BSDIntersect2CirclesHelper *)intersect2CirclesHelper;
++ (BSDIntersect2CirclesHelper *)intersect2CirclesHelperCold:(NSValue *)coldInletValue;
 
 + (BSDPTest *)pTest;
 + (BSDPTest *)pTestAlpha:(NSNumber *)alpha bufferSize:(NSNumber *)bufferSize;
@@ -89,5 +104,10 @@
 + (BSDArrayElement *)arrayElementCold:(NSArray *)array;
 + (BSDArrayNormalize *)normalize;
 + (BSDClassify *)classify:(id)arguments;
+
++ (BSDView *)view;
++ (BSDView *)viewWithUIView:(UIView *)view;
++ (BSDRect *)rect;
++ (BSDRect *)rectWithCGRect:(CGRect)rect;
 
 @end

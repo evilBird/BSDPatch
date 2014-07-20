@@ -13,6 +13,10 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"divide";
+    NSNumber *initDenominator = (NSNumber *)arguments;
+    if (initDenominator) {
+        self.coldInlet.value = initDenominator;
+    }
 }
 
 - (void)calculateOutput

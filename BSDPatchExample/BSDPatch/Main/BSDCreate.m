@@ -39,6 +39,16 @@
     return [[BSDSpigot alloc]initWithArguments:coldInletValue];
 }
 
++ (BSDPrependKey *)prependKey
+{
+    return [[BSDPrependKey alloc]initWithArguments:nil];
+}
+
++ (BSDPrependKey *)prependKeyCold:(NSString *)coldInletValue
+{
+    return [[BSDPrependKey alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDMultiply *)multiply
 {
     return [[BSDMultiply alloc]initWithArguments:nil];
@@ -69,6 +79,21 @@
     return [[BSDDivide alloc]initWithArguments:nil];
 }
 
++ (BSDDivide *)divideCold:(NSNumber *)coldInletValue
+{
+    return [[BSDDivide alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDReciprocal *)reciprocal
+{
+    return [[BSDReciprocal alloc]initWithArguments:nil];
+}
+
++ (BSDReciprocal *)reciprocalCold:(NSNumber *)coldInletValue
+{
+    return [[BSDReciprocal alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets
 {
     return [[BSDSequence alloc]initWithArguments:inlets];
@@ -87,6 +112,11 @@
 + (BSDSwap *)swap
 {
     return [[BSDSwap alloc]initWithArguments:nil];
+}
+
++ (BSDSwap *)swapCold:(id)coldInletValue
+{
+    return [[BSDSwap alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDValueBox *)valueBox
@@ -204,6 +234,32 @@
 {
     return [[BSDDistance2D alloc]initWithArguments:nil];
 }
+
++ (BSDDistanceFrom2DPoint *)distanceFrom2DPoint
+{
+    return [[BSDDistanceFrom2DPoint alloc]initWithArguments:nil];
+}
+
++ (BSDDistanceFrom2DPoint *)distanceFrom2DPointCold:(NSValue *)coldInletValue
+{
+    return [[BSDDistanceFrom2DPoint alloc]initWithArguments:coldInletValue];
+}
+
++ (BSDIntersect2Circles *)intersect2Circles
+{
+    return [[BSDIntersect2Circles alloc]initWithArguments:nil];
+}
+
++ (BSDIntersect2CirclesHelper *)intersect2CirclesHelper
+{
+    return [[BSDIntersect2CirclesHelper alloc]initWithArguments:nil];
+}
+
++ (BSDIntersect2CirclesHelper *)intersect2CirclesHelperCold:(NSValue *)coldInletValue
+{
+    return [[BSDIntersect2CirclesHelper alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDCounter *)counter
 {
     return [[BSDCounter alloc]initWithArguments:nil];
@@ -326,6 +382,25 @@
 + (BSDClassify *)classify:(id)arguments
 {
     return [[BSDClassify alloc]initWithArguments:arguments];
+}
+
++ (BSDRect *)rect
+{
+    return [[BSDRect alloc]initWithArguments:nil];
+}
+
++ (BSDRect *)rectWithCGRect:(CGRect)rect
+{
+    return [[BSDRect alloc]initWithCGRect:rect];
+}
+
++ (BSDView *)view
+{
+    return [[BSDView alloc]initWithArguments:nil];
+}
++ (BSDView *)viewWithUIView:(UIView *)view
+{
+    return [[BSDView alloc]initWithUIView:view];
 }
 
 @end

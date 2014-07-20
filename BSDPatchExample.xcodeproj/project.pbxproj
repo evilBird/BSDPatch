@@ -35,6 +35,16 @@
 		F2AFEF9C1979C54F00461AE9 /* BSDBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF9B1979C54F00461AE9 /* BSDBuffer.m */; };
 		F2AFEF9F1979E14B00461AE9 /* BSDBangBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */; };
 		F2AFEFA2197A2E3500461AE9 /* BSDMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFA1197A2E3500461AE9 /* BSDMapObject.m */; };
+		F2AFEFA6197A44DA00461AE9 /* BSDIntersect2Circles.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFA5197A44DA00461AE9 /* BSDIntersect2Circles.m */; };
+		F2AFEFA9197B03E500461AE9 /* BSDIntersect2CirclesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFA8197B03E500461AE9 /* BSDIntersect2CirclesHelper.m */; };
+		F2AFEFAC197B0CA800461AE9 /* BSDDistanceFrom2DPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFAB197B0CA800461AE9 /* BSDDistanceFrom2DPoint.m */; };
+		F2AFEFB0197B13D000461AE9 /* NSValue+BSD.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFAF197B13D000461AE9 /* NSValue+BSD.m */; };
+		F2AFEFB3197B347400461AE9 /* BSDView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFB2197B347400461AE9 /* BSDView.m */; };
+		F2AFEFB6197B371C00461AE9 /* BSDPrependKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFB5197B371C00461AE9 /* BSDPrependKey.m */; };
+		F2AFEFB9197B3BC300461AE9 /* BSDRect.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFB8197B3BC300461AE9 /* BSDRect.m */; };
+		F2AFEFBC197B401D00461AE9 /* BSDCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFBB197B401D00461AE9 /* BSDCircleView.m */; };
+		F2AFEFBF197B430D00461AE9 /* BSDReciprocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFBE197B430D00461AE9 /* BSDReciprocal.m */; };
+		F2AFEFC2197B44B800461AE9 /* BSDPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AFEFC1197B44B800461AE9 /* BSDPoint.m */; };
 		F2BB03381978ECA100392FF1 /* BSDArraySerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB03371978ECA100392FF1 /* BSDArraySerialize.m */; };
 		F2BB033B1978F74D00392FF1 /* BSDMod.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB033A1978F74D00392FF1 /* BSDMod.m */; };
 		F2C40F2519787E300093968A /* BSDBang.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C40F2419787E300093968A /* BSDBang.m */; };
@@ -128,6 +138,26 @@
 		F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDBangBox.m; sourceTree = "<group>"; };
 		F2AFEFA0197A2E3500461AE9 /* BSDMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDMapObject.h; sourceTree = "<group>"; };
 		F2AFEFA1197A2E3500461AE9 /* BSDMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDMapObject.m; sourceTree = "<group>"; };
+		F2AFEFA4197A44DA00461AE9 /* BSDIntersect2Circles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDIntersect2Circles.h; path = ../Main/BSDIntersect2Circles.h; sourceTree = "<group>"; };
+		F2AFEFA5197A44DA00461AE9 /* BSDIntersect2Circles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDIntersect2Circles.m; path = ../Main/BSDIntersect2Circles.m; sourceTree = "<group>"; };
+		F2AFEFA7197B03E500461AE9 /* BSDIntersect2CirclesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDIntersect2CirclesHelper.h; sourceTree = "<group>"; };
+		F2AFEFA8197B03E500461AE9 /* BSDIntersect2CirclesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDIntersect2CirclesHelper.m; sourceTree = "<group>"; };
+		F2AFEFAA197B0CA800461AE9 /* BSDDistanceFrom2DPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDistanceFrom2DPoint.h; sourceTree = "<group>"; };
+		F2AFEFAB197B0CA800461AE9 /* BSDDistanceFrom2DPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDDistanceFrom2DPoint.m; sourceTree = "<group>"; };
+		F2AFEFAE197B13D000461AE9 /* NSValue+BSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+BSD.h"; sourceTree = "<group>"; };
+		F2AFEFAF197B13D000461AE9 /* NSValue+BSD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+BSD.m"; sourceTree = "<group>"; };
+		F2AFEFB1197B347400461AE9 /* BSDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDView.h; sourceTree = "<group>"; };
+		F2AFEFB2197B347400461AE9 /* BSDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDView.m; sourceTree = "<group>"; };
+		F2AFEFB4197B371C00461AE9 /* BSDPrependKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPrependKey.h; sourceTree = "<group>"; };
+		F2AFEFB5197B371C00461AE9 /* BSDPrependKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPrependKey.m; sourceTree = "<group>"; };
+		F2AFEFB7197B3BC300461AE9 /* BSDRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDRect.h; sourceTree = "<group>"; };
+		F2AFEFB8197B3BC300461AE9 /* BSDRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDRect.m; sourceTree = "<group>"; };
+		F2AFEFBA197B401D00461AE9 /* BSDCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDCircleView.h; sourceTree = "<group>"; };
+		F2AFEFBB197B401D00461AE9 /* BSDCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDCircleView.m; sourceTree = "<group>"; };
+		F2AFEFBD197B430D00461AE9 /* BSDReciprocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDReciprocal.h; sourceTree = "<group>"; };
+		F2AFEFBE197B430D00461AE9 /* BSDReciprocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDReciprocal.m; sourceTree = "<group>"; };
+		F2AFEFC0197B44B800461AE9 /* BSDPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDPoint.h; sourceTree = "<group>"; };
+		F2AFEFC1197B44B800461AE9 /* BSDPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDPoint.m; sourceTree = "<group>"; };
 		F2BB03361978ECA100392FF1 /* BSDArraySerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDArraySerialize.h; path = ../BSDArraySerialize.h; sourceTree = "<group>"; };
 		F2BB03371978ECA100392FF1 /* BSDArraySerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDArraySerialize.m; path = ../BSDArraySerialize.m; sourceTree = "<group>"; };
 		F2BB03391978F74D00392FF1 /* BSDMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDMod.h; sourceTree = "<group>"; };
@@ -280,6 +310,8 @@
 				F2436936197499DF00512371 /* Main_iPad.storyboard */,
 				F2436939197499DF00512371 /* BSDViewController.h */,
 				F243693A197499DF00512371 /* BSDViewController.m */,
+				F2AFEFBA197B401D00461AE9 /* BSDCircleView.h */,
+				F2AFEFBB197B401D00461AE9 /* BSDCircleView.m */,
 				F2F57E371976F6F40083D1C9 /* BSDTestVariable.h */,
 				F2F57E381976F6F40083D1C9 /* BSDTestVariable.m */,
 				F2E7EBB11974BF18004BB504 /* BSDPatch */,
@@ -318,17 +350,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F2AFEFA3197A3A5500461AE9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F2AFEFA0197A2E3500461AE9 /* BSDMapObject.h */,
+				F2AFEFA1197A2E3500461AE9 /* BSDMapObject.m */,
+			);
+			name = Utility;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F2AFEFAD197B13AA00461AE9 /* Class Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F2AFEFAE197B13D000461AE9 /* NSValue+BSD.h */,
+				F2AFEFAF197B13D000461AE9 /* NSValue+BSD.m */,
+			);
+			name = "Class Categories";
+			sourceTree = "<group>";
+		};
 		F2E7EBB11974BF18004BB504 /* BSDPatch */ = {
 			isa = PBXGroup;
 			children = (
+				F2AFEFAD197B13AA00461AE9 /* Class Categories */,
 				F2F57E24197620180083D1C9 /* Array */,
 				F226C36A1975B9EB00327AB5 /* Stats */,
 				F2E7EBB21974BF18004BB504 /* Basic-Math */,
 				F2E7EBBD1974BF18004BB504 /* Flow-Control */,
 				F2E7EBC41974BF18004BB504 /* Geometry */,
+				F2AFEFA3197A3A5500461AE9 /* Utility */,
 				F2E7EBC71974BF18004BB504 /* Logical */,
 				F2E7EBD21974BF18004BB504 /* Main */,
 				F2E7EBD91974BF18004BB504 /* Ports */,
+				F2AFEFB1197B347400461AE9 /* BSDView.h */,
+				F2AFEFB2197B347400461AE9 /* BSDView.m */,
+				F2AFEFC0197B44B800461AE9 /* BSDPoint.h */,
+				F2AFEFC1197B44B800461AE9 /* BSDPoint.m */,
+				F2AFEFB7197B3BC300461AE9 /* BSDRect.h */,
+				F2AFEFB8197B3BC300461AE9 /* BSDRect.m */,
 			);
 			path = BSDPatch;
 			sourceTree = "<group>";
@@ -362,6 +421,8 @@
 				F2AFEF8F19797F7400461AE9 /* BSDClip.m */,
 				F2AFEF94197987F600461AE9 /* BSDClipFilter.h */,
 				F2AFEF95197987F600461AE9 /* BSDClipFilter.m */,
+				F2AFEFBD197B430D00461AE9 /* BSDReciprocal.h */,
+				F2AFEFBE197B430D00461AE9 /* BSDReciprocal.m */,
 			);
 			path = "Basic-Math";
 			sourceTree = "<group>";
@@ -383,6 +444,8 @@
 				F2F57E1F197606680083D1C9 /* BSDChange.m */,
 				F2AFEF91197983A600461AE9 /* BSDSpigot.h */,
 				F2AFEF92197983A600461AE9 /* BSDSpigot.m */,
+				F2AFEFB4197B371C00461AE9 /* BSDPrependKey.h */,
+				F2AFEFB5197B371C00461AE9 /* BSDPrependKey.m */,
 			);
 			path = "Flow-Control";
 			sourceTree = "<group>";
@@ -392,6 +455,12 @@
 			children = (
 				F2E7EBC51974BF18004BB504 /* BSDDistance2D.h */,
 				F2E7EBC61974BF18004BB504 /* BSDDistance2D.m */,
+				F2AFEFAA197B0CA800461AE9 /* BSDDistanceFrom2DPoint.h */,
+				F2AFEFAB197B0CA800461AE9 /* BSDDistanceFrom2DPoint.m */,
+				F2AFEFA4197A44DA00461AE9 /* BSDIntersect2Circles.h */,
+				F2AFEFA5197A44DA00461AE9 /* BSDIntersect2Circles.m */,
+				F2AFEFA7197B03E500461AE9 /* BSDIntersect2CirclesHelper.h */,
+				F2AFEFA8197B03E500461AE9 /* BSDIntersect2CirclesHelper.m */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -426,8 +495,6 @@
 				F2C40F2419787E300093968A /* BSDBang.m */,
 				F2AFEF9D1979E14B00461AE9 /* BSDBangBox.h */,
 				F2AFEF9E1979E14B00461AE9 /* BSDBangBox.m */,
-				F2AFEFA0197A2E3500461AE9 /* BSDMapObject.h */,
-				F2AFEFA1197A2E3500461AE9 /* BSDMapObject.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -565,26 +632,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2AFEFB0197B13D000461AE9 /* NSValue+BSD.m in Sources */,
 				F2E7EBF01974BF18004BB504 /* BSDInlet.m in Sources */,
 				F2F57E3319762F0C0083D1C9 /* BSDSequence.m in Sources */,
 				F2E7EBE31974BF18004BB504 /* BSDPower.m in Sources */,
+				F2AFEFC2197B44B800461AE9 /* BSDPoint.m in Sources */,
 				F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */,
 				F243693B197499DF00512371 /* BSDViewController.m in Sources */,
 				F2AFEF8719797B4700461AE9 /* BSDArrayElement.m in Sources */,
 				F2E7EBF21974BF18004BB504 /* BSDPort.m in Sources */,
 				F2E7EBEC1974BF18004BB504 /* BSDGreater.m in Sources */,
 				F2F57E36197637A00083D1C9 /* BSDClassify.m in Sources */,
+				F2AFEFB6197B371C00461AE9 /* BSDPrependKey.m in Sources */,
 				F2F57E1D1975F0770083D1C9 /* BSDAbs.m in Sources */,
 				F2BB03381978ECA100392FF1 /* BSDArraySerialize.m in Sources */,
 				F2AFEFA2197A2E3500461AE9 /* BSDMapObject.m in Sources */,
 				F2AFEF96197987F600461AE9 /* BSDClipFilter.m in Sources */,
+				F2AFEFB3197B347400461AE9 /* BSDView.m in Sources */,
 				F226C36F1975B9EB00327AB5 /* BSDAverage.m in Sources */,
 				F2F57E391976F6F40083D1C9 /* BSDTestVariable.m in Sources */,
 				F2BB033B1978F74D00392FF1 /* BSDMod.m in Sources */,
+				F2AFEFB9197B3BC300461AE9 /* BSDRect.m in Sources */,
 				F2E7EBE71974BF18004BB504 /* BSDValueBox.m in Sources */,
 				F2AFEF9F1979E14B00461AE9 /* BSDBangBox.m in Sources */,
 				F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */,
+				F2AFEFBC197B401D00461AE9 /* BSDCircleView.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,
+				F2AFEFA6197A44DA00461AE9 /* BSDIntersect2Circles.m in Sources */,
 				F2E7EBEB1974BF18004BB504 /* BSDEqualLess.m in Sources */,
 				F2AFEF8A19797D6400461AE9 /* BSDMax.m in Sources */,
 				F2F57E20197606680083D1C9 /* BSDChange.m in Sources */,
@@ -609,12 +683,15 @@
 				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2AFEF991979A70200461AE9 /* BSDArrayBox.m in Sources */,
 				F2AFEF9C1979C54F00461AE9 /* BSDBuffer.m in Sources */,
+				F2AFEFBF197B430D00461AE9 /* BSDReciprocal.m in Sources */,
 				F2F57E171975BEEC0083D1C9 /* BSDAccum.m in Sources */,
 				F2F57E141975BED00083D1C9 /* BSDCounter.m in Sources */,
+				F2AFEFAC197B0CA800461AE9 /* BSDDistanceFrom2DPoint.m in Sources */,
 				F2F57E23197618F70083D1C9 /* BSDMedian.m in Sources */,
 				F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */,
 				F2E7EBEF1974BF18004BB504 /* BSDObject.m in Sources */,
 				F2E7EBE51974BF18004BB504 /* BSDRoute.m in Sources */,
+				F2AFEFA9197B03E500461AE9 /* BSDIntersect2CirclesHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

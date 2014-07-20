@@ -13,16 +13,29 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"swap";
-    BSDOutlet *rightOutlet = [[BSDOutlet alloc]init];
-    rightOutlet.name = @"right";
-    [self addPort:rightOutlet];
+    self.rightOutlet = [[BSDOutlet alloc]init];
+    self.rightOutlet.name = @"right outlet";
+    
+    self.leftOutlet = [[BSDOutlet alloc]init];
+    self.leftOutlet.name = @"left outlet";
+
+    [self addPort:self.rightOutlet];
+    [self addPort:self.leftOutlet];
+    
+    if (arguments != NULL) {
+        self.coldInlet.value = arguments;
+    }
+    
 }
 
 - (void)calculateOutput
 {
-    BSDOutlet *rightOutlet = [self outletNamed:@"right"];
-    rightOutlet.value = self.hotInlet.value;
-    self.mainOutlet.value = self.coldInlet.value;
+    id hot = self.hotInlet.value;
+    id cold = self.coldInlet.value;
+    if (hot != NULL && cold != NULL) {
+        self.rightOutlet.value = hot;
+        self.leftOutlet.value = cold;
+    }
 }
 
 @end
