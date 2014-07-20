@@ -37,7 +37,9 @@
         [(BSDBang *)input setValue:self.value];
     }
     
-    self.value = input;
+    if (self.isOpen) {
+        self.value = input;
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

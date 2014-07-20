@@ -17,7 +17,12 @@
 //Ports get assigned the object id of the BSDObject instance to which they belong
 @property (nonatomic,assign) NSString *objectId;
 
+@property (nonatomic,getter = isOpen) BOOL open;
+
+
 @property (nonatomic,strong) NSMutableSet *observedPorts;
+
+- (instancetype)init;
 
 - (void)observePort:(BSDPort *)port;
 - (void)stopObservingPort:(BSDPort *)port;

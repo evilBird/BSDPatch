@@ -226,8 +226,10 @@
         //handle data emitted from hot inlet(s)
         if ([object isKindOfClass:[BSDInlet class]]) {
             BSDInlet *hotInlet = (BSDInlet *)object;
+            hotInlet.open = NO;
             [self hotInlet:hotInlet receivedValue:hotInlet.value];
             [self calculateOutput];
+            hotInlet.open = YES;
             if (self.debug) {
                 NSLog(@"%@",[self debugDescription]);
             }

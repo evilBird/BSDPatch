@@ -10,6 +10,16 @@
 
 @implementation BSDPort
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _open = YES;
+    }
+    
+    return self;
+}
+
 - (void)observePort:(BSDPort *)port
 {
     if (!self.observedPorts) {
