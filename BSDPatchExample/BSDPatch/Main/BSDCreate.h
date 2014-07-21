@@ -18,6 +18,7 @@
 + (BSDSwap *)swapCold:(id)coldInletValue;
 
 + (BSDChange *)change;
+
 + (BSDSpigot *)spigot;
 + (BSDSpigot *)spigotCold:(NSNumber *)coldInletValue;
 
@@ -25,10 +26,10 @@
 + (BSDPrependKey *)prependKeyCold:(NSString *)coldInletValue;
 
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets;
-+ (BSDRoute *)route;
-+ (BSDRoute *)routeSelectors:(NSArray *)selectors;
-+ (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets;
 
++ (BSDRoute *)route;
++ (BSDRoute *)routeKeys:(NSArray *)keys;
++ (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets;
 
 + (BSDBuffer *)buffer;
 + (BSDBuffer *)bufferSize:(NSNumber *)bufferSize;
@@ -38,7 +39,10 @@
 
 + (BSDMultiply *)multiply;
 + (BSDMultiply *)multiplyCold:(NSNumber *)coldInletValue;
+
 + (BSDAdd *)add;
++ (BSDAdd *)addCold:(NSNumber *)coldInletValue;
+
 + (BSDSubtract *)subtract;
 + (BSDSubtract *)subtractCold:(NSNumber *)coldInletValue;
 
@@ -47,51 +51,67 @@
 
 + (BSDValueBox *)valueBox;
 + (BSDValueBox *)valueBoxCold:(NSNumber *)coldInletValue;
+
 + (BSDPower *)power;
 + (BSDPower *)powerCold:(NSNumber *)coldInletValue;
+
 + (BSDLog *)naturalLog;
 + (BSDAbs *)absoluteValue;
 
 + (BSDMax *)max;
 + (BSDMax *)maxCold:(NSNumber *)coldInletValue;
+
 + (BSDMin *)min;
 + (BSDMin *)minCold:(NSNumber *)coldInletValue;
+
 + (BSDClip *)clip;
 + (BSDClip *)clipMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
+
 + (BSDClipFilter *)clipFilter;
 + (BSDClipFilter *)clipFilterMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
 
 + (BSDEqual *)equals;
 + (BSDEqual *)equalsCold:(NSNumber *)coldInletValue;
+
 + (BSDGreater *)greater;
 + (BSDGreater *)greaterCold:(NSNumber *)coldInletValue;
+
 + (BSDLess *)less;
 + (BSDLess *)lessCold:(NSNumber *)coldInletValue;
+
 + (BSDEqualGreater *)equalOrGreater;
 + (BSDEqualGreater *)equalOrGreaterCold:(NSNumber *)coldInletValue;
+
 + (BSDEqualLess *)equalOrLess;
 + (BSDEqualLess *)equalOrLessCold:(NSNumber *)coldInletValue;
 
 + (BSDAccum *)accumulate;
+
 + (BSDCounter *)counter;
 + (BSDCounter *)counterCold:(NSNumber *)coldInletValue stepSize:(NSNumber *)stepInletValue;
+
 + (BSDMod *) modulus;
 + (BSDMod *) modulusCold:(NSNumber *)coldInletValue;
 
 + (BSDAverage *)average;
 + (BSDAverage *)averageBufferSize:(NSNumber *)bufferSize;
+
 + (BSDStdDev *)standardDeviation;
 + (BSDStdDev *)standardDeviationBufferSize:(NSNumber *)bufferSize;
 
 + (BSDDistance2D *)distance2D;
+
 + (BSDDistanceFrom2DPoint *)distanceFrom2DPoint;
 + (BSDDistanceFrom2DPoint *)distanceFrom2DPointCold:(NSValue *)coldInletValue;
+
 + (BSDIntersect2Circles *)intersect2Circles;
+
 + (BSDIntersect2CirclesHelper *)intersect2CirclesHelper;
 + (BSDIntersect2CirclesHelper *)intersect2CirclesHelperCold:(NSValue *)coldInletValue;
 
 + (BSDPTest *)pTest;
 + (BSDPTest *)pTestAlpha:(NSNumber *)alpha bufferSize:(NSNumber *)bufferSize;
+
 + (BSDMedian *)median;
 + (BSDMedian *)medianBufferSize:(NSNumber *)bufferSize;
 
@@ -99,18 +119,25 @@
 + (BSDArrayBox *)arrayBoxCold:(NSArray *)coldInletValue;
 
 + (BSDArraySort *)arraySort:(id)arguments;
+
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
+
 + (BSDArraySerialize *)arraySerialize;
 + (BSDArraySerialize *)arraySerializeCold:(NSArray *)array;
+
 + (BSDArrayElement *)arrayElement;
 + (BSDArrayElement *)arrayElementCold:(NSArray *)array;
+
 + (BSDArrayNormalize *)normalize;
+
 + (BSDClassify *)classify:(id)arguments;
 
 + (BSDView *)view;
 + (BSDView *)viewWithUIView:(UIView *)view;
+
 + (BSDRect *)rect;
 + (BSDRect *)rectWithCGRect:(CGRect)rect;
+
 + (BSDPoint *)point;
 + (BSDPoint *)pointWithCGPoint:(CGPoint)point;
 

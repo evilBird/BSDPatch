@@ -13,11 +13,10 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"value";
-    NSNumber *initVal = (NSNumber *)arguments;
-    if (initVal) {
-        [self.coldInlet input:initVal];
+    if (arguments != NULL) {
+        [self.coldInlet input:arguments];
     }else{
-        [self.coldInlet input:@(0)];
+        [self.coldInlet input:NULL];
     }
 }
 

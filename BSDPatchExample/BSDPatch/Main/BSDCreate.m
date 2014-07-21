@@ -64,6 +64,11 @@
     return [[BSDAdd alloc]initWithArguments:nil];
 }
 
++ (BSDAdd *)addCold:(NSNumber *)coldInletValue
+{
+    return [[BSDAdd alloc]initWithArguments:coldInletValue];
+}
+
 + (BSDSubtract *)subtract
 {
     return [[BSDSubtract alloc]initWithArguments:nil];
@@ -104,9 +109,9 @@
     return [[BSDRoute alloc]initWithArguments:nil];
 }
 
-+ (BSDRoute *)routeSelectors:(NSArray *)selectors
++ (BSDRoute *)routeKeys:(NSArray *)keys
 {
-    return [[BSDRoute alloc]initWithArguments:selectors];
+    return [[BSDRoute alloc]initWithArguments:keys];
 }
 
 + (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets

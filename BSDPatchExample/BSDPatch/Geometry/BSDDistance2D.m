@@ -34,7 +34,7 @@
     
     NSArray *routingSelectors = @[@"x0",@"y0",@"xf",@"yf"];
     
-    self.route = [BSDCreate routeSelectors:routingSelectors];
+    self.route = [BSDCreate routeKeys:routingSelectors];
     [self.hotInlet forwardToPort:self.route.hotInlet];
     self.diffX = [BSDCreate subtractCold:@(0)];
     self.diffY = [BSDCreate subtractCold:@(0)];
