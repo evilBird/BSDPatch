@@ -70,6 +70,7 @@
 		F2D3D51D197C736B008B37C2 /* BSDEstimatedPointLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D51C197C736B008B37C2 /* BSDEstimatedPointLabel.m */; };
 		F2D3D520197C8012008B37C2 /* BSDArrayDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */; };
 		F2D3D523197C85F3008B37C2 /* BSDTouchGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */; };
+		F2D3D526197CA386008B37C2 /* BSDExamplePatch.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D525197CA386008B37C2 /* BSDExamplePatch.m */; };
 		F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB41974BF18004BB504 /* BSDAdd.m */; };
 		F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB61974BF18004BB504 /* BSDDivide.m */; };
 		F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB81974BF18004BB504 /* BSDMultiply.m */; };
@@ -192,8 +193,8 @@
 		F2C1D492197B99B900EAA674 /* BSDFormatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDFormatString.m; path = ../BSDFormatString.m; sourceTree = "<group>"; };
 		F2C1D498197BC23D00EAA674 /* BSDSplitArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSplitArray.h; sourceTree = "<group>"; };
 		F2C1D499197BC23D00EAA674 /* BSDSplitArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSplitArray.m; sourceTree = "<group>"; };
-		F2C1D49C197BC27500EAA674 /* BSDGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDGenerator.h; sourceTree = "<group>"; };
-		F2C1D49D197BC27500EAA674 /* BSDGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDGenerator.m; sourceTree = "<group>"; };
+		F2C1D49C197BC27500EAA674 /* BSDGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDGenerator.h; path = BSDPatch/BSDGenerator.h; sourceTree = "<group>"; };
+		F2C1D49D197BC27500EAA674 /* BSDGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDGenerator.m; path = BSDPatch/BSDGenerator.m; sourceTree = "<group>"; };
 		F2C1D49F197BC2A800EAA674 /* BSDSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDSelect.h; path = ../BSDSelect.h; sourceTree = "<group>"; };
 		F2C1D4A0197BC2A800EAA674 /* BSDSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDSelect.m; path = ../BSDSelect.m; sourceTree = "<group>"; };
 		F2C1D4A2197BC42A00EAA674 /* BSDSplitPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSplitPoint.h; sourceTree = "<group>"; };
@@ -228,8 +229,10 @@
 		F2D3D51C197C736B008B37C2 /* BSDEstimatedPointLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEstimatedPointLabel.m; sourceTree = "<group>"; };
 		F2D3D51E197C8012008B37C2 /* BSDArrayDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayDrip.h; sourceTree = "<group>"; };
 		F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayDrip.m; sourceTree = "<group>"; };
-		F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDTouchGenerator.h; sourceTree = "<group>"; };
-		F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDTouchGenerator.m; sourceTree = "<group>"; };
+		F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDTouchGenerator.h; path = BSDPatch/BSDTouchGenerator.h; sourceTree = "<group>"; };
+		F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDTouchGenerator.m; path = BSDPatch/BSDTouchGenerator.m; sourceTree = "<group>"; };
+		F2D3D524197CA386008B37C2 /* BSDExamplePatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDExamplePatch.h; sourceTree = "<group>"; };
+		F2D3D525197CA386008B37C2 /* BSDExamplePatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDExamplePatch.m; sourceTree = "<group>"; };
 		F2E7EBB31974BF18004BB504 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
 		F2E7EBB41974BF18004BB504 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
 		F2E7EBB51974BF18004BB504 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				F2436936197499DF00512371 /* Main_iPad.storyboard */,
 				F2436939197499DF00512371 /* BSDViewController.h */,
 				F243693A197499DF00512371 /* BSDViewController.m */,
+				F2D3D524197CA386008B37C2 /* BSDExamplePatch.h */,
+				F2D3D525197CA386008B37C2 /* BSDExamplePatch.m */,
 				F2D3D51B197C736B008B37C2 /* BSDEstimatedPointLabel.h */,
 				F2D3D51C197C736B008B37C2 /* BSDEstimatedPointLabel.m */,
 				F2832CFF197B782F00DD2E73 /* BSDEstimatedPointView.h */,
@@ -477,10 +482,6 @@
 				F2C1D4AC197BC4A100EAA674 /* BSDFont.m */,
 				F2C1D4B7197BC54500EAA674 /* BSDColor.h */,
 				F2C1D4B8197BC54500EAA674 /* BSDColor.m */,
-				F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */,
-				F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */,
-				F2C1D49C197BC27500EAA674 /* BSDGenerator.h */,
-				F2C1D49D197BC27500EAA674 /* BSDGenerator.m */,
 				F2C1D4AE197BC4E300EAA674 /* BSDAffineTransform.h */,
 				F2C1D4AF197BC4E300EAA674 /* BSDAffineTransform.m */,
 				F2C1D4B4197BC53500EAA674 /* BSDAffineTransformSplit.h */,
@@ -493,6 +494,18 @@
 				F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */,
 			);
 			name = TODO;
+			sourceTree = "<group>";
+		};
+		F2D3D527197CBFCB008B37C2 /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				F2C1D49C197BC27500EAA674 /* BSDGenerator.h */,
+				F2C1D49D197BC27500EAA674 /* BSDGenerator.m */,
+				F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */,
+				F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */,
+			);
+			name = Generators;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F2E7EBB11974BF18004BB504 /* BSDPatch */ = {
@@ -508,6 +521,7 @@
 				F2832D02197B84A800DD2E73 /* Views */,
 				F2C1D497197BC19C00EAA674 /* Text */,
 				F2AFEFA3197A3A5500461AE9 /* Utility */,
+				F2D3D527197CBFCB008B37C2 /* Generators */,
 				F2C1D49B197BC24600EAA674 /* TODO */,
 				F2AFEFAD197B13AA00461AE9 /* Class Categories */,
 			);
@@ -835,6 +849,7 @@
 				F26BFEE41974D83E007DCA4A /* BSDLog.m in Sources */,
 				F2F57E1A1975D55F0083D1C9 /* BSDPTest.m in Sources */,
 				F2AFEF991979A70200461AE9 /* BSDArrayBox.m in Sources */,
+				F2D3D526197CA386008B37C2 /* BSDExamplePatch.m in Sources */,
 				F2C1D493197B99B900EAA674 /* BSDFormatString.m in Sources */,
 				F2AFEF9C1979C54F00461AE9 /* BSDBuffer.m in Sources */,
 				F2AFEFBF197B430D00461AE9 /* BSDReciprocal.m in Sources */,

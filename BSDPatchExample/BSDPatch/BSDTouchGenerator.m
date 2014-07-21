@@ -9,7 +9,7 @@
 #import "BSDTouchGenerator.h"
 #import "BSDCreate.h"
 
-@interface BSDTouchGenerator ()
+@interface BSDTouchGenerator ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -41,6 +41,7 @@
                                   @"velocity": [NSValue wrapPoint:[gesture velocityInView:view]]};
     }
 }
+
 
 - (void)setView:(UIView *)view
 {

@@ -26,10 +26,6 @@
 @property(nonatomic,strong)BSDSubtract *minusY;
 @property(nonatomic,strong)BSDPrependKey *prependFrame;
 @property(nonatomic,strong)BSDPrependKey *prependAlpha;
-@property(nonatomic,strong)BSDTouchGenerator *touchGenerator;
-@property(nonatomic,strong)BSDDictionaryDrip *touchDrip;
-@property(nonatomic,strong)BSDRoute *touchRoute;
-@property(nonatomic,strong)BSDSplitPoint *touchSplit;
 @property(nonatomic,strong)UIView *centerView;
 
 @end
