@@ -45,4 +45,16 @@
     return self.mainView.coldInlet.value;
 }
 
++ (UIView *)newPointViewWithCenter:(CGPoint)center color:(UIColor *)color alpha:(CGFloat)alpha
+{
+    CGRect frame = CGRectMake(0, 0, 44, 44);
+    UIView *point = [[UIView alloc]initWithFrame:frame];
+    point.layer.cornerRadius = frame.size.width/2;
+    point.backgroundColor = color;
+    point.alpha = alpha;
+    point.center = center;
+    
+    return point;
+}
+
 @end

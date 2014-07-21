@@ -1,5 +1,5 @@
 //
-//  BSDGenerator.m
+//  BSDTouchGenerator.h
 //  BSDPatchExample
 //
 //  Created by Travis Henspeter on 7/20/14.
@@ -8,13 +8,10 @@
 
 #import "BSDGenerator.h"
 
-@implementation BSDGenerator
+@interface BSDTouchGenerator : BSDGenerator
 
+@property (nonatomic,strong) UIView *view;
 
-
-- (void)receivedNewData:(id)data
-{
-    //handle data from a generator
-}
+- (instancetype)initWithView:(UIView *)view;
 
 @end

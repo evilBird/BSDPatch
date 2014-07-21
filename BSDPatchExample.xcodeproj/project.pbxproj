@@ -68,6 +68,8 @@
 		F2D3D517197C683D008B37C2 /* BSDArrayMake.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D516197C683D008B37C2 /* BSDArrayMake.m */; };
 		F2D3D51A197C7030008B37C2 /* BSDInt.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D519197C7030008B37C2 /* BSDInt.m */; };
 		F2D3D51D197C736B008B37C2 /* BSDEstimatedPointLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D51C197C736B008B37C2 /* BSDEstimatedPointLabel.m */; };
+		F2D3D520197C8012008B37C2 /* BSDArrayDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */; };
+		F2D3D523197C85F3008B37C2 /* BSDTouchGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */; };
 		F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB41974BF18004BB504 /* BSDAdd.m */; };
 		F2E7EBE11974BF18004BB504 /* BSDDivide.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB61974BF18004BB504 /* BSDDivide.m */; };
 		F2E7EBE21974BF18004BB504 /* BSDMultiply.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7EBB81974BF18004BB504 /* BSDMultiply.m */; };
@@ -224,6 +226,10 @@
 		F2D3D519197C7030008B37C2 /* BSDInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDInt.m; sourceTree = "<group>"; };
 		F2D3D51B197C736B008B37C2 /* BSDEstimatedPointLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDEstimatedPointLabel.h; sourceTree = "<group>"; };
 		F2D3D51C197C736B008B37C2 /* BSDEstimatedPointLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDEstimatedPointLabel.m; sourceTree = "<group>"; };
+		F2D3D51E197C8012008B37C2 /* BSDArrayDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayDrip.h; sourceTree = "<group>"; };
+		F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayDrip.m; sourceTree = "<group>"; };
+		F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDTouchGenerator.h; sourceTree = "<group>"; };
+		F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDTouchGenerator.m; sourceTree = "<group>"; };
 		F2E7EBB31974BF18004BB504 /* BSDAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDAdd.h; sourceTree = "<group>"; };
 		F2E7EBB41974BF18004BB504 /* BSDAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDAdd.m; sourceTree = "<group>"; };
 		F2E7EBB51974BF18004BB504 /* BSDDivide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDDivide.h; sourceTree = "<group>"; };
@@ -471,6 +477,8 @@
 				F2C1D4AC197BC4A100EAA674 /* BSDFont.m */,
 				F2C1D4B7197BC54500EAA674 /* BSDColor.h */,
 				F2C1D4B8197BC54500EAA674 /* BSDColor.m */,
+				F2D3D521197C85F3008B37C2 /* BSDTouchGenerator.h */,
+				F2D3D522197C85F3008B37C2 /* BSDTouchGenerator.m */,
 				F2C1D49C197BC27500EAA674 /* BSDGenerator.h */,
 				F2C1D49D197BC27500EAA674 /* BSDGenerator.m */,
 				F2C1D4AE197BC4E300EAA674 /* BSDAffineTransform.h */,
@@ -481,6 +489,8 @@
 				F2C1D4B2197BC50C00EAA674 /* BSDLayer.m */,
 				F2D3D50F197C6108008B37C2 /* BSDDictionaryDrip.h */,
 				F2D3D510197C6108008B37C2 /* BSDDictionaryDrip.m */,
+				F2D3D51E197C8012008B37C2 /* BSDArrayDrip.h */,
+				F2D3D51F197C8012008B37C2 /* BSDArrayDrip.m */,
 			);
 			name = TODO;
 			sourceTree = "<group>";
@@ -763,6 +773,7 @@
 				F2E7EBF01974BF18004BB504 /* BSDInlet.m in Sources */,
 				F2F57E3319762F0C0083D1C9 /* BSDSequence.m in Sources */,
 				F2C1D4A7197BC43F00EAA674 /* BSDRectSplit.m in Sources */,
+				F2D3D523197C85F3008B37C2 /* BSDTouchGenerator.m in Sources */,
 				F2E7EBE31974BF18004BB504 /* BSDPower.m in Sources */,
 				F2AFEFC2197B44B800461AE9 /* BSDPoint.m in Sources */,
 				F2E7EBE01974BF18004BB504 /* BSDAdd.m in Sources */,
@@ -792,6 +803,7 @@
 				F2AFEF9F1979E14B00461AE9 /* BSDBangBox.m in Sources */,
 				F2F57E2A197624BD0083D1C9 /* BSDArraySort.m in Sources */,
 				F2AFEFBC197B401D00461AE9 /* BSDReferencePointView.m in Sources */,
+				F2D3D520197C8012008B37C2 /* BSDArrayDrip.m in Sources */,
 				F2E7EBF11974BF18004BB504 /* BSDOutlet.m in Sources */,
 				F2AFEFA6197A44DA00461AE9 /* BSDIntersect2Circles.m in Sources */,
 				F2C1D4AD197BC4A100EAA674 /* BSDFont.m in Sources */,

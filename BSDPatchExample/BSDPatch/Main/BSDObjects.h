@@ -73,4 +73,7 @@
 #import "BSDPrependKey.h"
 #import "BSDFormatString.h"
 
+#import "BSDGenerator.h"
+#import "BSDTouchGenerator.h"
+
 #import "NSValue+BSD.h"

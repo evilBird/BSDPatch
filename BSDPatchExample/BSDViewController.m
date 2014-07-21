@@ -18,6 +18,11 @@
 @property(nonatomic)CGPoint refpt1;
 @property(nonatomic)CGPoint refpt2;
 
+@property(nonatomic,strong)BSDTouchGenerator *touchGenerator;
+@property(nonatomic,strong)BSDDictionaryDrip *touchDrip;
+@property(nonatomic,strong)BSDRoute *touchRoute;
+@property(nonatomic,strong)BSDSequence *touchSequence;
+
 @property(nonatomic,strong)BSDReferencePointView *refPtView1;
 @property(nonatomic,strong)BSDReferencePointView *refPtView2;
 
@@ -38,11 +43,6 @@
 @property(nonatomic,strong)BSDDictionaryDrip *drip;
 @property(nonatomic,strong)BSDRoute *route;
 
-@property(nonatomic,strong)UIPanGestureRecognizer *gestureRecognizer;
-@property(nonatomic)CGPoint touchLocation;
-
-
-@property(nonatomic,strong)UILabel *label1;
 
 
 @end
@@ -53,6 +53,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    //define reference points
+    self.refpt1 = self.view.bounds.origin;
+    self.refpt2 = CGPointMake(CGRectGetMinX(self.view.bounds), CGRectGetMaxY(self.view.bounds));
+
     
     [self configure];
     [self test];
@@ -61,19 +65,10 @@
 - (void)test
 {
 
-
 }
 
 - (void)configure
 {
-    
-    //Set up our gesture recognizer, which will feed input to the distance object
-    self.view.multipleTouchEnabled = YES;
-    
-    //define reference points
-    self.refpt1 = self.view.bounds.origin;
-    self.refpt2 = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMaxY(self.view.bounds));
-
     //set up distance measurement objects & helpers, one for each point
     self.distanceFromRefPt1 = [BSDCreate distanceFrom2DPointCold:[NSValue wrapPoint:self.refpt1]];
     self.distance1Helper = [BSDCreate intersect2CirclesHelperCold:self.distanceFromRefPt1.coldInlet.value];
@@ -84,14 +79,16 @@
     [self.distanceFromRefPt2 connect:self.distance2Helper.circleRadius];
     
     //create our reference point views and send the distance outputs to them
-    UIColor *refPtColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+    UIColor *refPtColor = [UIColor colorWithWhite:0.8 alpha:0.7];
     
-    self.refPtView1 = [[BSDReferencePointView alloc]initWithUIView:[self newPointWithCenter:self.refpt1
-                                                                                      color:refPtColor
-                                                                                      alpha:1]];
-    self.refPtView2 = [[BSDReferencePointView alloc]initWithUIView:[self newPointWithCenter:self.refpt2
-                                                                                      color:refPtColor
-                                                                                      alpha:1]];
+    self.refPtView1 = [[BSDReferencePointView alloc]initWithUIView:[BSDEstimatedPointView newPointViewWithCenter:self.refpt1
+                                                                                                           color:refPtColor
+                                                                                                           alpha:1]];
+    [self.view addSubview:self.refPtView1.view];
+    self.refPtView2 = [[BSDReferencePointView alloc]initWithUIView:[BSDEstimatedPointView newPointViewWithCenter:self.refpt2
+                                                                                                           color:refPtColor
+                                                                                                           alpha:1]];
+    [self.view addSubview:self.refPtView2.view];
     
     [self.distanceFromRefPt1 connect:self.refPtView1.hotInlet];
     [self.distanceFromRefPt2 connect:self.refPtView2.hotInlet];
@@ -102,99 +99,47 @@
     [self.distance1Helper connect:self.intersect2circles.circle2];
     
     //create estmated point views and send the intersect circles outputs to them
-    self.estPtView_i = [[BSDEstimatedPointView alloc]initWithUIView:[self newPointWithCenter:self.view.center
-                                                                                      color:[UIColor blueColor]
-                                                                                      alpha:0]];
+    self.estPtView_i = [[BSDEstimatedPointView alloc]initWithUIView:[BSDEstimatedPointView newPointViewWithCenter:self.view.center
+                                                                                                            color:[UIColor blueColor]
+                                                                                                            alpha:1]];
+    [self.view addSubview:self.estPtView_i.view];
 
-    self.estPtView_j = [[BSDEstimatedPointView alloc]initWithUIView:[self newPointWithCenter:self.view.center
-                                                                                      color:[UIColor redColor]
-                                                                                      alpha:0]];
+    self.estPtView_j = [[BSDEstimatedPointView alloc]initWithUIView:[BSDEstimatedPointView newPointViewWithCenter:self.view.center
+                                                                                                            color:[UIColor redColor]
+                                                                                                            alpha:1]];
+    [self.view addSubview:self.estPtView_j.view];
 
     [self.intersect2circles connectOutlet:self.intersect2circles.circle1Center toInlet:self.estPtView_i.center];
     [self.intersect2circles connectOutlet:self.intersect2circles.circle2Center toInlet:self.estPtView_j.center];
     
     //set up estimated point labels, which will display the coordinates of the estimated points
     
-    CGPoint point = self.view.bounds.origin;
+    CGRect frame = self.view.bounds;
+    frame.size.height *= 0.5;
     
-    self.estPtLab_i = [[BSDEstimatedPointLabel alloc]initWithUILabel:[self newLabelWithOrigin:point]
-                                                         pointName:@"i"];
-    point.y = CGRectGetMidY(self.view.bounds);
+    UILabel *label_i = [BSDEstimatedPointLabel newLabelWithFrame:frame textColor:[UIColor blueColor]];
+    self.estPtLab_i = [[BSDEstimatedPointLabel alloc]initWithUILabel:label_i pointName:@"i"];
+    [self.view addSubview:self.estPtLab_i.label];
     
-    self.estPtLab_j = [[BSDEstimatedPointLabel alloc]initWithUILabel:[self newLabelWithOrigin:point]
-                                                         pointName:@"j"];
+    frame.origin.y = CGRectGetMaxY(frame);
+    
+    UILabel *label_j = [BSDEstimatedPointLabel newLabelWithFrame:frame textColor:[UIColor redColor]];
+    self.estPtLab_j = [[BSDEstimatedPointLabel alloc]initWithUILabel:label_j pointName:@"j"];
+    [self.view addSubview:self.estPtLab_j.label];
     
     //route the outputs of the intersect2cirlces object to the appropriate labels
     self.route = [BSDCreate routeWithKeys:@[@"i",@"j"] toInlets:@[self.estPtLab_i.estimatedPointInlet,self.estPtLab_j.estimatedPointInlet]];
     self.drip = [[BSDDictionaryDrip alloc]init];
     [self.drip connect:self.route.hotInlet];
     [self.intersect2circles connect:self.drip.hotInlet];
-
-}
-
-#pragma mark - handle touches
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //Feed the distance objects
-    self.touchLocation = [touches.allObjects.firstObject locationInView:self.view];
-    [self.estPtView_i.alpha input:@(1)];
-    [self.estPtView_j.alpha input:@(1)];
-    [self.estPtLab_i.hotInlet input:@{@"alpha":@(1)}];
-    [self.estPtLab_j.hotInlet input:@{@"alpha":@(1)}];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //Feed the distance objects
-    self.touchLocation = [touches.allObjects.firstObject locationInView:self.view];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.estPtView_i.alpha input:@(0)];
-    [self.estPtView_j.alpha input:@(0)];
-    [self.estPtLab_i.hotInlet input:@{@"alpha":@(0)}];
-    [self.estPtLab_j.hotInlet input:@{@"alpha":@(0)}];
-
-}
-
-- (void)setTouchLocation:(CGPoint)touchLocation
-{
-    _touchLocation = touchLocation;
     
-    //feed the touch location to the distance objects
-    [self.distanceFromRefPt1.hotInlet input:[NSValue wrapPoint:touchLocation]];
-    [self.distanceFromRefPt2.hotInlet input:[NSValue wrapPoint:touchLocation]];
-}
+    self.touchGenerator = [[BSDTouchGenerator alloc]initWithArguments:self.view];
+    self.touchDrip = [[BSDDictionaryDrip alloc]init];
+    [self.touchGenerator connect:self.touchDrip.hotInlet];
+    self.touchSequence = [BSDCreate sequenceInlets:@[self.distanceFromRefPt1.hotInlet,self.distanceFromRefPt2.hotInlet]];
+    self.touchRoute = [BSDCreate routeWithKeys:@[@"location"] toInlets:@[self.touchSequence.hotInlet]];
+    [self.touchDrip connect:self.touchRoute.hotInlet];
 
-#pragma mark - Convenience methods
-
-
-- (UILabel *)newLabelWithOrigin:(CGPoint)origin
-{
-    CGRect frame;
-    frame.origin = origin;
-    frame.size.width = CGRectGetWidth(self.view.bounds);
-    frame.size.height = CGRectGetHeight(self.view.bounds)/4;
-    UILabel *label = [[UILabel alloc]initWithFrame:frame];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = 2;
-    [self.view addSubview:label];
-    return label;
-}
-
-- (UIView *)newPointWithCenter:(CGPoint)center color:(UIColor *)color alpha:(CGFloat)alpha
-{
-    CGRect frame = CGRectMake(0, 0, 44, 44);
-    UIView *point = [[UIView alloc]initWithFrame:frame];
-    point.layer.cornerRadius = frame.size.width/2;
-    point.backgroundColor = color;
-    point.alpha = alpha;
-    point.center = center;
-    [self.view addSubview:point];
-    
-    return point;
 }
 
 - (void)didReceiveMemoryWarning

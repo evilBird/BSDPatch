@@ -19,5 +19,7 @@
 
 - (instancetype)initWithUIView:(UIView *)view;
 - (UIView *)view;
++ (UIView *)newPointViewWithCenter:(CGPoint)center color:(UIColor *)color alpha:(CGFloat)alpha;
+
 
 @end

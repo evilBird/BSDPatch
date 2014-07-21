@@ -13,6 +13,8 @@
 
 - (instancetype)initWithUILabel:(UILabel *)label pointName:(NSString *)pointName;
 
++ (UILabel *)newLabelWithFrame:(CGRect)frame textColor:(UIColor *)color;
+
 @property (nonatomic,strong)BSDInlet *estimatedPointInlet;
 @property (nonatomic,strong)NSString *pointName;
 

@@ -42,7 +42,6 @@
     [self.makeArray connect:self.formatString.hotInlet];
     self.prependTextKey = [BSDCreate prependKeyCold:@"text"];
     [self.formatString connect:self.prependTextKey.hotInlet];
-    self.formatString.debug = YES;
     [self.prependTextKey connect:self.hotInlet];
     
     
@@ -58,5 +57,13 @@
     
 }
 
++ (UILabel *)newLabelWithFrame:(CGRect)frame textColor:(UIColor *)color
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:frame];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 2;
+    label.textColor = color;
+    return label;
+}
 
 @end
