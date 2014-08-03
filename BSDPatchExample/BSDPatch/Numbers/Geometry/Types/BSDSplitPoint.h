@@ -1,5 +1,5 @@
 //
-//  BSDAttributedText.h
+//  BSDPointSplit.h
 //  BSDPatchExample
 //
 //  Created by Travis Henspeter on 7/20/14.
@@ -8,6 +8,9 @@
 
 #import "BSDObject.h"
 
-@interface BSDAttributedText : BSDObject
+@interface BSDSplitPoint : BSDObject
+
+@property (nonatomic,strong)BSDOutlet *x;
+@property (nonatomic,strong)BSDOutlet *y;
 
 @end
