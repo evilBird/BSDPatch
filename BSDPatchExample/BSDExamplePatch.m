@@ -21,8 +21,8 @@
     if (superview) {
         
         //set reference points
-        self.refpt1 = CGPointMake(CGRectGetMinX(superview.bounds), CGRectGetMidY(superview.bounds));
-        self.refpt2 = CGPointMake(CGRectGetMaxX(superview.bounds), CGRectGetMidY(superview.bounds));
+        self.refpt1 = CGPointMake(CGRectGetMinX(superview.bounds), CGRectGetMinY(superview.bounds));
+        self.refpt2 = CGPointMake(CGRectGetMinX(superview.bounds), CGRectGetMaxY(superview.bounds));
         
         //set up distance measurement objects & helpers, one for each point
         self.distanceFromRefPt1 = [BSDCreate distanceFrom2DPointCold:[NSValue wrapPoint:self.refpt1]];
