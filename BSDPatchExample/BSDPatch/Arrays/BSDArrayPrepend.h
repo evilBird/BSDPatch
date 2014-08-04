@@ -10,6 +10,11 @@
 
 @interface BSDArrayPrepend : BSDObject
 
-- (instancetype)initWithValue:(id)value;
+//BSDArrayPrepend: Insert a value at the beginning of an array
+//Hot inlet: takes an array
+//Cold inlet: takes any value
+//Main outlet: outputs an array with the cold inlet value prepended to the array received in the hot inlet
+
+- (instancetype)initWithPrependValue:(id)value;
 
 @end

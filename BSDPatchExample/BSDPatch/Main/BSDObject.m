@@ -27,6 +27,7 @@
         _hotInlet = [[BSDInlet alloc]initHot];
         _hotInlet.name = @"hot";
         _hotInlet.objectId = [self objectId];
+        _hotInlet.delegate = self;
         [self addPort:_hotInlet];
 
         _coldInlet = [[BSDInlet alloc]initCold];

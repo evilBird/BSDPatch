@@ -10,6 +10,11 @@
 
 @implementation BSDArrayPrepend
 
+- (instancetype)initWithPrependValue:(id)value
+{
+    return [super initWithArguments:value];
+}
+
 - (instancetype)initWithValue:(id)value
 {
     return [super initWithArguments:value];
@@ -18,6 +23,7 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"array prepend";
+    
     if (arguments != NULL) {
         self.coldInlet.value = arguments;
     }

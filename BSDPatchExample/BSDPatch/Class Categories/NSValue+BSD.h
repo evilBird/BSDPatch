@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSValue (BSD)
+//wrap C structs in an instance of NSValue;
 
 + (NSValue *)wrapPoint:(CGPoint)point;
 + (NSValue *)wrapRect:(CGRect)rect;

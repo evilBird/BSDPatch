@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F21B7A99198F1B5800433676 /* BSDArrayEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = F21B7A98198F1B5800433676 /* BSDArrayEnumerate.m */; };
 		F2436922197499DF00512371 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2436921197499DF00512371 /* Foundation.framework */; };
 		F2436924197499DF00512371 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2436923197499DF00512371 /* CoreGraphics.framework */; };
 		F2436926197499DF00512371 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2436925197499DF00512371 /* UIKit.framework */; };
@@ -22,14 +23,13 @@
 		F2436946197499DF00512371 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2436925197499DF00512371 /* UIKit.framework */; };
 		F243694E197499DF00512371 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F243694C197499DF00512371 /* InfoPlist.strings */; };
 		F2436950197499DF00512371 /* BSDPatchExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F243694F197499DF00512371 /* BSDPatchExampleTests.m */; };
-		F26136FB198ED7520018F361 /* BSDArrayDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613657198ED7520018F361 /* BSDArrayDrip.m */; };
+		F26136FB198ED7520018F361 /* BSDArraySerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613657198ED7520018F361 /* BSDArraySerialize.m */; };
 		F26136FC198ED7520018F361 /* BSDArrayElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613659198ED7520018F361 /* BSDArrayElement.m */; };
 		F26136FD198ED7520018F361 /* BSDArrayFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F261365B198ED7520018F361 /* BSDArrayFilter.m */; };
 		F26136FE198ED7520018F361 /* BSDArrayLength.m in Sources */ = {isa = PBXBuildFile; fileRef = F261365D198ED7520018F361 /* BSDArrayLength.m */; };
-		F26136FF198ED7520018F361 /* BSDArrayMake.m in Sources */ = {isa = PBXBuildFile; fileRef = F261365F198ED7520018F361 /* BSDArrayMake.m */; };
+		F26136FF198ED7520018F361 /* BSDArrayPack.m in Sources */ = {isa = PBXBuildFile; fileRef = F261365F198ED7520018F361 /* BSDArrayPack.m */; };
 		F2613700198ED7520018F361 /* BSDArrayNormalize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613661198ED7520018F361 /* BSDArrayNormalize.m */; };
 		F2613701198ED7520018F361 /* BSDArrayPrepend.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613663198ED7520018F361 /* BSDArrayPrepend.m */; };
-		F2613702198ED7520018F361 /* BSDArraySerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613665198ED7520018F361 /* BSDArraySerialize.m */; };
 		F2613703198ED7520018F361 /* BSDArraySort.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613667198ED7520018F361 /* BSDArraySort.m */; };
 		F2613704198ED7520018F361 /* BSDSplitArray.m in Sources */ = {isa = PBXBuildFile; fileRef = F2613669198ED7520018F361 /* BSDSplitArray.m */; };
 		F2613705198ED7520018F361 /* BSDBang.m in Sources */ = {isa = PBXBuildFile; fileRef = F261366C198ED7520018F361 /* BSDBang.m */; };
@@ -112,6 +112,8 @@
 
 /* Begin PBXFileReference section */
 		F202D82B198EDD2500603073 /* BSDNumberObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDNumberObjects.h; sourceTree = "<group>"; };
+		F21B7A97198F1B5800433676 /* BSDArrayEnumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDArrayEnumerate.h; path = ../BSDArrayEnumerate.h; sourceTree = "<group>"; };
+		F21B7A98198F1B5800433676 /* BSDArrayEnumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSDArrayEnumerate.m; path = ../BSDArrayEnumerate.m; sourceTree = "<group>"; };
 		F243691E197499DF00512371 /* BSDPatchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSDPatchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2436921197499DF00512371 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F2436923197499DF00512371 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,22 +134,20 @@
 		F243694B197499DF00512371 /* BSDPatchExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSDPatchExampleTests-Info.plist"; sourceTree = "<group>"; };
 		F243694D197499DF00512371 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F243694F197499DF00512371 /* BSDPatchExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDPatchExampleTests.m; sourceTree = "<group>"; };
-		F2613656198ED7520018F361 /* BSDArrayDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayDrip.h; sourceTree = "<group>"; };
-		F2613657198ED7520018F361 /* BSDArrayDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayDrip.m; sourceTree = "<group>"; };
+		F2613656198ED7520018F361 /* BSDArraySerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArraySerialize.h; sourceTree = "<group>"; };
+		F2613657198ED7520018F361 /* BSDArraySerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArraySerialize.m; sourceTree = "<group>"; };
 		F2613658198ED7520018F361 /* BSDArrayElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayElement.h; sourceTree = "<group>"; };
 		F2613659198ED7520018F361 /* BSDArrayElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayElement.m; sourceTree = "<group>"; };
 		F261365A198ED7520018F361 /* BSDArrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayFilter.h; sourceTree = "<group>"; };
 		F261365B198ED7520018F361 /* BSDArrayFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayFilter.m; sourceTree = "<group>"; };
 		F261365C198ED7520018F361 /* BSDArrayLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayLength.h; sourceTree = "<group>"; };
 		F261365D198ED7520018F361 /* BSDArrayLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayLength.m; sourceTree = "<group>"; };
-		F261365E198ED7520018F361 /* BSDArrayMake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayMake.h; sourceTree = "<group>"; };
-		F261365F198ED7520018F361 /* BSDArrayMake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayMake.m; sourceTree = "<group>"; };
+		F261365E198ED7520018F361 /* BSDArrayPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayPack.h; sourceTree = "<group>"; };
+		F261365F198ED7520018F361 /* BSDArrayPack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayPack.m; sourceTree = "<group>"; };
 		F2613660198ED7520018F361 /* BSDArrayNormalize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayNormalize.h; sourceTree = "<group>"; };
 		F2613661198ED7520018F361 /* BSDArrayNormalize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayNormalize.m; sourceTree = "<group>"; };
 		F2613662198ED7520018F361 /* BSDArrayPrepend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArrayPrepend.h; sourceTree = "<group>"; };
 		F2613663198ED7520018F361 /* BSDArrayPrepend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArrayPrepend.m; sourceTree = "<group>"; };
-		F2613664198ED7520018F361 /* BSDArraySerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArraySerialize.h; sourceTree = "<group>"; };
-		F2613665198ED7520018F361 /* BSDArraySerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArraySerialize.m; sourceTree = "<group>"; };
 		F2613666198ED7520018F361 /* BSDArraySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDArraySort.h; sourceTree = "<group>"; };
 		F2613667198ED7520018F361 /* BSDArraySort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDArraySort.m; sourceTree = "<group>"; };
 		F2613668198ED7520018F361 /* BSDSplitArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSplitArray.h; sourceTree = "<group>"; };
@@ -312,6 +312,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F21B7A96198F074F00433676 /* TO DO */ = {
+			isa = PBXGroup;
+			children = (
+				F261368C198ED7520018F361 /* Generators */,
+				F261366A198ED7520018F361 /* Bang */,
+				F2613672198ED7520018F361 /* Dictionaries */,
+				F26136E5198ED7520018F361 /* Strings */,
+				F26136E8198ED7520018F361 /* UI */,
+				F26136F3198ED7520018F361 /* Utility */,
+			);
+			name = "TO DO";
+			sourceTree = "<group>";
+		};
 		F2436915197499DF00512371 = {
 			isa = PBXGroup;
 			children = (
@@ -406,18 +419,13 @@
 		F2613652198ED7520018F361 /* BSDPatch */ = {
 			isa = PBXGroup;
 			children = (
+				F21B7A96198F074F00433676 /* TO DO */,
 				F2613653198ED7520018F361 /* Arrays */,
-				F261366A198ED7520018F361 /* Bang */,
 				F261366F198ED7520018F361 /* Class Categories */,
-				F2613672198ED7520018F361 /* Dictionaries */,
 				F2613679198ED7520018F361 /* Flow Control */,
-				F261368C198ED7520018F361 /* Generators */,
 				F2613692198ED7520018F361 /* Main */,
 				F2613699198ED7520018F361 /* Numbers */,
 				F26136DE198ED7520018F361 /* Ports */,
-				F26136E5198ED7520018F361 /* Strings */,
-				F26136E8198ED7520018F361 /* UI */,
-				F26136F3198ED7520018F361 /* Utility */,
 			);
 			path = BSDPatch;
 			sourceTree = "<group>";
@@ -427,26 +435,26 @@
 			children = (
 				F2613673198ED7520018F361 /* BSDArrayClassify.h */,
 				F2613674198ED7520018F361 /* BSDArrayClassify.m */,
-				F2613656198ED7520018F361 /* BSDArrayDrip.h */,
-				F2613657198ED7520018F361 /* BSDArrayDrip.m */,
+				F2613656198ED7520018F361 /* BSDArraySerialize.h */,
+				F2613657198ED7520018F361 /* BSDArraySerialize.m */,
 				F2613658198ED7520018F361 /* BSDArrayElement.h */,
 				F2613659198ED7520018F361 /* BSDArrayElement.m */,
 				F261365A198ED7520018F361 /* BSDArrayFilter.h */,
 				F261365B198ED7520018F361 /* BSDArrayFilter.m */,
 				F261365C198ED7520018F361 /* BSDArrayLength.h */,
 				F261365D198ED7520018F361 /* BSDArrayLength.m */,
-				F261365E198ED7520018F361 /* BSDArrayMake.h */,
-				F261365F198ED7520018F361 /* BSDArrayMake.m */,
-				F2613660198ED7520018F361 /* BSDArrayNormalize.h */,
-				F2613661198ED7520018F361 /* BSDArrayNormalize.m */,
-				F2613662198ED7520018F361 /* BSDArrayPrepend.h */,
-				F2613663198ED7520018F361 /* BSDArrayPrepend.m */,
-				F2613664198ED7520018F361 /* BSDArraySerialize.h */,
-				F2613665198ED7520018F361 /* BSDArraySerialize.m */,
 				F2613666198ED7520018F361 /* BSDArraySort.h */,
 				F2613667198ED7520018F361 /* BSDArraySort.m */,
 				F2613668198ED7520018F361 /* BSDSplitArray.h */,
 				F2613669198ED7520018F361 /* BSDSplitArray.m */,
+				F261365E198ED7520018F361 /* BSDArrayPack.h */,
+				F261365F198ED7520018F361 /* BSDArrayPack.m */,
+				F2613660198ED7520018F361 /* BSDArrayNormalize.h */,
+				F2613661198ED7520018F361 /* BSDArrayNormalize.m */,
+				F2613662198ED7520018F361 /* BSDArrayPrepend.h */,
+				F2613663198ED7520018F361 /* BSDArrayPrepend.m */,
+				F21B7A97198F1B5800433676 /* BSDArrayEnumerate.h */,
+				F21B7A98198F1B5800433676 /* BSDArrayEnumerate.m */,
 			);
 			path = Arrays;
 			sourceTree = "<group>";
@@ -849,6 +857,7 @@
 				F261372A198ED7520018F361 /* BSDIntersect2Circles.m in Sources */,
 				F2613733198ED7520018F361 /* BSDAccum.m in Sources */,
 				F2613711198ED7520018F361 /* BSDSpigot.m in Sources */,
+				F21B7A99198F1B5800433676 /* BSDArrayEnumerate.m in Sources */,
 				F2613714198ED7520018F361 /* BSDGenerator.m in Sources */,
 				F261370F198ED7520018F361 /* BSDSelect.m in Sources */,
 				F2613708198ED7520018F361 /* BSDArrayClassify.m in Sources */,
@@ -860,7 +869,7 @@
 				F2AFEFBC197B401D00461AE9 /* BSDReferencePointView.m in Sources */,
 				F2613718198ED7520018F361 /* BSDAbs.m in Sources */,
 				F2613725198ED7520018F361 /* BSDLess.m in Sources */,
-				F26136FF198ED7520018F361 /* BSDArrayMake.m in Sources */,
+				F26136FF198ED7520018F361 /* BSDArrayPack.m in Sources */,
 				F2613739198ED7520018F361 /* BSDPort.m in Sources */,
 				F261370A198ED7520018F361 /* BSDMapObject.m in Sources */,
 				F2613703198ED7520018F361 /* BSDArraySort.m in Sources */,
@@ -876,11 +885,10 @@
 				F261373A198ED7520018F361 /* BSDFormatString.m in Sources */,
 				F243692E197499DF00512371 /* main.m in Sources */,
 				F2613704198ED7520018F361 /* BSDSplitArray.m in Sources */,
-				F26136FB198ED7520018F361 /* BSDArrayDrip.m in Sources */,
+				F26136FB198ED7520018F361 /* BSDArraySerialize.m in Sources */,
 				F2613717198ED7520018F361 /* BSDObject.m in Sources */,
 				F2613727198ED7520018F361 /* BSDMin.m in Sources */,
 				F261370E198ED7520018F361 /* BSDRoute.m in Sources */,
-				F2613702198ED7520018F361 /* BSDArraySerialize.m in Sources */,
 				F2D3D526197CA386008B37C2 /* BSDExamplePatch.m in Sources */,
 				F2613742198ED7520018F361 /* BSDTestVariable.m in Sources */,
 				F2613716198ED7520018F361 /* BSDCreate.m in Sources */,

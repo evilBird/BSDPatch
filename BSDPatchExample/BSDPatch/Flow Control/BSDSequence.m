@@ -63,7 +63,10 @@
 
 - (BSDOutlet *)outletAtIndex:(NSNumber *)index
 {
-    return [self outletNamed:[NSString stringWithFormat:@"%lu",(unsigned long)index.integerValue]];
+    //offset by 1 since we already have the main outlet
+    NSUInteger i = index.integerValue + 1;
+    NSString *outletName = [NSString stringWithFormat:@"%lu",(unsigned long)i];
+    return [self outletNamed:outletName];
 }
 
 @end

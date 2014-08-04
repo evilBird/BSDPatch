@@ -10,4 +10,6 @@
 
 @interface BSDArrayLength : BSDObject
 
+//BSDArrayLength takes an NSArray in the hot inlet and outputs an NSNumber with the number of elements in the recieved array
+
 @end

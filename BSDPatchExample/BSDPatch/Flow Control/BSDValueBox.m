@@ -21,8 +21,6 @@
     if (arguments != NULL) {
         self.coldInlet.value = arguments;
     }
-    
-    self.hotInlet.delegate = self;
 }
 
 - (void)inletReceievedBang:(BSDInlet *)inlet

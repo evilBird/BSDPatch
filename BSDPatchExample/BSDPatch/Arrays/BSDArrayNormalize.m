@@ -7,34 +7,34 @@
 //
 
 #import "BSDArrayNormalize.h"
-#import "BSDCreate.h"
-
-@interface BSDArrayNormalize ()
-
-@property (nonatomic,strong)BSDDivide *divide;
-
-@end
 
 @implementation BSDArrayNormalize
+
+- (instancetype)initWithNormalizingContstant:(NSNumber *)constant
+{
+    return [super initWithArguments:constant];
+}
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"normalize";
-    self.coldInlet.value = @(1.0);
-    self.divide = [BSDCreate divide];
-    self.divide.coldInlet.value = @(1);
+    NSNumber *constant = arguments;
+    if (constant) {
+        self.coldInlet.value = constant;
+    }else{
+        self.coldInlet.value = @(1.0);
+    }
     
 }
 
-- (id)normalizedArray:(NSArray *)array
+- (NSArray *)normalizedArray:(NSArray *)array
 {
     if (array) {
         NSNumber *sum = [array valueForKeyPath:@"@sum.self"];
-        [self.divide.coldInlet input:sum];
         NSMutableArray *outputContainer = [NSMutableArray array];
         for (NSNumber *num in array) {
-            [self.divide.hotInlet input:num];
-            [outputContainer addObject:self.divide.mainOutlet.value];
+            NSNumber *normalizedNum = @(num.floatValue/sum.floatValue);
+            [outputContainer addObject:normalizedNum];
         }
         
         return outputContainer;

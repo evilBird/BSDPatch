@@ -17,6 +17,11 @@
 
 @implementation BSDBuffer
 
+- (instancetype)initWithBufferSize:(NSNumber *)bufferSize
+{
+    return [super initWithArguments:bufferSize];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"buffer";
@@ -27,15 +32,24 @@
     }else{
         self.size = 64;
     }
-    _bufferSize = self.size;
     
     self.coldInlet.value = [NSMutableArray array];
+    self.auxOutlet = [[BSDOutlet alloc]init];
+    self.auxOutlet.name = @"auxOutlet";
+    [self addPort:self.auxOutlet];
 
 }
 
 - (void)reset
 {
     [self.coldInlet.value removeAllObjects];
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet == self.hotInlet) {
+        self.mainOutlet.value = self.coldInlet.value;
+    }
 }
 
 - (void)calculateOutput
@@ -45,13 +59,14 @@
         NSMutableArray *buffer = self.coldInlet.value;
         if (buffer.count >= self.size) {
             NSInteger toRemove = self.size - 2;
-            self.mainOutlet.value = buffer[toRemove];
             [buffer removeObjectAtIndex:toRemove];
             [buffer insertObject:hot atIndex:0];
+            self.auxOutlet.value = buffer[toRemove];
         }else{
             [buffer insertObject:hot atIndex:0];
-            self.mainOutlet.value = @(0);
         }
+        
+        self.mainOutlet.value = buffer.mutableCopy;
     }
 }
 

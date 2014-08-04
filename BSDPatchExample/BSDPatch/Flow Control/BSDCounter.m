@@ -39,6 +39,11 @@
     }
 }
 
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    [self calculateOutput];
+}
+
 - (void)reset
 {
     self.coldInlet.value = self.initialValue;

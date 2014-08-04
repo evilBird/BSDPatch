@@ -13,6 +13,7 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"array length";
+    self.coldInlet.open = NO;
 }
 
 - (void)calculateOutput
@@ -20,6 +21,8 @@
     NSArray *hot = self.hotInlet.value;
     if (hot) {
         self.mainOutlet.value = @(hot.count);
+    }else{
+        self.mainOutlet.value = @(0);
     }
 }
 

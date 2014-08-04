@@ -44,9 +44,9 @@
 #import "BSDBang.h"
 #import "BSDBangBox.h"
 #import "BSDMod.h"
-#import "BSDArraySerialize.h"
+#import "BSDArrayDripSlow.h"
 #import "BSDSplitArray.h"
-#import "BSDArrayMake.h"
+#import "BSDArrayPack.h"
 
 #import "BSDDictionaryDrip.h"
 

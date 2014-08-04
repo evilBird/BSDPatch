@@ -122,8 +122,8 @@
 
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
 
-+ (BSDArraySerialize *)arraySerialize;
-+ (BSDArraySerialize *)arraySerializeCold:(NSArray *)array;
++ (BSDArrayDripSlow *)arraySerialize;
++ (BSDArrayDripSlow *)arraySerializeCold:(NSArray *)array;
 
 + (BSDArrayElement *)arrayElement;
 + (BSDArrayElement *)arrayElementCold:(NSArray *)array;
