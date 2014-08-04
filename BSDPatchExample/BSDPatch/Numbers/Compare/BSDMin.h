@@ -10,4 +10,7 @@
 
 @interface BSDMin : BSDObject
 
+//Takes NSNumbers in hot and cold inlets. Outputs the minimum of hot and cold inlet values.
+- (instancetype)initWithMin:(NSNumber *)min;
+
 @end

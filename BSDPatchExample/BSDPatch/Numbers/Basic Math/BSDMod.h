@@ -10,4 +10,6 @@
 
 @interface BSDMod : BSDObject
 
+- (instancetype)initWithModulo:(NSNumber *)modulo;
+
 @end

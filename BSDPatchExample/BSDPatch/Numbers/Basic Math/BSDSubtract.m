@@ -10,11 +10,19 @@
 
 @implementation BSDSubtract
 
+- (instancetype)initWithDiffValue:(NSNumber *)diff
+{
+    return [super initWithArguments:diff];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"subtract";
-    if (arguments) {
-        self.coldInlet.value = arguments;
+    NSNumber *diffValue = arguments;
+    if (diffValue) {
+        self.coldInlet.value = diffValue;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

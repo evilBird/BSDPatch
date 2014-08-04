@@ -14,7 +14,7 @@
 #import "BSDDivide.h"
 #import "BSDSwap.h"
 #import "BSDValueBox.h"
-#import "BSDPower.h"
+#import "BSDExponent.h"
 #import "BSDGreater.h"
 #import "BSDLess.h"
 #import "BSDEqualGreater.h"
@@ -28,7 +28,7 @@
 #import "BSDDistance2D.h"
 #import "BSDAverage.h"
 #import "BSDStdDev.h"
-#import "BSDLog.h"
+#import "BSDNaturalLog.h"
 #import "BSDPTest.h"
 #import "BSDAbs.h"
 #import "BSDChange.h"
@@ -38,7 +38,7 @@
 #import "BSDArrayNormalize.h"
 #import "BSDArrayPrepend.h"
 #import "BSDSequence.h"
-#import "BSDClassify.h"
+#import "BSDArrayClassify.h"
 
 #import "BSDSelect.h"
 #import "BSDBang.h"
@@ -70,7 +70,7 @@
 #import "BSDSplitPoint.h"
 #import "BSDLabel.h"
 
-#import "BSDPrependKey.h"
+#import "BSDAddKey.h"
 #import "BSDFormatString.h"
 
 #import "BSDGenerator.h"

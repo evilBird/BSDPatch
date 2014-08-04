@@ -18,8 +18,6 @@
 - (instancetype)initCold;
 
 // pass value to inlet
-- (void)input:(id)input;
-
-
+- (void)input:(id)value;
 
 @end

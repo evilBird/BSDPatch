@@ -10,14 +10,19 @@
 
 @implementation BSDMin
 
+- (instancetype)initWithMin:(NSNumber *)min
+{
+    return [super initWithArguments:min];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"min";
     NSNumber *initVal = (NSNumber *)arguments;
     if (initVal) {
-        [self.coldInlet input:initVal];
+        self.coldInlet.value = initVal;
     }else{
-        [self.coldInlet input:@(0)];
+        self.coldInlet.value = @0;
     }
 }
 

@@ -10,9 +10,9 @@
 
 @interface BSDCounter : BSDObject
 
-// Takes any NSObject as input/Output
+// Takes any NSObject as input/Output value and returns the incremented (NSNumber) value. Cold inlet stores current value.
 
-@property (nonatomic)BSDInlet *stepSizeInlet;
-
+- (instancetype)initWithStepSize:(NSNumber *)stepSize
+                    initialValue:(NSNumber *)initialValue;
 
 @end

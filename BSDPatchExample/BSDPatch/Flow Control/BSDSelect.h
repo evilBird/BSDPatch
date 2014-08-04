@@ -10,8 +10,17 @@
 
 @interface BSDSelect : BSDObject
 
-//given a list of values and inlets, emit a bang to the inlet whose value matches the input
+//BSDSelect: compares input values against a values contained in an array of selectors. An outlet is created for each value in the array. Input values that match a selector value cause a bang to be emitted from the selected outlet
 
-- (instancetype)initWithValues:(NSArray *)values inlets:(NSArray *)inlets;
+//initialize with an array of values against which hot inlet values will be compared
+- (instancetype)initWithSelectors:(NSArray *)selectors;
+- (instancetype)initAndConnectWithSelectorsAndInlets:(NSDictionary *)selectorsAndInlets;
+
+//create an additional outlet for the specified selector
+- (BSDOutlet *)addOutletForSelector:(id)selector;
+- (BSDOutlet *)addOutletForSelector:(id)selector connectToInlet:(BSDInlet *)inlet;
+//get an outlet for a specific selector value
+- (BSDOutlet *)outletForSelector:(id)selector;
+
 
 @end

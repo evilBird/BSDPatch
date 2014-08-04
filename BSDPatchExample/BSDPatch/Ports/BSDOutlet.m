@@ -11,17 +11,17 @@
 
 @implementation BSDOutlet
 
-- (void)connectInlet:(BSDInlet *)inlet
+- (void)connectToInlet:(BSDInlet *)inlet
 {
     [inlet observePort:self];
 }
 
-- (void)disconnectInlet:(BSDInlet *)inlet
+- (void)disconnectFromInlet:(BSDInlet *)inlet
 {
     [inlet stopObservingPort:self];
 }
 
-- (void)sendValue:(id)value
+- (void)output:(id)value;
 {
     [self setValue:value];
 }

@@ -6,18 +6,22 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDClassify.h"
+#import "BSDArrayClassify.h"
 #import "BSDCreate.h"
 
-@implementation BSDClassify
+@implementation BSDArrayClassify
+
+- (instancetype)initWithPredicates:(NSArray *)predicates
+{
+    return [super initWithArguments:predicates];
+}
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"classify";
-    NSDictionary *args = (NSDictionary *)arguments;
-    if (args) {
-        self.hotInlet.value = args[@"to_classify"];
-        self.coldInlet.value = args[@"predicates"];
+    NSArray *predicates = arguments;
+    if (predicates) {
+        self.coldInlet.value = predicates;
     }
 }
 
@@ -54,15 +58,13 @@
 
 - (void)calculateOutput
 {
-    id hot = self.hotInlet.value;
-    id cold = self.coldInlet.value;
-    if (cold == NULL) {
-        self.mainOutlet.value = hot;
-    }
-    
-    if (hot != NULL) {
-        NSDictionary *all = @{@"":hot};
-        self.mainOutlet.value = [self classifyGroups:all predicates:cold];
+    NSArray *toClassify = self.hotInlet.value;
+    NSArray *predicates = self.coldInlet.value;
+    if (!predicates) {
+        self.mainOutlet.value = toClassify;
+    }else if (toClassify){
+        NSDictionary *all = @{@"":toClassify};
+        self.mainOutlet.value = [self classifyGroups:all predicates:predicates];
     }
 }
 
@@ -100,6 +102,6 @@
     return result;
 }
  
- */
+*/
 
 @end

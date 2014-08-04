@@ -10,4 +10,8 @@
 
 @interface BSDSpigot : BSDObject
 
+//BSDSpigot passes values received in the hot inlet when cold inlet value is an NSNumber greater than 0, otherwise emits no output
+
+- (instancetype)initWithOpenState:(NSNumber *)openState;
+
 @end

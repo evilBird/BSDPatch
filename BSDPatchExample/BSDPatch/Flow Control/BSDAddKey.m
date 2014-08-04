@@ -6,17 +6,24 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDPrependKey.h"
+#import "BSDAddKey.h"
 
-@implementation BSDPrependKey
+@implementation BSDAddKey
+
+- (instancetype)initWithKey:(NSString *)key
+{
+    return [super initWithArguments:key];
+}
 
 - (void)setupWithArguments:(id)arguments
 {
-    self.name = @"prepend key";
+    self.name = @"add key";
     
     NSString *key = (NSString *)arguments;
-    if (key) {
+    if (key && key.length > 0) {
         self.coldInlet.value = key;
+    }else{
+        self.coldInlet.value = @"ERROR";
     }
 }
 
@@ -24,9 +31,7 @@
 {
     id hot = self.hotInlet.value;
     NSString *key = self.coldInlet.value;
-    if (key && hot != NULL) {
-        self.mainOutlet.value = @{key: hot};
-    }
+    self.mainOutlet.value = @{key: hot};
 }
 
 @end

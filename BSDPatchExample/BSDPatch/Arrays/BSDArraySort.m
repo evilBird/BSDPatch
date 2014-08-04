@@ -10,14 +10,17 @@
 
 @implementation BSDArraySort
 
+- (instancetype)initWithSortDescriptors:(NSArray *)sortDescriptors
+{
+    return [super initWithArguments:sortDescriptors];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"sort";
-    NSArray *args = (NSArray *)arguments;
-    if ([args respondsToSelector:@selector(count)]) {
-        [self.coldInlet input:args];
-    }else{
-        [self.coldInlet input:@[args]];
+    NSArray *sortDescriptors = arguments;
+    if (sortDescriptors) {
+        self.coldInlet.value = sortDescriptors;
     }
 }
 

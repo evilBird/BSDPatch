@@ -13,14 +13,12 @@
 @class BSDObject;
 
 //The abstract super class for all BSDObjects. Encapsulates input/output behavior
-@interface BSDObject : NSObject
+@interface BSDObject : NSObject <BSDPortDelegate>
 
 // Human-readable name
 @property (nonatomic,strong) NSString *name;
 // Unique per-object identifier
 @property (nonatomic,readonly) NSString *objectId;
-// Debug an object by printing its debug description to the log
-@property (nonatomic)BOOL debug;
 
 // Default port configuration
 @property (nonatomic,strong) BSDInlet *hotInlet;
@@ -40,6 +38,9 @@
 // Optionally keep an array or dictionary of sub-objects
 @property (nonatomic,strong) NSMutableArray *subobjects;
 
+// Debug an object by printing its debug description to the log
+@property (nonatomic)BOOL debug;
+
 // designated initializer
 - (instancetype) initWithArguments:(id)arguments;
 
@@ -55,19 +56,29 @@
 
 // Send output value
 - (void) calculateOutput;
+
+//handle input to a specific inlet
 - (void) hotInlet:(BSDInlet *)inlet receivedValue:(id)value;
+
+//handle bang message in an inlet
+- (void)inletReceievedBang:(BSDInlet *)inlet;
 
 // Connect to other Objects/Inlets
 - (void) connect:(BSDInlet *)inlet;
 - (void) disconnect:(BSDInlet *)inlet;
 - (void) connectOutlet:(BSDOutlet *)outlet toInlet:(BSDInlet *)inlet;
 
+// Optionally implement to reset an object to a specified state
+- (void) reset;
+
 // Compare to other objects
 - (BOOL) isEqual:(id)object;
-- (BOOL) isBang: (id)value;
+
+// Returns an array of class objects which can be handled by a given subclass. Returns nil by default.
+- (NSArray *)allowedTypes;
+
+// Debug & test
 - (NSString *) debugDescription;
-- (void)inletWasBanged:(BSDInlet *)inlet;
-- (void) reset;
 - (void) test;
 
 @end

@@ -13,6 +13,7 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"absolute value";
+    self.coldInlet.open = NO;
 }
 
 - (void)calculateOutput

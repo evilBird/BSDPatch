@@ -10,12 +10,19 @@
 
 @implementation BSDEqualGreater
 
+- (instancetype)initWithComparisonValue:(NSNumber *)comparisonValue
+{
+    return [super initWithArguments:comparisonValue];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"equal or greater";
     NSNumber *initVal = (NSNumber *)arguments;
     if (initVal) {
         self.coldInlet.value = initVal;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

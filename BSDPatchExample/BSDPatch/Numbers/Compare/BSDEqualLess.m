@@ -10,12 +10,19 @@
 
 @implementation BSDEqualLess
 
+- (instancetype)initWithComparisonValue:(NSNumber *)comparisonValue
+{
+    return [super initWithArguments:comparisonValue];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"equal or less than";
     NSNumber *initVal = (NSNumber *)arguments;
-    if (arguments) {
+    if (initVal) {
         self.coldInlet.value = initVal;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

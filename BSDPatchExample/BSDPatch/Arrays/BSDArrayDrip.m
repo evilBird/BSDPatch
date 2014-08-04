@@ -10,4 +10,38 @@
 
 @implementation BSDArrayDrip
 
+- (instancetype)initWithArray:(NSArray *)array
+{
+    return [super initWithArguments:array];
+}
+
+- (void)setupWithArguments:(id)arguments
+{
+    self.name = @"array drip";
+    NSArray *array = arguments;
+    if (arguments) {
+        self.coldInlet.value = array;
+    }
+    
+    self.doneOutlet = [[BSDOutlet alloc]init];
+    self.doneOutlet.name = @"doneOutlet";
+    [self addPort:self.doneOutlet];
+    
+    self.hotInlet.delegate = self;
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet==self.hotInlet){
+        NSArray *toDrip = self.coldInlet.value;
+        if (toDrip) {
+            for (id element in toDrip) {
+                self.mainOutlet.value = element;
+            }
+        }
+        
+        self.doneOutlet.value = [BSDBang bang];
+    }
+}
+
 @end

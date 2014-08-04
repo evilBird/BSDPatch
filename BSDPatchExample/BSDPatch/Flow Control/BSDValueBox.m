@@ -10,25 +10,27 @@
 
 @implementation BSDValueBox
 
+- (instancetype)initWithValue:(id)value
+{
+    return [super initWithArguments:value];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"value";
     if (arguments != NULL) {
-        [self.coldInlet input:arguments];
-    }else{
-        [self.coldInlet input:NULL];
+        self.coldInlet.value = arguments;
+    }
+    
+    self.hotInlet.delegate = self;
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if ([inlet isEqual:self.hotInlet]) {
+        self.mainOutlet.value = self.coldInlet.value;
     }
 }
 
-- (void)calculateOutput
-{
-    id hot = self.hotInlet.value;
-    
-    if ([self isBang:hot]) {
-        self.mainOutlet.value = self.coldInlet.value;
-    }else{
-        self.mainOutlet.value = self.hotInlet.value;
-    }
-}
 
 @end

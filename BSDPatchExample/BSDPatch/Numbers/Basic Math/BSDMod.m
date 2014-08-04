@@ -10,9 +10,15 @@
 
 @implementation BSDMod
 
+- (instancetype)initWithModulo:(NSNumber *)modulo
+{
+    return [super initWithArguments:modulo];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
-    self.name = @"mod";
+    self.name = @"modulus";
+    
     NSNumber *initVal = (NSNumber *)arguments;
     if (initVal) {
         [self.coldInlet input:initVal];

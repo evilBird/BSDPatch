@@ -15,10 +15,10 @@
 
 @property (nonatomic,strong)BSDSubtract *diffX;
 @property (nonatomic,strong)BSDSubtract *diffY;
-@property (nonatomic,strong)BSDPower *squareX;
-@property (nonatomic,strong)BSDPower *squareY;
+@property (nonatomic,strong)BSDExponent *squareX;
+@property (nonatomic,strong)BSDExponent *squareY;
 @property (nonatomic,strong)BSDAdd *addSquares;
-@property (nonatomic,strong)BSDPower *rootSum;
+@property (nonatomic,strong)BSDExponent *rootSum;
 
 @end
 

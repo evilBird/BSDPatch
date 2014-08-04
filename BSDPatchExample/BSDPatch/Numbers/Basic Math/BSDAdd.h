@@ -10,6 +10,6 @@
 
 @interface BSDAdd : BSDObject
 
-//Input & Output type NSNumber
+- (instancetype)initWithPlusValue:(NSNumber *)plusValue;
 
 @end

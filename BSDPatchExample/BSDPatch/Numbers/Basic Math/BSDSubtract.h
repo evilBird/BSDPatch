@@ -11,5 +11,6 @@
 @interface BSDSubtract : BSDObject
 
 //Input & Output type NSNumber
+- (instancetype)initWithDiffValue:(NSNumber *)diff;
 
 @end

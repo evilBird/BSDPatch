@@ -10,4 +10,6 @@
 
 @interface BSDReciprocal : BSDObject
 
+- (instancetype)initWithNumerator:(NSNumber *)numerator;
+
 @end

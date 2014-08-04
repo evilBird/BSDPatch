@@ -10,15 +10,23 @@
 
 @implementation BSDChange
 
+- (instancetype)initWithComparisonValue:(id)value
+{
+    return [super initWithArguments:value];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"change";
-    [self.coldInlet input:@(0)];
+    id comparisonValue = arguments;
+    if (comparisonValue) {
+        self.coldInlet.value = comparisonValue;
+    }
 }
 
 - (void)calculateOutput
 {
-    if (self.hotInlet.value != self.coldInlet.value) {
+    if (![self.hotInlet.value isEqual:self.coldInlet.value]) {
         self.coldInlet.value = self.hotInlet.value;
         self.mainOutlet.value = self.hotInlet.value;
     }

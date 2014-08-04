@@ -22,8 +22,8 @@
 + (BSDSpigot *)spigot;
 + (BSDSpigot *)spigotCold:(NSNumber *)coldInletValue;
 
-+ (BSDPrependKey *)prependKey;
-+ (BSDPrependKey *)prependKeyCold:(NSString *)coldInletValue;
++ (BSDAddKey *)prependKey;
++ (BSDAddKey *)prependKeyCold:(NSString *)coldInletValue;
 
 + (BSDSequence *)sequenceInlets:(NSArray *)inlets;
 
@@ -52,10 +52,10 @@
 + (BSDValueBox *)valueBox;
 + (BSDValueBox *)valueBoxCold:(NSNumber *)coldInletValue;
 
-+ (BSDPower *)power;
-+ (BSDPower *)powerCold:(NSNumber *)coldInletValue;
++ (BSDExponent *)power;
++ (BSDExponent *)powerCold:(NSNumber *)coldInletValue;
 
-+ (BSDLog *)naturalLog;
++ (BSDNaturalLog *)naturalLog;
 + (BSDAbs *)absoluteValue;
 
 + (BSDMax *)max;
@@ -130,7 +130,7 @@
 
 + (BSDArrayNormalize *)normalize;
 
-+ (BSDClassify *)classify:(id)arguments;
++ (BSDArrayClassify *)classify:(id)arguments;
 
 + (BSDView *)view;
 + (BSDView *)viewWithUIView:(UIView *)view;

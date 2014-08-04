@@ -10,11 +10,19 @@
 
 @implementation BSDMultiply
 
+- (instancetype)initWithWithFactor:(NSNumber *)factor
+{
+    return [super initWithArguments:factor];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"multiply";
-    if (arguments) {
-        self.coldInlet.value = arguments;
+    NSNumber *initFactor = arguments;
+    if (initFactor) {
+        self.coldInlet.value = initFactor;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

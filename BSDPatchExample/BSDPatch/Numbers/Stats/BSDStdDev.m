@@ -21,9 +21,9 @@
 @property (nonatomic,strong)BSDAverage *average;
 @property (nonatomic,strong)BSDAccum *accum;
 @property (nonatomic,strong)BSDSubtract *deviance;
-@property (nonatomic,strong)BSDPower *squaredDeviance;
-@property (nonatomic,strong)BSDPower *rootDeviance;
-@property (nonatomic,strong)BSDPower *rootDof;
+@property (nonatomic,strong)BSDExponent *squaredDeviance;
+@property (nonatomic,strong)BSDExponent *rootDeviance;
+@property (nonatomic,strong)BSDExponent *rootDof;
 @property (nonatomic,strong)BSDDivide *normDof;
 @property (nonatomic,strong)BSDSubtract *dof;
 @property (nonatomic,strong)BSDDivide *divide;

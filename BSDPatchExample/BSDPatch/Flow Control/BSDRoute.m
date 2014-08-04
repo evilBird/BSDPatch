@@ -10,69 +10,65 @@
 
 @implementation BSDRoute
 
-- (instancetype)initWithKeys:(NSArray *)keys forInlets:(NSArray *)inlets
+- (instancetype)initWithRouteKeys:(NSArray *)routeKeys
 {
-    if (keys.count != inlets.count) {
-        return [super initWithArguments:nil];
-    }else{
-        NSUInteger i = 0;
-        NSMutableDictionary *args = [NSMutableDictionary dictionary];
-        for (NSString *aKey in keys) {
-            args[aKey] = inlets[i];
-            i++;
-        }
-        
-        return [super initWithArguments:args];
-    }
+    return [super initWithArguments:routeKeys];
+}
+
+- (instancetype)initAndConnectWithRouteKeysAndInlets:(NSDictionary *)routeKeysAndInlets
+{
+    return [super initWithArguments:routeKeysAndInlets];
 }
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"route";
+    self.coldInlet.open = NO;
     if ([arguments isKindOfClass:[NSArray class]]) {
-        for (NSString *aSelector in arguments) {
-            BSDOutlet *outlet = [[BSDOutlet alloc]init];
-            outlet.name = aSelector;
-            [self addPort:outlet];
+        NSArray *routeKeys = arguments;
+        for (NSString *aRouteKey in routeKeys) {
+            
+            [self addOutletForRouteKey:aRouteKey];
         }
     }else if ([arguments isKindOfClass:[NSDictionary class]]){
-        NSDictionary *args = (NSDictionary *)arguments;
-        NSUInteger i = 0;
-        for (NSString *aKey in args.allKeys) {
-            BSDOutlet *outlet = [[BSDOutlet alloc]init];
-            outlet.name = aKey;
-            [self addPort:outlet];
-            [outlet connectInlet:args.allValues[i]];
-            i++;
+        NSDictionary *routeKeysAndInlets = arguments;
+        for (NSString *aRouteKey in routeKeysAndInlets.allKeys) {
+            BSDInlet *anInlet = routeKeysAndInlets[aRouteKey];
+            [self addOutletForRouteKey:aRouteKey connectToInlet:anInlet];
         }
-        
     }
 }
 
 - (void)calculateOutput
 {
-    
-    NSArray *inputArray = self.hotInlet.value;
-    
-    if (inputArray && [inputArray isKindOfClass:[NSArray class]]) {
-        if (inputArray.count >=2) {
-            NSString *selector = inputArray.firstObject;
-            BSDOutlet *outlet = [self outletNamed:selector];
-            outlet.value = inputArray[1];
-        }
-    }else{
-        
-        NSDictionary *inputDictionary = self.hotInlet.value;
-        
-        if (inputDictionary && [inputDictionary isKindOfClass:[NSDictionary class]]) {
-            NSString *selector = inputDictionary.allKeys.firstObject;
-            id value = inputDictionary[selector];
-            [[self outletNamed:selector]setValue:value];
-        }
-
+    NSDictionary *hot = self.hotInlet.value;
+    for (NSString *aRouteKey in hot) {
+        BSDOutlet *anOutlet = [self outletForRouteKey:aRouteKey];
+        id value = hot[aRouteKey];
+        anOutlet.value = value;
     }
     
-    
+    self.mainOutlet.value = hot;
+}
+
+- (BSDOutlet *)addOutletForRouteKey:(NSString *)routeKey
+{
+    BSDOutlet *outlet = [[BSDOutlet alloc]init];
+    outlet.name = routeKey;
+    [self addPort:outlet];
+    return outlet;
+}
+
+- (BSDOutlet *)addOutletForRouteKey:(NSString *)routeKey connectToInlet:(BSDInlet *)inlet
+{
+    BSDOutlet *outlet = [self addOutletForRouteKey:routeKey];
+    [outlet connectToInlet:inlet];
+    return outlet;
+}
+
+- (BSDOutlet *)outletForRouteKey:(NSString *)aRouteKey
+{
+    return [self outletNamed:aRouteKey];
 }
 
 @end

@@ -10,6 +10,11 @@
 
 @implementation BSDSwap
 
+- (instancetype)initWithColdInletValue:(id)value
+{
+    return [super initWithArguments:value];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"swap";
@@ -32,8 +37,10 @@
 {
     id hot = self.hotInlet.value;
     id cold = self.coldInlet.value;
-    if (hot != NULL && cold != NULL) {
+    if (hot != NULL) {
         self.rightOutlet.value = hot;
+    }
+    if (cold != NULL) {
         self.leftOutlet.value = cold;
     }
 }

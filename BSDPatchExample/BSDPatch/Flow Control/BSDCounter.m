@@ -8,37 +8,47 @@
 
 #import "BSDCounter.h"
 
+@interface BSDCounter ()
+
+@property (nonatomic)NSNumber *stepSize;
+@property (nonatomic)NSNumber *initialValue;
+
+@end
+
 @implementation BSDCounter
 
-- (void)setupWithArguments:(NSArray *)arguments
+- (instancetype)initWithStepSize:(NSNumber *)stepSize
+                    initialValue:(NSNumber *)initialValue
+{
+    return [super initWithArguments:@{@"stepSize":stepSize,
+                                      @"initialValue":initialValue}];
+}
+
+- (void)setupWithArguments:(NSDictionary *)arguments
 {
     self.name = @"counter";
-    [self.coldInlet input:@(0)];
-    self.stepSizeInlet = [[BSDInlet alloc]initCold];
-    self.stepSizeInlet.name = @"step";
-    [self addPort:self.stepSizeInlet];
-    [self.stepSizeInlet input:@(1)];
-
-    if (arguments.count > 0) {
-        NSNumber *initVal = arguments[0];
-        [self.coldInlet input:initVal];
-    }
-    
-    if (arguments.count > 1) {
-        NSNumber *stepSize = arguments[1];
-        [self.stepSizeInlet input:stepSize];
+    NSDictionary *args = arguments;
+    if (args) {
+        self.stepSize = args[@"stepSize"];
+        self.initialValue = args[@"initialValue"];
+        self.coldInlet.value = self.initialValue;
+    }else{
+        self.stepSize = @1;
+        self.initialValue = @0;
+        self.coldInlet.value = self.initialValue;
     }
 }
 
 - (void)reset
 {
-    [self.coldInlet input:@(0)];    
+    self.coldInlet.value = self.initialValue;
+    
 }
 
 - (void)calculateOutput
 {
     double cold = [self.coldInlet.value doubleValue];
-    double step = [self.stepSizeInlet.value doubleValue];
+    double step = self.stepSize.doubleValue;
     double result = cold+step;
     self.coldInlet.value = @(result);
     self.mainOutlet.value = @(result);

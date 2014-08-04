@@ -11,33 +11,32 @@
 
 @implementation BSDSelect
 
-- (instancetype)initWithValues:(NSArray *)values inlets:(NSArray *)inlets
+- (instancetype)initWithSelectors:(NSArray *)selectors
 {
-    NSDictionary *args = @{@"values": values,@"inlets":inlets};
-    return [super initWithArguments:args];
+    return [super initWithArguments:selectors];
+}
+
+- (instancetype)initAndConnectWithSelectorsAndInlets:(NSDictionary *)selectorsAndInlets
+{
+    return [super initWithArguments:selectorsAndInlets];
 }
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"select";
-    NSDictionary *args = arguments;
-    if (args) {
-        NSArray *values = args[@"values"];
-        NSArray *inlets = args[@"inlets"];
-        if (values.count != inlets.count) {
-            NSLog(@"\n\nBSDSelect ERROR\nNumber of values and inlets must match");
-        }else{
-            
-            NSUInteger i = 0;
-            for (id aVal in values) {
-                NSString *key = [NSString stringWithFormat:@"%@",aVal];
-                BSDOutlet *outlet = [[BSDOutlet alloc]init];
-                outlet.name = key;
-                [self addPort:outlet];
-                BSDInlet *inlet = inlets[i];
-                [self connectOutlet:outlet toInlet:inlet];
-                i++;
-            }
+    self.coldInlet.open = NO;
+    
+    if ([arguments isKindOfClass:[NSArray class]]) {
+        NSArray *selectors = arguments;
+        for (id aSelector in selectors) {
+            [self addOutletForSelector:aSelector];
+        }
+        
+    }else if ([arguments isKindOfClass:[NSDictionary class]]){
+        NSDictionary *selectorsAndInlets = arguments;
+        for (id aSelector in selectorsAndInlets.allKeys) {
+            BSDInlet *inlet = selectorsAndInlets[aSelector];
+            [self addOutletForSelector:aSelector connectToInlet:inlet];
         }
     }
 }
@@ -50,6 +49,29 @@
     if (outlet != nil) {
         outlet.value = [BSDBang bang];
     }
+    
+    self.mainOutlet.value = hot;
+}
+
+//create an additional outlet for the specified selector
+- (BSDOutlet *)addOutletForSelector:(id)selector
+{
+    BSDOutlet *outlet = [[BSDOutlet alloc]init];
+    outlet.name = [NSString stringWithFormat:@"%@",selector];
+    [self addPort:outlet];
+    return outlet;
+}
+- (BSDOutlet *)addOutletForSelector:(id)selector connectToInlet:(BSDInlet *)inlet
+{
+    BSDOutlet *outlet = [self addOutletForSelector:selector];
+    [outlet connectToInlet:inlet];
+    return outlet;
+}
+
+- (BSDOutlet *)outletForSelector:(id)selector
+{
+    NSString *outletName = [NSString stringWithFormat:@"%@",selector];
+    return [self outletNamed:outletName];
 }
 
 - (void)test
@@ -69,7 +91,10 @@
     
     NSArray *vals = @[@(0),@(1),@(2)];
     NSArray *inlets = @[box1.hotInlet,box2.hotInlet,box3.hotInlet];
-    BSDSelect *select = [[BSDSelect alloc]initWithValues:vals inlets:inlets];
+    BSDSelect *select = [[BSDSelect alloc]initAndConnectWithSelectorsAndInlets:@{vals[0]:inlets[0],
+                                                                                 vals[1]:inlets[1],
+                                                                                 vals[2]:inlets[2]
+                                                                                 }];
     [select.hotInlet input:@(2)];
     NSLog(@"select in: %@",select.hotInlet.value);
     [select.hotInlet input:@(1)];

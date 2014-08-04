@@ -15,10 +15,10 @@
 @property (nonatomic,strong)BSDRoute *route;
 @property (nonatomic,strong)BSDSubtract *diffX;
 @property (nonatomic,strong)BSDSubtract *diffY;
-@property (nonatomic,strong)BSDPower *squareX;
-@property (nonatomic,strong)BSDPower *squareY;
+@property (nonatomic,strong)BSDExponent *squareX;
+@property (nonatomic,strong)BSDExponent *squareY;
 @property (nonatomic,strong)BSDAdd *addSquares;
-@property (nonatomic,strong)BSDPower *rootSum;
+@property (nonatomic,strong)BSDExponent *rootSum;
 
 @end
 
@@ -43,10 +43,10 @@
     self.addSquares = [BSDCreate add];
     self.rootSum = [BSDCreate powerCold:@(0.5)];
     
-    [[self.route outletNamed:routingSelectors[0]]connectInlet:self.diffX.coldInlet];
-    [[self.route outletNamed:routingSelectors[1]]connectInlet:self.diffY.coldInlet];
-    [[self.route outletNamed:routingSelectors[2]]connectInlet:self.diffX.hotInlet];
-    [[self.route outletNamed:routingSelectors[3]]connectInlet:self.diffY.hotInlet];
+    [[self.route outletNamed:routingSelectors[0]]connectToInlet:self.diffX.coldInlet];
+    [[self.route outletNamed:routingSelectors[1]]connectToInlet:self.diffY.coldInlet];
+    [[self.route outletNamed:routingSelectors[2]]connectToInlet:self.diffX.hotInlet];
+    [[self.route outletNamed:routingSelectors[3]]connectToInlet:self.diffY.hotInlet];
 
     [self.diffX connect:self.squareX.hotInlet];
     [self.diffY connect:self.squareY.hotInlet];

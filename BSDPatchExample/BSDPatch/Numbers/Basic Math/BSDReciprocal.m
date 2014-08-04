@@ -12,14 +12,19 @@
 
 @implementation BSDReciprocal
 
+- (instancetype)initWithNumerator:(NSNumber *)numerator
+{
+    return [super initWithArguments:numerator];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"reciprocal";
-    NSNumber *coldVal = (NSNumber *)arguments;
-    if (coldVal) {
-        self.coldInlet.value = coldVal;
+    NSNumber *numerator = arguments;
+    if (numerator) {
+        self.coldInlet.value = numerator;
     }else{
-        self.coldInlet.value = @(1);
+        self.coldInlet.value = @1;
     }
 }
 

@@ -26,19 +26,14 @@
     return [super init];
 }
 
-- (void)bang
+- (void)input:(id)value
 {
-    [self input:self.value];
-}
-
-- (void)input:(id)input;
-{
-    if ([input isKindOfClass:[BSDBang class]]) {
-        [(BSDBang *)input setValue:self.value];
-    }
-    
-    if (self.isOpen) {
-        self.value = input;
+    if ([value isKindOfClass:[BSDBang class]]) {
+        if (self.delegate) {
+            [self.delegate portReceivedBang:self];
+        }
+    }else if (self.isOpen) {
+        self.value = value;
     }
 }
 
@@ -48,5 +43,6 @@
         [self input:[(BSDPort *)object value]];
     }
 }
+
 
 @end

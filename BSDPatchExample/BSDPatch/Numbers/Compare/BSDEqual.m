@@ -10,12 +10,20 @@
 
 @implementation BSDEqual
 
+- (instancetype)initWithComparisonValue:(NSNumber *)comparisonValue
+{
+    return [super initWithArguments:comparisonValue];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"equal";
     NSNumber *initVal = (NSNumber *)arguments;
+    
     if (initVal) {
-        [self.coldInlet input:initVal];
+        self.coldInlet.value = initVal;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

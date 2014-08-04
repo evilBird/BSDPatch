@@ -10,14 +10,19 @@
 
 @implementation BSDSpigot
 
+- (instancetype)initWithOpenState:(NSNumber *)openState
+{
+    return [super initWithArguments:openState];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"spigot";
     NSNumber *initVal = (NSNumber *)arguments;
     if (initVal) {
-        [self.coldInlet input:arguments];
+        self.coldInlet.value = initVal;
     }else{
-        [self.coldInlet input:@(0)];
+        self.coldInlet.value = @0;
     }
 }
 

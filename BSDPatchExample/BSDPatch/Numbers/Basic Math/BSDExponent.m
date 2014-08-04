@@ -6,15 +6,23 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDPower.h"
+#import "BSDExponent.h"
 
-@implementation BSDPower
+@implementation BSDExponent
+
+- (instancetype)initWithExponent:(NSNumber *)exponent
+{
+    return [super initWithArguments:exponent];
+}
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"multiply";
-    if (arguments) {
-        self.coldInlet.value = arguments;
+    NSNumber *initExponent = arguments;
+    if (initExponent) {
+        self.coldInlet.value = initExponent;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 

@@ -10,9 +10,22 @@
 
 @interface BSDRoute : BSDObject
 
-//Input: takes an NSArray with two objects: a string and a value, e.g. @["routing_tag",@(value)]
-//Output: sends any NSObject out the outlet specified by the string in the input, e.g. the above array would cause @(value) to be sent from the outlet named "routing_tag"
+//Inlets
+//Hot: takes a dictionary with containing key-value pairs, routes the values to the outlets specified by the key
+//Cold: NA
 
-- (instancetype)initWithKeys:(NSArray *)keys forInlets:(NSArray *)inlets;
+//Outlets
+//Main outlet: passes through the input
+//Additional outlets: Has as many outlets as there are keys specified by the creation arguments
+
+- (instancetype)initWithRouteKeys:(NSArray *)routeKeys;
+//convenience intitializer which creates outlets for each specified inlet/outlet pair
+- (instancetype)initAndConnectWithRouteKeysAndInlets:(NSDictionary *)routeKeysAndInlets;
+//Get a specific outlet by route key
+- (BSDOutlet *)outletForRouteKey:(NSString *)aRouteKey;
+
+//Add an outlet for a route key
+- (BSDOutlet *)addOutletForRouteKey:(NSString *)routeKey;
+- (BSDOutlet *)addOutletForRouteKey:(NSString *)routeKey connectToInlet:(BSDInlet *)inlet;
 
 @end

@@ -19,7 +19,8 @@ typedef void (^BSDObjectOutputBlock)(BSDObject *object, BSDOutlet *outlet);
 
 @property (nonatomic,strong)BSDObjectOutputBlock outputBlock;
 
-- (void)connectInlet:(BSDInlet *)inlet;
-- (void)disconnectInlet:(BSDInlet *)inlet;
+- (void)connectToInlet:(BSDInlet *)inlet;
+- (void)disconnectFromInlet:(BSDInlet *)inlet;
+- (void)output:(id)value;
 
 @end

@@ -10,7 +10,12 @@
 
 @implementation BSDSequence
 
-- (id)initWithInlets:(NSArray *)inlets
+- (instancetype)initWithNumberOfOutlets:(NSNumber *)numberOfOutlets
+{
+    return [super initWithArguments:numberOfOutlets];
+}
+
+- (instancetype)initAndConnectToInlets:(NSArray *)inlets
 {
     return [super initWithArguments:inlets];
 }
@@ -18,16 +23,16 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"sequence";
-    NSArray *inlets = (NSArray *)arguments;
-    
-    if (inlets) {
-        NSUInteger idx = 0;
+    self.coldInlet.open = NO;
+    if ([arguments isKindOfClass:[NSNumber class]]) {
+        NSNumber *numberOfOutlets = arguments;
+        for (NSUInteger i = 0; i < numberOfOutlets.integerValue; i++) {
+            [self addOutlet];
+        }
+    }else if ([arguments isKindOfClass:[NSArray class]]){
+        NSArray *inlets = arguments;
         for (BSDInlet *anInlet in inlets) {
-            BSDOutlet *anOutlet = [[BSDOutlet alloc]init];
-            anOutlet.name = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
-            [self addPort:anOutlet];
-            [anOutlet connectInlet:anInlet];
-            idx ++;
+            [self addOutletAndConnectToInlet:anInlet];
         }
     }
 }
@@ -39,5 +44,26 @@
     }
 }
 
+//add outlets
+- (BSDOutlet *)addOutlet
+{
+    NSUInteger numberOfOutlets = self.outlets.count;
+    BSDOutlet *anOutlet = [[BSDOutlet alloc]init];
+    anOutlet.name = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfOutlets];
+    [self addPort:anOutlet];
+    
+    return anOutlet;
+}
+- (BSDOutlet *)addOutletAndConnectToInlet:(BSDInlet *)inlet
+{
+    BSDOutlet *outlet = [self addOutlet];
+    [outlet connectToInlet:inlet];
+    return outlet;
+}
+
+- (BSDOutlet *)outletAtIndex:(NSNumber *)index
+{
+    return [self outletNamed:[NSString stringWithFormat:@"%lu",(unsigned long)index.integerValue]];
+}
 
 @end

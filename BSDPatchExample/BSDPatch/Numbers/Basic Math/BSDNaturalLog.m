@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDLog.h"
+#import "BSDNaturalLog.h"
 
-@implementation BSDLog
+@implementation BSDNaturalLog
 
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"natural log";
+    self.coldInlet.open = NO;
 }
 
 - (void)calculateOutput

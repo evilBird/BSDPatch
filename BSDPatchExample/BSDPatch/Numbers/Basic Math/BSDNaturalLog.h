@@ -8,7 +8,7 @@
 
 #import "BSDObject.h"
 
-@interface BSDLog : BSDObject
+@interface BSDNaturalLog : BSDObject
 
 //Input & Output type NSNumber. Takes the natural log of the hot inlet value
 

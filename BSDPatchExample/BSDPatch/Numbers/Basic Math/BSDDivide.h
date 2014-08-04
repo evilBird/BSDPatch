@@ -12,4 +12,6 @@
 
 //Input & Output type NSNumber
 
+- (instancetype)initWithDenominator:(NSNumber *)denominator;
+
 @end

@@ -78,31 +78,35 @@
     //override
 }
 
-- (void)inletWasBanged:(BSDInlet *)inlet
+- (void)test
 {
     
 }
 
-- (void)test
+#pragma mark - BSDPortDelegate methods
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
 {
-    
+    if (self.debug) {
+        NSLog(@"inlet %@ receieved bang",inlet.name);
+    }
 }
 
 #pragma mark - Connect to other objects/inlets
 //Manage connections with specific inlets
 - (void)connect:(BSDInlet *)inlet
 {
-    [self.mainOutlet connectInlet:inlet];
+    [self.mainOutlet connectToInlet:inlet];
 }
 
 - (void)disconnect:(BSDInlet *)inlet
 {
-    [self.mainOutlet disconnectInlet:inlet];
+    [self.mainOutlet disconnectFromInlet:inlet];
 }
 
 - (void) connectOutlet:(BSDOutlet *)outlet toInlet:(BSDInlet *)inlet
 {
-    [outlet connectInlet:inlet];
+    [outlet connectToInlet:inlet];
 }
 
 
@@ -124,6 +128,7 @@
     }
 }
 
+// get an inlet by name
 - (BSDInlet *) inletNamed:(NSString *)name
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
@@ -143,6 +148,7 @@
     return nil;
 }
 
+// get an outlet by name
 - (BSDOutlet *) outletNamed:(NSString *)name
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
@@ -175,15 +181,6 @@
         if ([[object objectId] isEqualToString:[self objectId]]) {
             return YES;
         }
-    }
-    
-    return NO;
-}
-
-- (BOOL) isBang: (id)value
-{
-    if ([value isKindOfClass:[BSDBang class]]) {
-        return YES;
     }
     
     return NO;

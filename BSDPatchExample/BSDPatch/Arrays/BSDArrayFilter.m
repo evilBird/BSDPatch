@@ -10,23 +10,33 @@
 
 @implementation BSDArrayFilter
 
+- (instancetype)initWithPredicates:(NSPredicate *)predicate
+{
+    return [super initWithArguments:predicate];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"filter";
+    NSPredicate *predicate = arguments;
     
-    if (arguments) {
-        [self.coldInlet input:arguments];
+    if (predicate) {
+        self.coldInlet.value = arguments;
     }else{
-        [self.coldInlet input:[NSPredicate predicateWithValue:YES]];
+        self.coldInlet.value = [NSPredicate predicateWithValue:YES];
     }
+
 }
 
 - (void)calculateOutput
 {
     NSMutableArray *inputCopy = [self.hotInlet.value mutableCopy];
-    NSPredicate *predicate = self.coldInlet.value;
-    [inputCopy filterUsingPredicate:predicate];
-    self.mainOutlet.value = inputCopy;
+    NSArray *hot = self.hotInlet.value;
+    NSPredicate *cold = self.coldInlet.value;
+    if (hot && cold) {
+        self.mainOutlet.value = [hot filteredArrayUsingPredicate:cold];
+    }
+
 }
 
 

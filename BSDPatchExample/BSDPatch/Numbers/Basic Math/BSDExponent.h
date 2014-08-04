@@ -8,8 +8,9 @@
 
 #import "BSDObject.h"
 
-@interface BSDPower : BSDObject
+@interface BSDExponent : BSDObject
 
 //Input & Output type NSNumber
+- (instancetype)initWithExponent:(NSNumber *)exponent;
 
 @end

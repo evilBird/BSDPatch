@@ -10,6 +10,11 @@
 
 @implementation BSDSplitArray
 
+- (instancetype)initWithSplitIndex:(NSNumber *)splitIndex
+{
+    return [super initWithArguments:splitIndex];
+}
+
 - (instancetype)initWithArray:(NSArray *)array
 {
     return [super initWithArguments:array];
@@ -18,13 +23,15 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"split array";
-    self.rightOutlet = [[BSDOutlet alloc]init];
-    self.rightOutlet.name = @"right";
-    [self addPort:self.rightOutlet];
+    self.remainderOutlet = [[BSDOutlet alloc]init];
+    self.remainderOutlet.name = @"right";
+    [self addPort:self.remainderOutlet];
     
-    NSArray *args = arguments;
-    if (args) {
-        self.coldInlet.value = args;
+    NSArray *splitIndex = arguments;
+    if (splitIndex) {
+        self.coldInlet.value = splitIndex;
+    }else{
+        self.coldInlet.value = @0;
     }
 }
 
@@ -41,7 +48,7 @@
         NSRange rightRange;
         rightRange.location = i;
         rightRange.length = array.count - i;
-        self.rightOutlet.value = [array objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:rightRange]];
+        self.remainderOutlet.value = [array objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:rightRange]];
         self.mainOutlet.value = [array objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:leftRange]];
     }
 }

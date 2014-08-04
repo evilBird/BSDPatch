@@ -11,5 +11,6 @@
 @interface BSDEqual : BSDObject
 
 //Input and Output are NSNumbers. Tests whether hot and cold inlet values are equal.
+- (instancetype)initWithComparisonValue:(NSNumber *)comparisonValue;
 
 @end

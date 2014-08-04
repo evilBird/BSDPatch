@@ -10,4 +10,7 @@
 
 @interface BSDMax : BSDObject
 
+//Takes an NSNumber and ouputs the greater of the hot and cold inlet values
+- (instancetype)initWithMax:(NSNumber *)max;
+
 @end

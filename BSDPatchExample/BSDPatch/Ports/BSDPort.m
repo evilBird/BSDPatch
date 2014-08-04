@@ -20,6 +20,11 @@
     return self;
 }
 
+- (NSString *)portId
+{
+    return [NSString stringWithFormat:@"%p",self];
+}
+
 - (void)observePort:(BSDPort *)port
 {
     if (!self.observedPorts) {
@@ -59,6 +64,7 @@
     }
     
     self.observedPorts = nil;
+    self.delegate = nil;
 }
 
 @end

@@ -11,5 +11,6 @@
 @interface BSDMultiply : BSDObject
 
 //Input & Output type NSNumber
+- (instancetype)initWithWithFactor:(NSNumber *)factor;
 
 @end

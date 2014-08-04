@@ -10,14 +10,19 @@
 
 @implementation BSDMax
 
+- (instancetype)initWithMax:(NSNumber *)max
+{
+    return [super initWithArguments:max];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"max";
     NSNumber *initVal = (NSNumber *)arguments;
     if (initVal) {
-        [self.coldInlet input:initVal];
+        self.coldInlet.value = initVal;
     }else{
-        [self.coldInlet input:@(0)];
+        self.coldInlet.value = @0;
     }
 }
 
@@ -26,6 +31,7 @@
     double cold = [self.coldInlet.value doubleValue];
     double hot = [self.hotInlet.value doubleValue];
     double result = cold;
+    
     if (hot > cold) {
         result = hot;
     }
