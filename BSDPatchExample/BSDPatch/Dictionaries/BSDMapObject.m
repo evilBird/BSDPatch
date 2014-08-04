@@ -14,8 +14,7 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"mapObject";
-    //self.debug = YES;
-
+    self.coldInlet.open = NO;
 }
 
 - (void)calculateOutput

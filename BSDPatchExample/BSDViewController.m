@@ -8,10 +8,12 @@
 
 #import "BSDViewController.h"
 #import "BSDExamplePatch.h"
+#import "BSDExample.h"
 
 @interface BSDViewController ()
 
 @property (nonatomic,strong)BSDExamplePatch *examplePatch;
+@property (nonatomic,strong)BSDExample *example;
 
 @end
 
@@ -21,12 +23,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.examplePatch = [[BSDExamplePatch alloc]initWithSuperview:self.view];
+    //self.examplePatch = [[BSDExamplePatch alloc]initWithSuperview:self.view];
     [self test];
 }
 
 - (void)test
 {
+    self.example = [[BSDExample alloc]initInView:self.view];
     
 }
 

@@ -11,85 +11,79 @@
 
 @interface BSDAverage ()
 
-@property (nonatomic,strong)BSDSequence *sequence;
-@property (nonatomic,strong)BSDSubtract *subtract;
-@property (nonatomic,strong)BSDAccum *accum;
-@property (nonatomic,strong)BSDCounter *counter;
-@property (nonatomic,strong)BSDDivide *divide;
-@property (nonatomic,strong)NSMutableArray *inputBuffer;
+@property (nonatomic) NSUInteger count;
+@property (nonatomic) NSUInteger bufferSize;
+@property (nonatomic) double runningSum;
 
 @end
 
 @implementation BSDAverage
 
-- (id)initWithBufferSize:(NSUInteger)bufferSize
+- (instancetype)initWithBufferSize:(NSNumber *)bufferSize;
 {
-    return [super initWithArguments:@(bufferSize)];
+    return [super initWithArguments:bufferSize];
 }
 
 - (void)setupWithArguments:(id)arguments
 {
+    
+    self.name = @"average";
     NSNumber *bufferSize = (NSNumber *)arguments;
+    
+    self.countOutlet = [[BSDOutlet alloc]init];
+    self.countOutlet.name = @"count";
+    self.countOutlet.value = @(0);
     
     if (bufferSize) {
         _bufferSize = bufferSize.integerValue;
-        self.inputBuffer = [NSMutableArray array];
-
+        BSDBuffer *buffer = [[BSDBuffer alloc]initWithBufferSize:bufferSize];
+        self.coldInlet.value = buffer;
+    }else{
+        _bufferSize = 0;
+        self.coldInlet.value = @0;
     }
     
-    self.name = @"average";
-    self.accum = [BSDCreate accumulate];
-    self.counter = [BSDCreate counter];
-    self.divide = [BSDCreate divide];
-    self.subtract = [BSDCreate subtractCold:@(0)];
-    self.sequence = [BSDCreate sequenceInlets:@[self.counter.hotInlet,self.subtract.hotInlet]];
-    [self.hotInlet forwardToPort:self.sequence.hotInlet];
-    [self.subtract connect:self.accum.hotInlet];
-    [self.accum connect:self.divide.hotInlet];
-    [self.counter connect:self.divide.coldInlet];
-    [self.divide.mainOutlet forwardToPort:self.mainOutlet];
+    self.count = 0;
 }
 
-- (id)addBufferValue:(id)value
+- (void)inletReceievedBang:(BSDInlet *)inlet
 {
-    if (value != NULL && self.inputBuffer) {
-        
-        if (self.inputBuffer.count == 0) {
-            [self.inputBuffer addObject:value];
-        }else if (self.inputBuffer.count < self.bufferSize){
-            [self.inputBuffer insertObject:value atIndex:0];
-        }else{
-            [self.inputBuffer insertObject:value atIndex:0];
-            id oldestValue = self.inputBuffer.lastObject;
-            [self.inputBuffer removeObjectAtIndex:(self.inputBuffer.count - 1)];
-            return oldestValue;
-        }
-        
+    if (inlet == self.hotInlet) {
+        [self reset];
+        [self calculateOutput];
     }
-    
-    return NULL;
 }
 
 - (void)reset
 {
-    [self.counter reset];
-    [self.accum reset];
-    [self.inputBuffer removeAllObjects];
+    BSDBuffer *buffer = self.coldInlet.value;
+    if ([buffer isKindOfClass:[BSDBuffer class]]) {
+        [buffer.hotInlet input:[BSDBang bang]];
+    }else{
+        self.count = 0;
+        self.coldInlet.value  = @0;
+    }
 }
 
 - (void)calculateOutput
 {
+    NSNumber *hot = self.hotInlet.value;
+    BSDBuffer *buffer = self.coldInlet.value;
     if (self.bufferSize > 0) {
-        id oldestValue = [self addBufferValue:self.hotInlet.value];
+        [buffer.hotInlet input:hot];
+        NSArray *updatedBuffer = buffer.mainOutlet.value;
+        NSNumber *avg = [updatedBuffer valueForKeyPath:@"@avg.self"];
+        self.countOutlet.value = @(updatedBuffer.count);
+        self.mainOutlet.value = avg;
         
-        if (oldestValue != NULL) {
-            [self.subtract.coldInlet input:oldestValue];
-            [self.counter.coldInlet input:@(self.inputBuffer.count - 1)];
-            
-        }else{
-            [self.subtract.coldInlet input:@(0)];
-        }
+    }else{
+        double currentSum = [self.coldInlet.value floatValue];
+        currentSum += hot.floatValue;
+        self.count ++;
+        self.countOutlet.value = @(self.count);
+        self.mainOutlet.value = @(currentSum/(double)self.count);
     }
+
 }
 
 

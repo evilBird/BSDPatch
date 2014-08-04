@@ -10,4 +10,9 @@
 
 @interface BSDMapObject : BSDObject
 
+//BSDMapObject: map an object to a dictionary
+//Hot inlet: takes any key-value coding compliant object
+//Cold inlet: NA
+//Main outlet: emits a dictionary
+
 @end

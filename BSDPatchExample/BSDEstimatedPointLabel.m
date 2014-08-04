@@ -36,7 +36,7 @@
     [self.splitPoint connectOutlet:self.splitPoint.x toInlet:self.intX.hotInlet];
     self.intY = [[BSDInt alloc]init];
     [self.splitPoint connectOutlet:self.splitPoint.y toInlet:self.intY.hotInlet];
-    self.makeArray = [[BSDArrayMake alloc]initWithArguments:@[self.pointName,self.intX.mainOutlet,self.intY.mainOutlet]];
+    self.makeArray = [[BSDArrayPack alloc]initWithArguments:@[self.pointName,self.intX.mainOutlet,self.intY.mainOutlet]];
     NSString *format = @"estimated point %@:\n(%@,%@)";
     self.formatString = [[BSDFormatString alloc]initWithFormatString:format];
     [self.makeArray connect:self.formatString.hotInlet];

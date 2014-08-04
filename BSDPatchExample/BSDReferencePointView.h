@@ -24,8 +24,8 @@
 @property(nonatomic,strong)BSDSubtract *minusX;
 @property(nonatomic,strong)BSDSwap *swapY;
 @property(nonatomic,strong)BSDSubtract *minusY;
-@property(nonatomic,strong)BSDPrependKey *prependFrame;
-@property(nonatomic,strong)BSDPrependKey *prependAlpha;
+@property(nonatomic,strong)BSDAddKey *prependFrame;
+@property(nonatomic,strong)BSDAddKey *prependAlpha;
 @property(nonatomic,strong)UIView *centerView;
 
 @end

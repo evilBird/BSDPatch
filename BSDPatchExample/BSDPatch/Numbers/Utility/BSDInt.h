@@ -10,4 +10,10 @@
 
 @interface BSDInt : BSDObject
 
+//BSDInt: Converts a numeric value to integer by truncation
+//Hot inlet: Takes an NSNumber to be truncated
+//Cold inlet:NA
+//Hot inlet: Emits a truncated NSNumber when the hot inlet receives a value
+
+
 @end

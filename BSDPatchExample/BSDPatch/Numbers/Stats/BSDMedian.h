@@ -10,9 +10,12 @@
 
 @interface BSDMedian : BSDObject
 
-@property (nonatomic,readonly) NSUInteger bufferSize;
+//BSDMedian: calculates the running median of a stream of NSNumbers
+//Hot inlet: Takes an NSNumber used to calculate the running median. When it receives a bang, the buffer is reset
+//Cold inlet: Stores an optional buffer
+//Main outlet: Emits the media of the buffer when a new value is received
+//Count outlet: Emits the number of values being used to calculate the median
 
-- (id)initWithBufferSize:(NSUInteger)bufferSize;
-- (void)reset;
+- (instancetype)initWithBufferSize:(NSNumber *)bufferSize;
 
 @end

@@ -42,6 +42,13 @@
     }
 }
 
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet == self.hotInlet) {
+        self.mainOutlet.value = self.mainOutlet.value;
+    }
+}
+
 
 - (void)setView:(UIView *)view
 {

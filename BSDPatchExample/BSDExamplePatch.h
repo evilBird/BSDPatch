@@ -19,7 +19,7 @@
 @property(nonatomic)CGPoint refpt2;
 
 @property(nonatomic,strong)BSDTouchGenerator *touchGenerator;
-@property(nonatomic,strong)BSDDictionaryDrip *touchDrip;
+@property(nonatomic,strong)BSDDictionarySerialize *touchDrip;
 @property(nonatomic,strong)BSDRoute *touchRoute;
 @property(nonatomic,strong)BSDSequence *touchSequence;
 
@@ -40,7 +40,7 @@
 @property(nonatomic,strong)BSDEstimatedPointLabel *estPtLab_i;
 @property(nonatomic,strong)BSDEstimatedPointLabel *estPtLab_j;
 
-@property(nonatomic,strong)BSDDictionaryDrip *drip;
+@property(nonatomic,strong)BSDDictionarySerialize *drip;
 @property(nonatomic,strong)BSDRoute *route;
 
 - (instancetype)initWithSuperview:(UIView *)superview;

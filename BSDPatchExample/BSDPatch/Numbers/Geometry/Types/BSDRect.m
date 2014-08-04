@@ -18,6 +18,8 @@
 
 - (void)setupWithArguments:(id)arguments
 {
+    self.name = @"BSDRect";
+    
     self.originXInlet = [[BSDInlet alloc]initHot];
     self.originXInlet.name = @"originX";
     self.originYInlet = [[BSDInlet alloc]initHot];
@@ -26,6 +28,14 @@
     self.widthInlet.name = @"width";
     self.heightInlet = [[BSDInlet alloc]initHot];
     self.heightInlet.name = @"height";
+    self.originXInlet.value = @(0);
+    self.originYInlet.value = @(0);
+    self.widthInlet.value = @(0);
+    self.heightInlet.value = @(0);
+    [self addPort:self.originXInlet];
+    [self addPort:self.originYInlet];
+    [self addPort:self.widthInlet];
+    [self addPort:self.heightInlet];
     
     NSValue *initialRect = (NSValue *)arguments;
     
@@ -41,11 +51,14 @@
         self.widthInlet.value = @(0);
         self.heightInlet.value = @(0);
     }
-    
-    [self addPort:self.originXInlet];
-    [self addPort:self.originYInlet];
-    [self addPort:self.widthInlet];
-    [self addPort:self.heightInlet];
+
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet == self.hotInlet) {
+        [self calculateOutput];
+    }
 }
 
 - (void)calculateOutput

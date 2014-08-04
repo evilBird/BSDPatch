@@ -13,14 +13,13 @@
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"int";
+    self.coldInlet.open = NO;
 }
 
 -(void)calculateOutput
 {
     NSNumber *hot = self.hotInlet.value;
-    if ([hot respondsToSelector:@selector(doubleValue)]) {
-        self.mainOutlet.value = @((NSInteger)hot.doubleValue);
-    }
+    self.mainOutlet.value = @((NSInteger)hot.doubleValue);
 }
 
 - (void)test

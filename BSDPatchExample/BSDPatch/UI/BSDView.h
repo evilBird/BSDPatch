@@ -10,6 +10,11 @@
 
 @interface BSDView : BSDObject
 
+//BSDView: Set the properties of a UIView via a stream of key value pairs
+//Hot inlet: Takes a dictionary containing key-value pairs
+//Cold inlet: Stores a UIView instance
+//Main outlet: Emits the UIView whenever its properties are updated
+
 - (instancetype)initWithUIView:(UIView *)view;
 
 - (UIView *)view;

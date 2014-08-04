@@ -11,16 +11,34 @@
 
 @implementation BSDSplitPoint
 
+- (instancetype)initWithCGPoint:(CGPoint)point
+{
+    return [super initWithArguments:[NSValue wrapPoint:point]];
+}
+
 - (void)setupWithArguments:(id)arguments
 {
     self.name = @"split point";
     self.x = [[BSDOutlet alloc]init];
     self.x.name = @"x";
+    self.x.value = @0;
     self.y = [[BSDOutlet alloc]init];
     self.y.name = @"y";
+    self.y.value = @0;
     [self addPort:self.x];
     [self addPort:self.y];
     
+    NSValue *initialPoint = arguments;
+    if (initialPoint) {
+        self.coldInlet.value = initialPoint;
+    }
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet == self.hotInlet) {
+        [self calculateOutput];
+    }
 }
 
 - (void)calculateOutput

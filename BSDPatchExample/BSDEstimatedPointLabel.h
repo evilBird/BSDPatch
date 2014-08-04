@@ -21,12 +21,12 @@
 @property (nonatomic,strong)BSDSplitPoint *splitPoint;
 @property (nonatomic,strong)BSDInt *intX;
 @property (nonatomic,strong)BSDInt *intY;
-@property (nonatomic,strong)BSDArrayMake *makeArray;
+@property (nonatomic,strong)BSDArrayPack *makeArray;
 @property (nonatomic,strong)BSDFormatString *formatString;
-@property (nonatomic,strong)BSDPrependKey *prependTextKey;
+@property (nonatomic,strong)BSDAddKey *prependTextKey;
 @property (nonatomic,strong)BSDAdd *offsetCenter;
 @property (nonatomic,strong)BSDPoint *makeCenter;
-@property (nonatomic,strong)BSDPrependKey *prependCenterKey;
+@property (nonatomic,strong)BSDAddKey *prependCenterKey;
 
 
 @end

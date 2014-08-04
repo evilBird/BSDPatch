@@ -10,6 +10,8 @@
 
 @interface BSDGenerator : BSDObject
 
+//BSDGenerator: Abstract superclass for objects that generate events
+
 - (void)receivedNewData:(id)data;
 
 @end

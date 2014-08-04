@@ -64,11 +64,11 @@
 + (BSDMin *)min;
 + (BSDMin *)minCold:(NSNumber *)coldInletValue;
 
-+ (BSDClip *)clip;
-+ (BSDClip *)clipMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
++ (BSDClipSoft *)clip;
++ (BSDClipSoft *)clipMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
 
-+ (BSDClipFilter *)clipFilter;
-+ (BSDClipFilter *)clipFilterMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
++ (BSDClipHard *)clipFilter;
++ (BSDClipHard *)clipFilterMin:(NSNumber *)minValue Max:(NSNumber *)maxValue;
 
 + (BSDEqual *)equals;
 + (BSDEqual *)equalsCold:(NSNumber *)coldInletValue;
@@ -115,15 +115,13 @@
 + (BSDMedian *)median;
 + (BSDMedian *)medianBufferSize:(NSNumber *)bufferSize;
 
-+ (BSDArrayBox *)arrayBox;
-+ (BSDArrayBox *)arrayBoxCold:(NSArray *)coldInletValue;
+
 
 + (BSDArraySort *)arraySort:(id)arguments;
 
 + (BSDArrayFilter *)arrayFilter:(id)arguments;
 
-+ (BSDArrayDripSlow *)arraySerialize;
-+ (BSDArrayDripSlow *)arraySerializeCold:(NSArray *)array;
+
 
 + (BSDArrayElement *)arrayElement;
 + (BSDArrayElement *)arrayElementCold:(NSArray *)array;

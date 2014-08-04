@@ -13,8 +13,8 @@
 
 @property (nonatomic,strong)BSDInlet *center;
 @property (nonatomic,strong)BSDInlet *alpha;
-@property (nonatomic,strong)BSDPrependKey *prependAlpha;
-@property (nonatomic,strong)BSDPrependKey *prependCenter;
+@property (nonatomic,strong)BSDAddKey *prependAlpha;
+@property (nonatomic,strong)BSDAddKey *prependCenter;
 @property (nonatomic,strong)BSDView *mainView;
 
 - (instancetype)initWithUIView:(UIView *)view;

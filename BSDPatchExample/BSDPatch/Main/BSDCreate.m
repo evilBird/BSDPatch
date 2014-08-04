@@ -39,14 +39,14 @@
     return [[BSDSpigot alloc]initWithArguments:coldInletValue];
 }
 
-+ (BSDPrependKey *)prependKey
++ (BSDAddKey *)addKey
 {
-    return [[BSDPrependKey alloc]initWithArguments:nil];
+    return [[BSDAddKey alloc]initWithArguments:nil];
 }
 
-+ (BSDPrependKey *)prependKeyCold:(NSString *)coldInletValue
++ (BSDAddKey *)prependKeyCold:(NSString *)coldInletValue
 {
-    return [[BSDPrependKey alloc]initWithArguments:coldInletValue];
+    return [[BSDAddKey alloc]initWithArguments:coldInletValue];
 }
 
 + (BSDMultiply *)multiply
@@ -114,10 +114,6 @@
     return [[BSDRoute alloc]initWithArguments:keys];
 }
 
-+ (BSDRoute *)routeWithKeys:(NSArray *)keys toInlets:(NSArray *)inlets
-{
-    return [[BSDRoute alloc]initWithKeys:keys forInlets:inlets];
-}
 
 + (BSDSwap *)swap
 {
@@ -139,15 +135,11 @@
     return [[BSDValueBox alloc]initWithArguments:coldInletValue];
 }
 
-+ (BSDPower *)power
++ (BSDExponent *)exponent
 {
-    return [[BSDPower alloc]initWithArguments:nil];
+    return [[BSDExponent alloc]initWithArguments:nil];
 }
 
-+ (BSDPower *)powerCold:(NSNumber *)coldInletValue
-{
-    return [[BSDPower alloc]initWithArguments:coldInletValue];
-}
 
 + (BSDEqual *)equals
 {
@@ -215,26 +207,26 @@
     return [[BSDMin alloc]initWithArguments:coldInletValue];
 }
 
-+ (BSDClip *)clip
++ (BSDClipSoft *)clipSoft
 {
-    return [[BSDClip alloc]initWithArguments:nil];
+    return [[BSDClipSoft alloc]initWithArguments:nil];
 }
 
-+ (BSDClip *)clipMin:(NSNumber *)minValue Max:(NSNumber *)maxValue
++ (BSDClipSoft *)initWithMinValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue
 {
-    return [[BSDClip alloc]initWithArguments:@[minValue,maxValue]];
+    return [[BSDClipSoft alloc]initWithMinValue:minValue maxValue:maxValue];
 }
 
-+ (BSDClipFilter *)clipFilter
++ (BSDClipHard *)clipHard
 {
-    return [[BSDClipFilter alloc]initWithArguments:nil];
+    return [[BSDClipHard alloc]initWithArguments:nil];
 }
-
-+ (BSDClipFilter *)clipFilterMin:(NSNumber *)minValue Max:(NSNumber *)maxValue
+/*
++ (BSDClipHard*)initWithMinValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue
 {
-    return [[BSDClipFilter alloc]initWithArguments:@[minValue,maxValue]];
+    return [[BSDClipHard alloc]initWithMinValue:minValue maxValue:maxValue];
 }
-
+*/
 + (BSDAccum *)accumulate
 {
     return [[BSDAccum alloc]initWithArguments:nil];
@@ -309,11 +301,12 @@
 {
     return [[BSDStdDev alloc]initWithArguments:bufferSize];
 }
-
-+ (BSDLog *)naturalLog
+/*
++ (BSDNatuLog *)naturalLog
 {
-    return [[BSDLog alloc]initWithArguments:nil];
+    return [[BSDNaLog alloc]initWithArguments:nil];
 }
+ */
 
 + (BSDAbs *)absoluteValue
 {
@@ -345,15 +338,6 @@
     return [[BSDMedian alloc]initWithArguments:bufferSize];
 }
 
-+ (BSDArrayBox *)arrayBox
-{
-    return [[BSDArrayBox alloc]initWithArguments:nil];
-}
-
-+ (BSDArrayBox *)arrayBoxCold:(NSArray *)coldInletValue
-{
-    return [[BSDArrayBox alloc]initWithArguments:coldInletValue];
-}
 
 + (BSDArraySort *)arraySort:(id)arguments
 {
@@ -389,9 +373,9 @@
     return [[BSDArrayNormalize alloc]initWithArguments:nil];
 }
 
-+ (BSDClassify *)classify:(id)arguments
++ (BSDArrayClassify *)classify:(id)arguments
 {
-    return [[BSDClassify alloc]initWithArguments:arguments];
+    return [[BSDArrayClassify alloc]initWithPredicates:arguments];
 }
 
 + (BSDRect *)rect

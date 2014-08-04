@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface BSDBang : NSObject
+
+//BSDBang: a generic event
 
 + (BSDBang *)bang;
 
-@property (nonatomic,strong)id value;
+@property (nonatomic,readonly)NSDate *timeStamp;
+- (NSString *)uniqueId;
 
 @end

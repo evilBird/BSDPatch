@@ -10,8 +10,15 @@
 
 @interface BSDTouchGenerator : BSDGenerator
 
+//BSDTouchGenerator: Generates touch events received by a view
+//Hot inlet: takes a bang to poll the gesture recognizer
+//Cold inlet: stores a gesture recognizer
+//Main outlet: emits a dictionary describing the location and velocity of touches
+
 @property (nonatomic,strong) UIView *view;
 
 - (instancetype)initWithView:(UIView *)view;
+
+
 
 @end

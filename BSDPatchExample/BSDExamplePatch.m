@@ -84,12 +84,12 @@
         
         //route the outputs of the intersect2cirlces object to the appropriate labels
         self.route = [BSDCreate routeWithKeys:@[@"i",@"j"] toInlets:@[self.estPtLab_i.estimatedPointInlet,self.estPtLab_j.estimatedPointInlet]];
-        self.drip = [[BSDDictionaryDrip alloc]init];
+        self.drip = [[BSDDictionarySerialize alloc]init];
         [self.drip connect:self.route.hotInlet];
         [self.intersect2circles connect:self.drip.hotInlet];
         
         self.touchGenerator = [[BSDTouchGenerator alloc]initWithArguments:superview];
-        self.touchDrip = [[BSDDictionaryDrip alloc]init];
+        self.touchDrip = [[BSDDictionarySerialize alloc]init];
         [self.touchGenerator connect:self.touchDrip.hotInlet];
         self.touchSequence = [BSDCreate sequenceInlets:@[self.distanceFromRefPt1.hotInlet,self.distanceFromRefPt2.hotInlet]];
         self.touchRoute = [BSDCreate routeWithKeys:@[@"location"] toInlets:@[self.touchSequence.hotInlet]];

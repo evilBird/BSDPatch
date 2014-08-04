@@ -20,21 +20,26 @@
 {
     self.xInlet = [[BSDInlet alloc]initHot];
     self.xInlet.name = @"x";
+    self.xInlet.value = @0;
     self.yInlet = [[BSDInlet alloc]initHot];
     self.yInlet.name = @"y";
+    self.yInlet.value = @0;
+    [self addPort:self.xInlet];
+    [self addPort:self.yInlet];
     
     NSValue *initVal = (NSValue *)arguments;
     if (initVal) {
         CGPoint point = initVal.CGPointValue;
         self.xInlet.value = @(point.x);
         self.yInlet.value = @(point.y);
-    }else{
-        self.xInlet.value = @(0);
-        self.yInlet.value = @(0);
     }
-    
-    [self addPort:self.xInlet];
-    [self addPort:self.yInlet];
+}
+
+- (void)inletReceievedBang:(BSDInlet *)inlet
+{
+    if (inlet == self.hotInlet) {
+        [self calculateOutput];
+    }
 }
 
 - (void)calculateOutput
@@ -46,7 +51,7 @@
         output.x = x.doubleValue;
         output.y = y.doubleValue;
         
-        self.mainOutlet.value = [NSValue valueWithCGPoint:output];
+        self.mainOutlet.value = [NSValue wrapPoint:output];
     }
 }
 

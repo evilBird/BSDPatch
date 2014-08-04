@@ -10,6 +10,11 @@
 
 @interface BSDLabel : BSDObject
 
+//BSDLabel: Set the properties of a UIView via a stream of key value pairs
+//Hot inlet: Takes a dictionary containing key-value pairs
+//Cold inlet: Stores a UILabel instance
+//Main outlet: Emits the UILabel whenever its properties are updated
+
 - (instancetype)initWithUILabel:(UILabel *)label;
 - (UILabel *)label;
 

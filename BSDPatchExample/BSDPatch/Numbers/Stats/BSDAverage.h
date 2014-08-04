@@ -10,13 +10,14 @@
 
 @interface BSDAverage : BSDObject
 
-//Input and output are NSNumbers
+//BSDAverage: Average a stream of numeric values, optionally with a fixed buffer
+//Hot inlet: Takes an NSNumber to be included in the average. When it receives a bang, the average is reset
+//Cold inlet: Stores the buffer used to calculate the running sum of received values
+//Main outlet: Emits the the running average of received values
+//Count outlet: Emits the nummber of values used to compute the running average as an NSNumber
 
-//Optionally BSDAverage uses an input buffer to calculate a running average. By default the buffer is not used. Specify the number of values that should be used to compute the running average with the bufferSize argument.
+- (instancetype)initWithBufferSize:(NSNumber *)bufferSize;
 
-@property (nonatomic,readonly) NSUInteger bufferSize;
-
-- (id)initWithBufferSize:(NSUInteger)bufferSize;
-- (void)reset;
+@property (nonatomic,strong)BSDOutlet *countOutlet;
 
 @end
