@@ -39,6 +39,7 @@
 #import "BSDArrayPrepend.h"
 #import "BSDSequence.h"
 #import "BSDArrayClassify.h"
+#import "BSDValue.h"
 
 #import "BSDSelect.h"
 #import "BSDBang.h"
