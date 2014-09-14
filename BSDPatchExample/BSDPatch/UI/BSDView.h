@@ -16,7 +16,9 @@
 //Main outlet: Emits the UIView whenever its properties are updated
 
 - (instancetype)initWithUIView:(UIView *)view;
-
 - (UIView *)view;
+
+@property (nonatomic,strong)BSDInlet *getterInlet;
+@property (nonatomic,strong)BSDOutlet *getterOutlet;
 
 @end

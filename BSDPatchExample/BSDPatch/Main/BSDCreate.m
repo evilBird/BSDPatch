@@ -397,14 +397,14 @@
     return [[BSDView alloc]initWithUIView:view];
 }
 
-+ (BSDPoint *)point
++ (BSDPoint2D *)point
 {
-    return [[BSDPoint alloc]initWithArguments:nil];
+    return [[BSDPoint2D alloc]initWithArguments:nil];
 }
 
-+ (BSDPoint *)pointWithCGPoint:(CGPoint)point
++ (BSDPoint2D *)pointWithCGPoint:(CGPoint)point
 {
-    return [[BSDPoint alloc]initWithCGPoint:point];
+    return [[BSDPoint2D alloc]initWithCGPoint:point];
 }
 
 + (BSDFormatString *)formatString

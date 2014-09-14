@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
-
+@property (nonatomic,strong)BSDOutlet *accelOutlet;
+@property (nonatomic,strong)BSDOutlet *gyroOutlet;
+@property (nonatomic,strong)BSDOutlet *pitchOutlet;
 
 @end

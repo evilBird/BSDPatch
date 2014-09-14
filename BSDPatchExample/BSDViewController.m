@@ -22,8 +22,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    //self.examplePatch = [[BSDExamplePatch alloc]initWithSuperview:self.view];
     [self test];
 }
 

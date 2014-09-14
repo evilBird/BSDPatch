@@ -8,7 +8,7 @@
 
 #import "BSDObject.h"
 
-@interface BSDPoint : BSDObject
+@interface BSDPoint2D : BSDObject
 
 //BSDPoint: represents a dynamic coordinate built on CGPoint struct
 //Hot inlet: Accepts a Bang, which outputs the current point

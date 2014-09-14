@@ -136,8 +136,8 @@
 + (BSDRect *)rect;
 + (BSDRect *)rectWithCGRect:(CGRect)rect;
 
-+ (BSDPoint *)point;
-+ (BSDPoint *)pointWithCGPoint:(CGPoint)point;
++ (BSDPoint2D *)point;
++ (BSDPoint2D *)pointWithCGPoint:(CGPoint)point;
 
 + (BSDFormatString *)formatString;
 + (BSDFormatString *)formatString:(NSString *)coldInletValue;

@@ -22,6 +22,7 @@
         _observedPorts = [NSMutableSet set];
         _inlets = [NSMutableArray array];
         _outlets = [NSMutableArray array];
+        _subobjects = [NSMutableArray array];
         
         _name = @"BSDObject";
         _hotInlet = [[BSDInlet alloc]initHot];
@@ -85,6 +86,13 @@
 }
 
 #pragma mark - BSDPortDelegate methods
+
+- (void)portReceivedBang:(id)sender
+{
+    if ([sender isKindOfClass:[BSDInlet class]]) {
+        [self inletReceievedBang:sender];
+    }
+}
 
 - (void)inletReceievedBang:(BSDInlet *)inlet
 {

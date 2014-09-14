@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 birdSound LLC. All rights reserved.
 //
 
-#import "BSDPoint.h"
+#import "BSDPoint2D.h"
 #import "BSDCreate.h"
 
-@implementation BSDPoint
+@implementation BSDPoint2D
 
 - (instancetype)initWithCGPoint:(CGPoint)point
 {

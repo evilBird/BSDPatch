@@ -11,8 +11,8 @@
 #import "BSDAdd.h"
 #import "BSDSubtract.h"
 #import "BSDDivide.h"
-#import "BSDPower.h"
-#import "BSDLog.h"
+
+#import "BSDNaturalLog.h"
 #import "BSDAbs.h"
 #import "BSDMod.h"
 #import "BSDReciprocal.h"
@@ -29,8 +29,8 @@
 #import "BSDInt.h"
 #import "BSDMax.h"
 #import "BSDMin.h"
-#import "BSDClip.h"
-#import "BSDClipFilter.h"
+#import "BSDClipSoft.h"
+#import "BSDClipHard.h"
 
 //Statistics
 #import "BSDAccum.h"
@@ -48,5 +48,11 @@
 //Geometry Types
 #import "BSDRect.h"
 #import "BSDRectSplit.h"
-#import "BSDPoint.h"
+#import "BSDPoint2D.h"
 #import "BSDSplitPoint.h"
+
+typedef struct {
+    double x;
+    double y;
+    double z;
+} BSD3DPoint;

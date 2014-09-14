@@ -74,9 +74,6 @@
 // Compare to other objects
 - (BOOL) isEqual:(id)object;
 
-// Returns an array of class objects which can be handled by a given subclass. Returns nil by default.
-- (NSArray *)allowedTypes;
-
 // Debug & test
 - (NSString *) debugDescription;
 - (void) test;

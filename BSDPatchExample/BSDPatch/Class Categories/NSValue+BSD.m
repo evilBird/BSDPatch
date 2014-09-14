@@ -20,4 +20,22 @@
     return [NSValue valueWithCGRect:rect];
 }
 
++ (NSValue *)wrap3DTransform:(CATransform3D)transform
+{
+    return [NSValue valueWithCATransform3D:transform];
+}
+
++ (NSValue *)wrapAffineTransform:(CGAffineTransform)transform
+{
+    return [NSValue valueWithCGAffineTransform:transform];
+}
+
++ (NSDictionary *) wrapAccel:(CMAcceleration) accel
+{
+    return @{@"x": @(accel.x),
+             @"y":@(accel.y),
+             @"z":@(accel.z)};
+    
+}
+
 @end

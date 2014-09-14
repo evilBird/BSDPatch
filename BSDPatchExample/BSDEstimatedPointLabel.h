@@ -25,7 +25,7 @@
 @property (nonatomic,strong)BSDFormatString *formatString;
 @property (nonatomic,strong)BSDAddKey *prependTextKey;
 @property (nonatomic,strong)BSDAdd *offsetCenter;
-@property (nonatomic,strong)BSDPoint *makeCenter;
+@property (nonatomic,strong)BSDPoint2D *makeCenter;
 @property (nonatomic,strong)BSDAddKey *prependCenterKey;
 
 

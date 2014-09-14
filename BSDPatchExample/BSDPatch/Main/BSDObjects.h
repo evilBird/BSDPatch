@@ -65,7 +65,7 @@
 #import "BSDView.h"
 #import "BSDRect.h"
 #import "BSDRectSplit.h"
-#import "BSDPoint.h"
+#import "BSDPoint2D.h"
 #import "BSDSplitPoint.h"
 #import "BSDLabel.h"
 
@@ -74,5 +74,9 @@
 
 #import "BSDGenerator.h"
 #import "BSDTouchGenerator.h"
-
+#import "BSDArrayAccum.h"
 #import "NSValue+BSD.h"
+#import "BSDMotionGenerator.h"
+#import "BSDLayer.h"
+#import "BSDBasicAnimation.h"
+#import "BSDSpeedLimit.h"
