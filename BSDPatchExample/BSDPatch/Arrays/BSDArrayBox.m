@@ -22,7 +22,7 @@
 {
     id hot = self.hotInlet.value;
     NSArray *array = self.coldInlet.value;
-    if ([self isBang:hot] && array) {
+  if ([hot isKindOfClass:[BSDBang class]] && array) {
         self.mainOutlet.value = array;
     }
 }
