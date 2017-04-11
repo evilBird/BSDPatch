@@ -10,4 +10,18 @@
 
 @implementation BSDPrint
 
+- (void)setupWithArguments:(id)arguments{
+  self.name = arguments;
+  self.coldInlet.value = arguments;
+}
+
+- (void)calculateOutput{
+  id hot = self.hotInlet.value;
+  id name = self.coldInlet.value;
+  if (hot != nil){
+    NSString* toPrint = [NSString stringWithFormat:@"[%f] %@: %@",[NSDate timeIntervalSinceReferenceDate], name, hot];
+    NSLog(@"%@",toPrint);
+  }
+}
+
 @end

@@ -10,4 +10,6 @@
 
 @interface BSDDictionaryDripValues : BSDObject
 
+@property (nonatomic,strong)BSDOutlet *doneOutlet;
+
 @end
