@@ -30,23 +30,6 @@
 
 - (void)calculateOutput
 {
-    NSDictionary *args = self.coldInlet.value;
-    
-    if (args) {
-        [self updateParametersWithArgs:args];
-    }
-    
-    UIImage *image = self.hotInlet.value;
-
-    if (image && self.parameters) {
-        
-        NSNumber *blurRadius = self.parameters[@"radius"];
-        self.mainOutlet.value = [HBVImageBlur applyBlurType:HBVImageBlurTypevImage
-                                                    onImage:image withRadius:blurRadius.floatValue];
-        
-    }
-    
-    
 }
 
 - (void)updateParametersWithArgs:(NSDictionary *)args

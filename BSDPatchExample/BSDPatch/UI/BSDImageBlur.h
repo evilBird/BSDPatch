@@ -7,8 +7,8 @@
 //
 
 #import "BSDObject.h"
-#import "UIImageEffects.h"
-#import "HBVImageBlur.h"
+//#import "UIImageEffects.h"
+//#import "HBVImageBlur.h"
 
 @interface BSDImageBlur : BSDObject
 

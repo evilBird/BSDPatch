@@ -41,14 +41,17 @@
 
 - (void)calculateOutput
 {
-    NSDictionary *hot = self.hotInlet.value;
-    for (NSString *aRouteKey in hot) {
-        BSDOutlet *anOutlet = [self outletForRouteKey:aRouteKey];
-        id value = hot[aRouteKey];
-        anOutlet.value = value;
+  NSDictionary *hot = self.hotInlet.value;
+  NSMutableDictionary* hotCopy = hot.mutableCopy;
+  [hot enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    BSDOutlet* anOutlet = [self outletForRouteKey:key];
+    if (anOutlet != nil){
+      [hotCopy removeObjectForKey:key];
+      anOutlet.value = obj;
     }
-    
-    self.mainOutlet.value = hot;
+  }];
+
+  self.mainOutlet.value = hotCopy;
 }
 
 - (BSDOutlet *)addOutletForRouteKey:(NSString *)routeKey

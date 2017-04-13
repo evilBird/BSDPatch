@@ -8,7 +8,6 @@ Pod::Spec.new do |spec|
   spec.summary      = 'A tiny data flow library for iOS.'
   spec.source       = { :git => 'https://github.com/evilBird/BSDPatch.git', :tag => '0.0.2' }
   spec.source_files = 'BSDPatchExample/BSDPatch/**/*.{h,m}'
-  spec.exclude_files= 'BSDPatchExample/BSDPatch/UI/*.{h,m}'
   spec.requires_arc = true
   spec.framework    = 'UIKit'
 end
