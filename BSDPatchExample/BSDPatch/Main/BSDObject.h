@@ -19,7 +19,7 @@
 // Human-readable name
 @property (nonatomic,strong) NSString *name;
 // Unique per-object identifier
-@property (nonatomic,readonly) NSString *objectId;
+@property (nonatomic) NSString *objectId;
 
 // Default port configuration
 @property (nonatomic,strong) BSDInlet *hotInlet;

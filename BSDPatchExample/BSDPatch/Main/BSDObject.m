@@ -18,7 +18,8 @@
 {
     self = [super init];
     if (self) {
-        
+
+        _objectId = [NSString stringWithFormat:@"%p",self];
         _observedPorts = [NSMutableSet set];
         _inlets = [NSMutableArray array];
         _outlets = [NSMutableArray array];
@@ -175,13 +176,6 @@
     }
     
     return nil;
-}
-
-// Unique object identifier & equality
-
-- (NSString *)objectId
-{
-    return [NSString stringWithFormat:@"%p",self];
 }
 
 - (BOOL)isEqual:(id)object
